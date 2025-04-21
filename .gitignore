@@ -27,6 +27,9 @@ vite.config.ts.timestamp-*
 *.jpg
 *.jpeg
 
+# Root-level PDFs (resume lives in static/)
+/*.pdf
+
 # Tooling / AI context
 .claude/
 .mcp.json
