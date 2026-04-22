@@ -86,12 +86,12 @@
 		<!-- Glow orb: cyan top-left -->
 		<div
 			class="absolute hero-orb"
-			style="top: 10%; left: 8%; width: 420px; height: 420px; background: radial-gradient(circle, rgba(34,211,238,0.18), transparent 65%); filter: blur(40px);"
+			style="top: 10%; left: 8%; width: 420px; height: 420px; background: radial-gradient(circle, rgba(34,211,238,0.18), transparent 65%); filter: blur(32px); will-change: filter; transform: translateZ(0);"
 		></div>
 		<!-- Glow orb: indigo bottom-right -->
 		<div
 			class="absolute hero-orb"
-			style="bottom: 5%; right: 5%; width: 480px; height: 480px; background: radial-gradient(circle, rgba(129,140,248,0.15), transparent 65%); filter: blur(40px);"
+			style="bottom: 5%; right: 5%; width: 480px; height: 480px; background: radial-gradient(circle, rgba(129,140,248,0.15), transparent 65%); filter: blur(32px); will-change: filter; transform: translateZ(0);"
 		></div>
 		<!-- Center radial -->
 		<div
@@ -212,8 +212,9 @@
 	}
 
 	.hero-orb {
-		will-change: transform;
+		will-change: filter, transform;
 		transform: translateZ(0);
+		contain: strict;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

@@ -29,6 +29,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
+	/* text-rendering: optimizeLegibility is intentionally omitted — it's slow in Firefox */
 }
 
 ::-webkit-scrollbar {
