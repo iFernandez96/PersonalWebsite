@@ -9,6 +9,7 @@
 	<link rel="icon" href={favicon} />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+	<!-- display=swap means browser shows fallback font immediately, swaps JetBrains Mono when loaded -->
 	<link
 		rel="preload"
 		as="style"
