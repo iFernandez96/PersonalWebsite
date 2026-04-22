@@ -22,7 +22,7 @@
 <section id="about" bind:this={sectionEl} class="py-24 px-6 lg:px-10">
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="transition-all duration-700"
+			class="transition-[opacity,transform] duration-700"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">01. ABOUT</p>
@@ -34,7 +34,7 @@
 
 		<div class="grid md:grid-cols-2 gap-12 items-start">
 			<div
-				class="transition-all duration-700 delay-150"
+				class="transition-[opacity,transform] duration-700 delay-150"
 				style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 			>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-5">
@@ -82,7 +82,7 @@
 			</div>
 
 			<div
-				class="transition-all duration-700 delay-300"
+				class="transition-[opacity,transform] duration-700 delay-300"
 				style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 			>
 				<!-- Quick-facts terminal card -->

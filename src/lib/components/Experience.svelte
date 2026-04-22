@@ -63,7 +63,7 @@
 <section id="experience" bind:this={sectionEl} class="py-24 px-6 lg:px-10">
 	<div class="max-w-6xl mx-auto">
 		<div
-			class="transition-all duration-700"
+			class="transition-[opacity,transform] duration-700"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">03. EXPERIENCE</p>
@@ -83,7 +83,7 @@
 			<div class="space-y-12">
 				{#each experiences as exp, i (exp.title)}
 					<div
-						class="relative pl-12 md:pl-24 transition-all duration-700"
+						class="relative pl-12 md:pl-24 transition-[opacity,transform] duration-700"
 						style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px); transition-delay: {i * 150}ms;"
 					>
 						<!-- Timeline dot -->
@@ -93,7 +93,7 @@
 						></div>
 
 						<div
-							class="exp-card rounded-lg p-6 border transition-all duration-300"
+							class="exp-card rounded-lg p-6 border"
 							style="background: var(--color-bg-secondary); border-color: var(--color-border); --exp-color: {exp.color};"
 						>
 							<div class="flex flex-wrap items-start gap-3 mb-1">

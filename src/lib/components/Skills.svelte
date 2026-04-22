@@ -66,7 +66,7 @@
 >
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="transition-all duration-700"
+			class="transition-[opacity,transform] duration-700"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">02. SKILLS</p>
@@ -79,7 +79,7 @@
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each skillGroups as group, i (group.title)}
 				<div
-					class="skill-card rounded-lg p-6 border transition-all duration-300 hover:-translate-y-1"
+					class="skill-card rounded-lg p-6 border"
 					style="
 						background: var(--color-bg-primary);
 						border-color: var(--color-border);
@@ -122,5 +122,6 @@
 	.skill-card:hover {
 		border-color: color-mix(in srgb, var(--card-color) 40%, transparent) !important;
 		box-shadow: 0 0 20px color-mix(in srgb, var(--card-color) 15%, transparent);
+		transform: translateY(-4px);
 	}
 </style>

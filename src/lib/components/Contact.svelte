@@ -46,7 +46,7 @@
 <section id="contact" bind:this={sectionEl} class="py-24 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto text-center">
 		<div
-			class="transition-all duration-700"
+			class="transition-[opacity,transform] duration-700"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">05. CONTACT</p>
@@ -61,12 +61,12 @@
 
 		<!-- Primary CTA -->
 		<div
-			class="transition-all duration-700 delay-150 mb-12"
+			class="transition-[opacity,transform] duration-700 delay-150 mb-12"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 30}px);"
 		>
 			<a
 				href="mailto:israelfernandez96@gmail.com"
-				class="inline-flex items-center gap-3 px-8 py-4 rounded text-base font-semibold tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-xl"
+				class="contact-cta inline-flex items-center gap-3 px-8 py-4 rounded text-base font-semibold tracking-wide"
 				style="background: linear-gradient(135deg, #22d3ee, #818cf8); color: #080d1a; box-shadow: 0 4px 20px rgba(34,211,238,0.2);"
 			>
 				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -78,7 +78,7 @@
 
 		<!-- Social links -->
 		<div
-			class="flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 delay-300"
+			class="flex flex-col sm:flex-row gap-4 justify-center transition-[opacity,transform] duration-700 delay-300"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 20}px);"
 		>
 			{#each links as link (link.label)}
@@ -86,7 +86,7 @@
 					href={link.href}
 					target={link.href.startsWith('mailto') ? undefined : '_blank'}
 					rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-					class="contact-link flex items-center gap-3 px-6 py-3 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 group"
+					class="contact-link flex items-center gap-3 px-6 py-3 rounded-lg border group"
 					style="border-color: var(--color-border); background: var(--color-bg-secondary); --link-color: {link.color};"
 				>
 					<span class="contact-icon text-[var(--color-text-muted)] transition-colors">
@@ -105,12 +105,21 @@
 </section>
 
 <style>
+	.contact-cta {
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+	.contact-cta:hover {
+		transform: scale(1.05);
+		box-shadow: 0 8px 32px rgba(34, 211, 238, 0.35);
+	}
+
 	.contact-link {
 		transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 	}
 	.contact-link:hover {
 		border-color: color-mix(in srgb, var(--link-color) 40%, transparent) !important;
 		box-shadow: 0 4px 16px color-mix(in srgb, var(--link-color) 10%, transparent);
+		transform: translateY(-2px);
 	}
 	.contact-link:hover .contact-icon {
 		color: var(--link-color);

@@ -85,7 +85,7 @@
 >
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="transition-all duration-700"
+			class="transition-[opacity,transform] duration-700"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">04. PROJECTS</p>
@@ -101,7 +101,7 @@
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each projects as project, i (project.title)}
 				<div
-					class="project-card group relative rounded-lg p-6 border flex flex-col transition-all duration-700 hover:-translate-y-1"
+					class="project-card group relative rounded-lg p-6 border flex flex-col"
 					style="
 						background: var(--color-bg-primary);
 						border-color: var(--color-border);
@@ -163,7 +163,7 @@
 		</div>
 
 		<div
-			class="mt-12 text-center transition-all duration-700 delay-500"
+			class="mt-12 text-center transition-[opacity,transform] duration-700 delay-500"
 			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 20}px);"
 		>
 			<a
@@ -188,6 +188,7 @@
 	.project-card:hover {
 		border-color: color-mix(in srgb, var(--project-color) 35%, transparent) !important;
 		box-shadow: 0 8px 30px color-mix(in srgb, var(--project-color) 12%, transparent);
+		transform: translateY(-4px);
 	}
 	.project-card:hover .project-title {
 		color: var(--project-color);

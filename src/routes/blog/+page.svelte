@@ -27,7 +27,7 @@
 			{#each posts as post (post.slug)}
 				<a
 					href="/blog/{post.slug}"
-					class="blog-card group relative block rounded-lg p-6 border transition-all duration-300"
+					class="blog-card group relative block rounded-lg p-6 border"
 					style="background: var(--color-bg-secondary); border-color: var(--color-border);"
 				>
 					<!-- Top accent line -->
