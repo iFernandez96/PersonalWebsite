@@ -107,7 +107,7 @@
 						{href}
 						class="nav-link text-sm tracking-wide relative pb-0.5"
 						class:is-active={isActive}
-						aria-current={isActive ? 'true' : undefined}
+						aria-current={isActive ? 'location' : undefined}
 					>
 						{label}
 						<span class="nav-underline" aria-hidden="true"></span>
@@ -172,7 +172,7 @@
 							class="block py-1 transition-colors"
 							class:text-[var(--color-accent-cyan)]={isActive}
 							class:text-[var(--color-text-secondary)]={!isActive}
-							aria-current={isActive ? 'true' : undefined}
+							aria-current={isActive ? 'location' : undefined}
 						>
 							{label}
 						</a>
