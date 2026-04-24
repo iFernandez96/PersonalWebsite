@@ -109,7 +109,6 @@
 		<p class="font-mono text-[var(--color-accent-cyan)] text-xs md:text-sm tracking-[0.3em] mb-5 opacity-0 animate-[fadeInDown_0.6s_ease_0.2s_forwards]">
 			HELLO, WORLD!
 		</p>
-		<p class="font-mono text-[var(--color-text-primary)] text-md md:text-md tracking-[0.3em] mb-5 opacity-0 animate-[fadeInDown_0.6s_ease_0.2s_forwards]">My Name Is</p>
 		<h1
 			class="text-5xl md:text-7xl font-bold text-[var(--color-text-primary)] mb-5 opacity-0 animate-[fadeInUp_0.6s_ease_0.4s_forwards]"
 			style="letter-spacing: -0.02em; line-height: 1.1;"
@@ -154,8 +153,8 @@
 				{#each [
 					{ value: '9+', label: 'Years Experience' },
 					{ value: '10+', label: 'Projects Shipped' },
-					{ value: 'C/C++', label: 'Primary Language' },
-					{ value: 'Apple', label: 'Current Client' }
+					{ value: '8+', label: 'Languages & Frameworks' },
+					{ value: '3', label: 'Industry Domains' }
 				] as stat, idx (stat.label)}
 					<div
 						class="flex-1 min-w-[130px] text-center py-4 px-3"
@@ -194,12 +193,7 @@
 		animation: cursor-blink 1.06s steps(2) infinite;
 	}
 
-	@keyframes cursor-blink {
-		0%, 49% { opacity: 1; }
-		50%, 100% { opacity: 0; }
-	}
-
-	.cta-primary {
+	.cta-primary:hover, .cta-primary:focus {
 		will-change: transform;
 	}
 	.cta-primary:hover {

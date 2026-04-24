@@ -63,13 +63,12 @@
 <section id="experience" bind:this={sectionEl} class="py-24 px-6 lg:px-10">
 	<div class="max-w-6xl mx-auto">
 		<div
-			class="transition-[opacity,transform] duration-700"
-			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
+			class="transition-[opacity,transform] duration-[400ms]"
+			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 14}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">03. EXPERIENCE</p>
-			<h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-12">
-				Where I've Worked
-				<span class="block w-12 h-0.5 mt-4" style="background: linear-gradient(90deg, var(--color-accent-cyan), transparent);"></span>
+			<h2 class="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-12">
+				Experience
 			</h2>
 		</div>
 
@@ -83,8 +82,8 @@
 			<div class="space-y-12">
 				{#each experiences as exp, i (exp.title)}
 					<div
-						class="relative pl-12 md:pl-24 transition-[opacity,transform] duration-700"
-						style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px); transition-delay: {i * 150}ms;"
+						class="relative pl-12 md:pl-24 transition-[opacity,transform] duration-[400ms]"
+						style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 14}px); transition-delay: {i * 150}ms;"
 					>
 						<!-- Timeline dot -->
 						<div
@@ -144,7 +143,13 @@
 		transition: border-color 0.3s, box-shadow 0.3s;
 	}
 	.exp-card:hover {
+		border-color: rgba(34, 211, 238, 0.35) !important;
 		border-color: color-mix(in srgb, var(--exp-color) 35%, transparent) !important;
+		box-shadow: 0 4px 24px rgba(34, 211, 238, 0.1);
 		box-shadow: 0 4px 24px color-mix(in srgb, var(--exp-color) 10%, transparent);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.exp-card { transition: none; }
 	}
 </style>

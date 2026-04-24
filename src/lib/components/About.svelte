@@ -22,20 +22,19 @@
 <section id="about" bind:this={sectionEl} class="py-24 px-6 lg:px-10">
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="transition-[opacity,transform] duration-700"
-			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
+			class="transition-[opacity,transform] duration-[400ms]"
+			style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 14}px);"
 		>
 			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">01. ABOUT</p>
-			<h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-12">
-				Who I Am
-				<span class="block w-12 h-0.5 mt-4" style="background: linear-gradient(90deg, var(--color-accent-cyan), transparent);"></span>
+			<h2 class="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-12">
+				About Me
 			</h2>
 		</div>
 
 		<div class="grid md:grid-cols-2 gap-12 items-start">
 			<div
-				class="transition-[opacity,transform] duration-700 delay-150"
-				style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
+				class="transition-[opacity,transform] duration-[400ms] delay-150"
+				style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 14}px);"
 			>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-5">
 					I'm a systems software engineer with deep roots in embedded systems, and Linux kernel development. 
@@ -43,9 +42,9 @@
 					real-time control systems and proprietary ARM hardware to computer vision pipelines.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-5">
-					Currently, I'm a Hardware Systems Software Engineer at <a class="text-[var(--color-text-primary)] font-semibold" href="https://www.apple.com/" target="_">Apple</a>
+					Currently, I'm a Hardware Systems Software Engineer at <a class="text-[var(--color-text-primary)] font-semibold" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>
 					(via Sasken Technologies), where I work on the software that runs test coverages on PoC and corner unit devices.
-					Prior to that, I spent close to a decade at <a class="text-[var(--color-text-primary)] font-semibold" href="https://www.gantz-mountain.com/" target="_">Gantz-Mountain Intelligence Automation Systems</a>.
+					Prior to that, I spent close to a decade at <a class="text-[var(--color-text-primary)] font-semibold" href="https://www.gantz-mountain.com/" target="_blank" rel="noopener noreferrer">Gantz-Mountain Intelligence Automation Systems</a>.
 					Gantz-Mountain is a defense AI startup in Monterey, CA doing low-level systems work on custom embedded platforms.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed">
@@ -82,8 +81,8 @@
 			</div>
 
 			<div
-				class="transition-[opacity,transform] duration-700 delay-300"
-				style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 40}px);"
+				class="transition-[opacity,transform] duration-[400ms] delay-300"
+				style="opacity: {visible ? 1 : 0}; transform: translateY({visible ? 0 : 14}px);"
 			>
 				<!-- Quick-facts terminal card -->
 				<div
