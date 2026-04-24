@@ -31,6 +31,7 @@ vite.config.ts.timestamp-*
 /*.pdf
 
 # Tooling / AI context
+CLAUDE.md.Backup
 .claude/
 .mcp.json
 .playwright-mcp/
