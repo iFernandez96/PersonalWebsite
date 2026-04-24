@@ -17,15 +17,26 @@
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<meta name="author" content="Israel Fernandez" />
-	<meta name="keywords" content="Israel Fernandez, software engineer, embedded systems, Linux kernel, Android security, red team, C++, Svelte" />
+	<meta name="robots" content="index, follow" />
 	<link rel="canonical" href="https://israelfernandez.dev/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://israelfernandez.dev/" />
-	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Israel Fernandez",
+		"url": "https://israelfernandez.dev/",
+		"jobTitle": "Systems Software Engineer",
+		"sameAs": [
+			"https://github.com/iFernandez96",
+			"https://www.linkedin.com/in/ifernandez96/"
+		]
+	})}</script>`}
 </svelte:head>
 
 <Navbar />

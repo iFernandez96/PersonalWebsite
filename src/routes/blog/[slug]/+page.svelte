@@ -12,6 +12,15 @@
 <svelte:head>
 	<title>{post!.title} — Israel Fernandez</title>
 	<meta name="description" content={post!.summary} />
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href={`https://israelfernandez.dev/blog/${page.params.slug}`} />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content={`${post!.title} — Israel Fernandez`} />
+	<meta property="og:description" content={post!.summary} />
+	<meta property="og:url" content={`https://israelfernandez.dev/blog/${page.params.slug}`} />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content={`${post!.title} — Israel Fernandez`} />
+	<meta name="twitter:description" content={post!.summary} />
 </svelte:head>
 
 <Navbar />
