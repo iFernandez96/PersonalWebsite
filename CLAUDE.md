@@ -133,4 +133,4 @@ Also:
 
 ## SEO / Meta
 
-`+page.svelte` defines title, description, keywords, canonical, OG tags, and Twitter card. Update `canonical` + og:url when a production domain is finalized (currently `https://israelfernandez.dev/`).
+`+page.svelte` defines title, description, keywords, canonical, OG tags, and Twitter card. Update `canonical` + og:url when a production domain is finalized (currently `https://israel-fernandez.com/`).

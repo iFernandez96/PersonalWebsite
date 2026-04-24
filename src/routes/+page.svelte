@@ -18,11 +18,11 @@
 	<meta name="description" content={description} />
 	<meta name="author" content="Israel Fernandez" />
 	<meta name="robots" content="index, follow" />
-	<link rel="canonical" href="https://israelfernandez.dev/" />
+	<link rel="canonical" href="https://israel-fernandez.com/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
-	<meta property="og:url" content="https://israelfernandez.dev/" />
+	<meta property="og:url" content="https://israel-fernandez.com/" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
@@ -30,7 +30,7 @@
 		"@context": "https://schema.org",
 		"@type": "Person",
 		"name": "Israel Fernandez",
-		"url": "https://israelfernandez.dev/",
+		"url": "https://israel-fernandez.com/",
 		"jobTitle": "Systems Software Engineer",
 		"sameAs": [
 			"https://github.com/iFernandez96",
