@@ -30,7 +30,7 @@
 
 		<div class="grid md:grid-cols-12 gap-10 items-start">
 			<!-- Left: prose, pivot-first -->
-			<div class="md:col-span-7 reveal" style="animation-delay: 80ms;">
+			<div class="md:col-span-7 reveal min-w-0" style="animation-delay: 80ms;">
 				<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-5">
 					I'm pivoting into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>.
 					I'm fascinated by the offensive side: understanding systems deeply enough to find where they break.
@@ -63,9 +63,9 @@
 			</div>
 
 			<!-- Right: config-card facts (replaces macOS terminal cliché) -->
-			<div class="md:col-span-5 reveal" style="animation-delay: 160ms;">
+			<div class="md:col-span-5 reveal min-w-0 w-full" style="animation-delay: 160ms;">
 				<div
-					class="rounded-lg overflow-hidden border"
+					class="rounded-lg overflow-hidden border min-w-0 max-w-full"
 					style="background: var(--color-bg-secondary); border-color: var(--color-border);"
 				>
 					<div
@@ -75,12 +75,12 @@
 						<span class="w-2 h-2 rounded-sm" style="background: var(--color-accent-cyan);" aria-hidden="true"></span>
 						<span class="text-[var(--color-text-secondary)]">~/about.toml</span>
 					</div>
-					<div class="p-6 font-mono text-sm space-y-2.5 overflow-x-auto">
+					<div class="p-6 font-mono text-sm space-y-2.5">
 						{#each facts as item (item.key)}
-							<div class="flex gap-2 whitespace-nowrap">
+							<div class="flex flex-wrap gap-x-2 gap-y-0.5 items-baseline">
 								<span class="text-[var(--color-accent-indigo)] shrink-0">{item.key}</span>
-								<span class="text-[var(--color-text-muted)]">=</span>
-								<span style="color: {item.color};">"{item.value}"</span>
+								<span class="text-[var(--color-text-muted)] shrink-0">=</span>
+								<span class="break-words min-w-0" style="color: {item.color};">"{item.value}"</span>
 							</div>
 						{/each}
 					</div>
