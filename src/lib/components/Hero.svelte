@@ -99,36 +99,36 @@
 	<div class="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-10 py-28 md:py-20 grid md:grid-cols-12 gap-8 items-center">
 		<!-- Left: identity + lede + CTAs -->
 		<div class="md:col-span-8">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-xs md:text-sm mb-6 opacity-0 animate-[fadeInDown_0.5s_ease_0.05s_forwards]">
+			<p class="font-mono text-[var(--color-accent-cyan)] text-xs md:text-sm mb-6 opacity-0 animate-[fadeInDown_0.4s_ease_0.02s_forwards]">
 				<span class="text-[var(--color-text-muted)]">$</span> whoami
 			</p>
 
 			<h1
-				class="hero-name text-[clamp(2.75rem,8vw,7rem)] font-medium text-[var(--color-text-primary)] mb-5 opacity-0 animate-[fadeInUp_0.5s_ease_0.15s_forwards]"
+				class="hero-name text-[clamp(2.75rem,8vw,7rem)] font-medium text-[var(--color-text-primary)] mb-5 opacity-0 animate-[fadeInUp_0.4s_ease_0.08s_forwards]"
 			>
 				Israel Fernandez
 			</h1>
 
-			<div class="h-9 md:h-11 flex items-center mb-7 opacity-0 animate-[fadeInUp_0.5s_ease_0.3s_forwards]">
+			<div class="h-9 md:h-11 flex items-center mb-7 opacity-0 animate-[fadeInUp_0.4s_ease_0.18s_forwards]">
 				<span class="font-mono text-base md:text-xl text-[var(--color-text-secondary)]" aria-live="polite">
 					<span class="text-[var(--color-accent-cyan)]">›</span> {displayText}<span class="type-cursor" aria-hidden="true"></span>
 				</span>
 			</div>
 
 			<p
-				class="text-[var(--color-text-secondary)] text-base md:text-lg max-w-2xl mb-3 leading-relaxed opacity-0 animate-[fadeInUp_0.5s_ease_0.45s_forwards]"
+				class="text-[var(--color-text-secondary)] text-base md:text-lg max-w-2xl mb-3 leading-relaxed opacity-0 animate-[fadeInUp_0.4s_ease_0.28s_forwards]"
 			>
 				Nine years writing systems software — embedded firmware, Linux kernel drivers, and computer vision on custom ARM hardware.
 				Now reverse-engineering Android binaries and building offensive tooling, because the most interesting bug is the one nobody knew was there.
 			</p>
 
 			<p
-				class="font-mono text-xs md:text-sm text-[var(--color-text-muted)] mb-9 opacity-0 animate-[fadeIn_0.5s_ease_0.7s_forwards]"
+				class="font-mono text-xs md:text-sm text-[var(--color-text-muted)] mb-9 opacity-0 animate-[fadeIn_0.35s_ease_0.4s_forwards]"
 			>
 				<span class="text-[var(--color-accent-cyan)]">//</span> currently: Apple silicon by day · Android security research after hours
 			</p>
 
-			<div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_0.5s_ease_0.85s_forwards]">
+			<div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_0.4s_ease_0.5s_forwards]">
 				<a
 					href="#projects"
 					class="cta-primary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
@@ -146,7 +146,7 @@
 		</div>
 
 		<!-- Right: terse facts pane (desktop only) -->
-		<aside class="hidden md:block md:col-span-4 opacity-0 animate-[fadeIn_0.6s_ease_1s_forwards]" aria-label="Quick facts">
+		<aside class="hidden md:block md:col-span-4 opacity-0 animate-[fadeIn_0.4s_ease_0.55s_forwards]" aria-label="Quick facts">
 			<dl class="font-mono text-xs space-y-3 text-right">
 				<div>
 					<dt class="text-[var(--color-text-muted)]">role</dt>
@@ -170,7 +170,7 @@
 	</div>
 
 	<!-- Scroll hint chevron -->
-	<a href="#about" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-0 animate-[fadeIn_0.8s_ease_1.4s_forwards] text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors" aria-label="Scroll to about section">
+	<a href="#about" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-0 animate-[fadeIn_0.6s_ease_0.8s_forwards] text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors" aria-label="Scroll to about section">
 		<span class="text-[10px] tracking-widest font-mono">SCROLL</span>
 		<svg class="w-4 h-4 chevron-bounce" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
 	</a>
