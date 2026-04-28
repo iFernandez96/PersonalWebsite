@@ -7,7 +7,10 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		// Inline CSS chunks below 8KB into the HTML so first paint doesn't wait
+		// on a separate roundtrip. Above this we let the browser cache it.
+		inlineStyleThreshold: 8192
 	}
 };
 
