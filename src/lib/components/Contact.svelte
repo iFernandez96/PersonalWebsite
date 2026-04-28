@@ -17,7 +17,7 @@
 	];
 </script>
 
-<section id="contact" class="py-24 px-6 lg:px-10">
+<section id="contact" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto text-center">
 		<div class="reveal" style="animation-delay: 0ms;">
 			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>

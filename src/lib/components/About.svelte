@@ -19,7 +19,7 @@
 	];
 </script>
 
-<section id="about" class="py-24 px-6 lg:px-10">
+<section id="about" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-7xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
 			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">01 / ABOUT</p>

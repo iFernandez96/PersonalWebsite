@@ -86,7 +86,7 @@
 
 <section
 	id="projects"
-	class="py-24 px-6 lg:px-10"
+	class="py-16 md:py-24 px-6 lg:px-10"
 	style="background: var(--color-bg-secondary);"
 >
 	<div class="max-w-7xl mx-auto">
