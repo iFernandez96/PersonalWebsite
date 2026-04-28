@@ -2,98 +2,111 @@
 	import { posts, formatDate } from '$lib/posts';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
+
+	const title = 'Writing — Israel Fernandez';
+	const description =
+		'Technical writing on systems programming, embedded firmware, and Android security research.';
 </script>
 
 <svelte:head>
-	<title>Blog — Israel Fernandez</title>
-	<meta name="description" content="Technical writing on systems programming, security research, and offensive tooling." />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href="https://israel-fernandez.com/blog" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:url" content="https://israel-fernandez.com/blog" />
+	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
 </svelte:head>
 
 <Navbar />
 
-<main class="min-h-screen pt-24 pb-20 px-6 lg:px-10">
+<main id="main-content" class="min-h-screen pt-28 pb-20 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto">
-		<div class="mb-14">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-sm tracking-[0.3em] mb-3">BLOG</p>
-			<h1 class="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.02em;">
+		<header class="mb-14">
+			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">/ WRITING</p>
+			<h1 class="text-5xl md:text-6xl font-medium text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.04em; line-height: 1;">
 				Writing
 			</h1>
-			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed">
-				Notes on systems programming, security research, and building things at the low level.
+			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed max-w-xl">
+				Long-form notes on systems programming, security research, and building things at the low level.
+				Posts are infrequent — I'd rather ship one good walkthrough than three thin updates.
 			</p>
-		</div>
+		</header>
 
-		<div class="flex flex-col gap-6">
-			{#each posts as post (post.slug)}
-				<a
-					href="/blog/{post.slug}"
-					class="blog-card group relative block rounded-lg p-6 border"
-					style="background: var(--color-bg-secondary); border-color: var(--color-border);"
-				>
-					<!-- Top accent line -->
-					<div
-						class="absolute top-0 left-0 right-0 h-0.5 rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-						style="background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-indigo), transparent);"
-					></div>
+		<ol class="flex flex-col">
+			{#each posts as post, i (post.slug)}
+				<li>
+					<a
+						href="/blog/{post.slug}"
+						class="post-row group relative block py-6 border-t"
+						class:border-b={i === posts.length - 1}
+						style="border-color: var(--color-border);"
+					>
+						<div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-3 font-mono text-xs">
+							<time class="text-[var(--color-text-muted)]">{formatDate(post.date)}</time>
+							<span class="text-[var(--color-text-muted)]">·</span>
+							<span class="text-[var(--color-text-muted)]">{post.readTime} min read</span>
+							<div class="flex flex-wrap gap-1.5 ml-auto">
+								{#each post.tags.slice(0, 3) as tag (tag)}
+									<span
+										class="px-2 py-0.5 rounded text-[10px]"
+										style="color: var(--color-accent-cyan); border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
+									>
+										{tag}
+									</span>
+								{/each}
+							</div>
+						</div>
 
-					<div class="flex flex-wrap items-center gap-3 mb-3">
-						<time class="font-mono text-xs text-[var(--color-text-muted)]">{formatDate(post.date)}</time>
-						<span class="text-[var(--color-text-muted)] text-xs">·</span>
-						<span class="font-mono text-xs text-[var(--color-text-muted)]">{post.readTime} min read</span>
-					</div>
+						<h2 class="post-title text-2xl md:text-3xl font-medium text-[var(--color-text-primary)] mb-3 leading-tight transition-colors" style="letter-spacing: -0.02em;">
+							{post.title}
+						</h2>
 
-					<h2 class="text-xl font-semibold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-cyan)] transition-colors mb-3 leading-snug">
-						{post.title}
-					</h2>
+						<p class="text-[var(--color-text-secondary)] leading-relaxed mb-4 max-w-2xl">
+							{post.summary}
+						</p>
 
-					<p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-4">
-						{post.summary}
-					</p>
-
-					<div class="flex flex-wrap gap-2">
-						{#each post.tags as tag (tag)}
-							<span
-								class="px-2.5 py-1 rounded text-xs font-mono border"
-								style="color: var(--color-accent-cyan); border-color: rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
-							>
-								{tag}
-							</span>
-						{/each}
-					</div>
-
-					<div class="flex items-center gap-1.5 mt-4 text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-cyan)] transition-colors text-sm font-mono">
-						Read post
-						<svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-							<path d="M5 12h14M12 5l7 7-7 7" />
-						</svg>
-					</div>
-				</a>
+						<span class="inline-flex items-center gap-1.5 text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-cyan)] transition-colors text-sm font-mono">
+							Read post
+							<svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</span>
+					</a>
+				</li>
 			{/each}
-		</div>
+		</ol>
 
 		{#if posts.length === 0}
 			<p class="text-[var(--color-text-muted)] text-center py-16 font-mono">No posts yet.</p>
+		{:else if posts.length < 3}
+			<p class="font-mono text-xs text-[var(--color-text-muted)] mt-10">
+				<span class="text-[var(--color-accent-cyan)]">//</span> more posts in progress
+			</p>
 		{/if}
 	</div>
 </main>
 
-<footer class="border-t py-8 px-6 text-center" style="border-color: var(--color-border);">
-	<p class="font-mono text-xs text-[var(--color-text-muted)]">
-		<a href="/" class="hover:text-[var(--color-accent-cyan)] transition-colors">← Back to portfolio</a>
-		&nbsp;|&nbsp;
-		© {new Date().getFullYear()} Israel Fernandez
-	</p>
+<footer class="border-t py-8 px-6" style="border-color: var(--color-border);">
+	<div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+		<a href="/" class="font-mono text-xs text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors inline-flex items-center gap-1.5">
+			<svg class="w-3 h-3" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+			Back to portfolio
+		</a>
+		<p class="font-mono text-xs text-[var(--color-text-muted)]">© {new Date().getFullYear()} Israel Fernandez</p>
+	</div>
 </footer>
 
 <BackToTop />
 
 <style>
-	.blog-card {
-		transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-	}
-	.blog-card:hover {
-		border-color: rgba(34, 211, 238, 0.3) !important;
-		box-shadow: 0 8px 32px rgba(34, 211, 238, 0.06);
-		transform: translateY(-2px);
+	.post-row:hover .post-title {
+		color: var(--color-accent-cyan);
 	}
 </style>
