@@ -38,44 +38,44 @@
 
 <Navbar />
 
-<main class="min-h-screen pt-24 pb-20 px-6 lg:px-10">
+<main id="main-content" class="min-h-screen pt-28 pb-20 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto">
 
 		<!-- Back link -->
 		<a
 			href="/blog"
-			class="inline-flex items-center gap-1.5 font-mono text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors mb-10"
+			class="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors mb-10"
 		>
-			<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+			<svg class="w-3.5 h-3.5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
 				<path d="M19 12H5M12 5l-7 7 7 7" />
 			</svg>
 			All posts
 		</a>
 
 		<!-- Header -->
-		<header class="mb-10">
-			<div class="flex flex-wrap items-center gap-3 mb-4">
+		<header class="mb-12">
+			<div class="flex flex-wrap items-center gap-3 mb-5">
 				<time class="font-mono text-xs text-[var(--color-text-muted)]">{formatDate(post.date)}</time>
 				<span class="text-[var(--color-text-muted)] text-xs">·</span>
 				<span class="font-mono text-xs text-[var(--color-text-muted)]">{post.readTime} min read</span>
 			</div>
 
 			<h1
-				class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-6 leading-tight"
-				style="letter-spacing: -0.02em;"
+				class="text-4xl md:text-5xl lg:text-6xl font-medium text-[var(--color-text-primary)] mb-6 leading-[1.05]"
+				style="letter-spacing: -0.03em;"
 			>
 				{post.title}
 			</h1>
 
-			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-6">
+			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-6 max-w-2xl">
 				{post.summary}
 			</p>
 
 			<div class="flex flex-wrap gap-2 pb-8 border-b" style="border-color: var(--color-border);">
 				{#each post.tags as tag (tag)}
 					<span
-						class="px-2.5 py-1 rounded text-xs font-mono border"
-						style="color: var(--color-accent-cyan); border-color: rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
+						class="px-2.5 py-1 rounded text-[11px] font-mono"
+						style="color: var(--color-accent-cyan); border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
 					>
 						{tag}
 					</span>
