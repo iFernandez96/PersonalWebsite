@@ -1,23 +1,30 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/600.css';
 
 @theme {
 	--color-bg-primary: #080d1a;
-	--color-bg-secondary: #0f172a;
-	--color-bg-surface: #1e293b;
-	--color-bg-elevated: #253347;
+	--color-bg-secondary: #0d1424;
+	--color-bg-surface: #111a2e;
+	--color-bg-elevated: #1b2740;
 	--color-accent-cyan: #22d3ee;
-	--color-accent-blue: #60a5fa;
 	--color-accent-indigo: #818cf8;
-	--color-text-primary: #e2e8f0;
+	--color-accent-amber: #f59e0b;
+	--color-text-primary: #e7ecf3;
 	--color-text-secondary: #94a3b8;
-	--color-text-muted: #64748b;
-	--color-border: #1e293b;
-	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+	--color-text-muted: #6b7a90;
+	--color-border: #1f2a44;
+	--font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: 72px;
+	scroll-padding-top: 80px;
 	-webkit-text-size-adjust: 100%;
 	scrollbar-color: var(--color-bg-elevated) var(--color-bg-primary);
 	scrollbar-width: thin;
@@ -26,26 +33,18 @@ html {
 body {
 	background-color: var(--color-bg-primary);
 	color: var(--color-text-primary);
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-family: var(--font-sans);
+	font-feature-settings: 'cv11', 'ss01', 'ss03';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow-x: clip; /* clip unlike hidden does not create a BFC/scroll container — preserves Firefox APZ compositor scrolling */
-	/* text-rendering: optimizeLegibility is intentionally omitted — it's slow in Firefox */
+	overflow-x: clip;
+	line-height: 1.55;
 }
 
-::-webkit-scrollbar {
-	width: 8px;
-}
-::-webkit-scrollbar-track {
-	background: var(--color-bg-primary);
-}
-::-webkit-scrollbar-thumb {
-	background: var(--color-bg-elevated);
-	border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-	background: var(--color-accent-cyan);
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--color-bg-elevated); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-cyan); }
 
 ::selection {
 	background: rgba(34, 211, 238, 0.25);
@@ -58,21 +57,18 @@ body {
 	border-radius: 2px;
 }
 
+/* Hero stagger animations (existing) */
 @keyframes fadeInDown {
-	from { opacity: 0; transform: translate3d(0, -20px, 0); }
+	from { opacity: 0; transform: translate3d(0, -16px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fadeInUp {
-	from { opacity: 0; transform: translate3d(0, 20px, 0); }
+	from { opacity: 0; transform: translate3d(0, 16px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fadeIn {
 	from { opacity: 0; }
 	to { opacity: 1; }
-}
-@keyframes scrollLine {
-	0% { transform: translate3d(0, -100%, 0); }
-	100% { transform: translate3d(0, 200%, 0); }
 }
 @keyframes pulse-glow {
 	0%, 100% { box-shadow: 0 0 6px rgba(34,211,238,0.4); }
@@ -82,12 +78,38 @@ body {
 	0%, 49% { opacity: 1; }
 	50%, 100% { opacity: 0; }
 }
+@keyframes scrollChevronBounce {
+	0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.6; }
+	50% { transform: translate3d(0, 6px, 0); opacity: 1; }
+}
 
+/* Section reveal — CSS-only, plays on initial render. SSR-safe.
+   Sections below the fold animate when user scrolls; above fold animate
+   immediately. No IntersectionObserver dependency.
+   Each `.reveal` element gets `animation-delay` via inline style. */
+@keyframes revealUp {
+	from { opacity: 0; transform: translate3d(0, 12px, 0); }
+	to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.reveal {
+	animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after {
 		animation-duration: 0.001ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.001ms !important;
 		scroll-behavior: auto !important;
+	}
+}
+
+/* JS-disabled fallback: ensure any element relying on JS reveal stays visible */
+@media (scripting: none) {
+	.reveal {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
 	}
 }
