@@ -31,6 +31,7 @@
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	<link rel="alternate" type="application/rss+xml" title="Israel Fernandez — Writing" href="/rss.xml" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "Person",

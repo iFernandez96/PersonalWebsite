@@ -22,6 +22,7 @@
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	<link rel="alternate" type="application/rss+xml" title={title} href="/rss.xml" />
 </svelte:head>
 
 <Navbar />

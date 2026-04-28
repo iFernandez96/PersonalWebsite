@@ -16,4 +16,9 @@
 		<priority>0.8</priority>
 		<lastmod>2026-03-15</lastmod>
 	</url>
+	<url>
+		<loc>https://israel-fernandez.com/rss.xml</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.5</priority>
+	</url>
 </urlset>
