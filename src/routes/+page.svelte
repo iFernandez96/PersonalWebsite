@@ -23,9 +23,14 @@
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://israel-fernandez.com/" />
+	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Israel Fernandez — Systems Software Engineer pivoting to Android security and red team" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "Person",
@@ -40,7 +45,7 @@
 </svelte:head>
 
 <Navbar />
-<main>
+<main id="main-content">
 	<Hero />
 	<About />
 	<Skills />

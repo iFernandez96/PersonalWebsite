@@ -79,7 +79,7 @@
 </script>
 
 <a
-	href={isBlogRoute ? '/' : '#hero'}
+	href={isBlogRoute ? '/#main-content' : '#main-content'}
 	class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded focus:bg-[var(--color-bg-surface)] focus:text-[var(--color-accent-cyan)] focus:outline focus:outline-2 focus:outline-[var(--color-accent-cyan)]"
 >
 	Skip to content
@@ -107,7 +107,7 @@
 						{href}
 						class="nav-link text-sm tracking-wide relative pb-0.5"
 						class:is-active={isActive}
-						aria-current={isActive ? 'location' : undefined}
+						aria-current={isActive ? 'true' : undefined}
 					>
 						{label}
 						<span class="nav-underline" aria-hidden="true"></span>
@@ -169,10 +169,10 @@
 						<a
 							{href}
 							onclick={closeMenu}
-							class="block py-1 transition-colors"
+							class="block py-3 transition-colors"
 							class:text-[var(--color-accent-cyan)]={isActive}
 							class:text-[var(--color-text-secondary)]={!isActive}
-							aria-current={isActive ? 'location' : undefined}
+							aria-current={isActive ? 'true' : undefined}
 						>
 							{label}
 						</a>
@@ -182,7 +182,7 @@
 					<a
 						href="/blog"
 						onclick={closeMenu}
-						class="block py-1 transition-colors"
+						class="block py-3 transition-colors"
 						class:text-[var(--color-accent-cyan)]={isBlogRoute}
 						class:text-[var(--color-text-secondary)]={!isBlogRoute}
 						aria-current={isBlogRoute ? 'page' : undefined}
@@ -196,7 +196,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						onclick={closeMenu}
-						class="text-[var(--color-accent-cyan)] font-mono"
+						class="block py-3 text-[var(--color-accent-cyan)] font-mono"
 					>
 						Resume
 					</a>
