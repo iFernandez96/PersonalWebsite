@@ -13,6 +13,14 @@
 		note?: string;
 	};
 
+	type SideProject = {
+		title: string;
+		oneLiner: string;
+		stack: string[];
+		repo?: string;
+		demo?: string;
+	};
+
 	const projects: Project[] = [
 		{
 			title: 'BeaconUI — Educational C2 Framework',
@@ -61,6 +69,18 @@
 			icon: 'nodes',
 			repo: 'https://github.com/iFernandez96'
 		}
+	];
+
+	// Drop in smaller experiments here. Renders a compact list under the main grid.
+	// Leave empty for the section to disappear entirely.
+	const sideProjects: SideProject[] = [
+		// Example shape — uncomment and edit when you have something to ship:
+		// {
+		// 	title: 'Frida Bypass Toolkit',
+		// 	oneLiner: 'Hookable Frida scripts for OWASP-MASTG vulnerable apps.',
+		// 	stack: ['Frida', 'JavaScript', 'Android'],
+		// 	repo: 'https://github.com/iFernandez96/frida-bypass-kit'
+		// }
 	];
 </script>
 
@@ -183,7 +203,34 @@
 			{/each}
 		</div>
 
-		<div class="reveal mt-12 text-center" style="animation-delay: 400ms;">
+		{#if sideProjects.length > 0}
+			<div class="reveal mt-16" style="animation-delay: 400ms;">
+				<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-4">
+					<span class="text-[var(--color-accent-cyan)]">//</span> Side projects
+				</p>
+				<ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+					{#each sideProjects as side (side.title)}
+						<li class="border-l pl-4 py-1" style="border-color: var(--color-border);">
+							<div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1">
+								<h4 class="font-semibold text-[var(--color-text-primary)] text-sm">{side.title}</h4>
+								<div class="flex gap-3 font-mono text-[11px]">
+									{#if side.repo}
+										<a href={side.repo} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors">source ↗</a>
+									{/if}
+									{#if side.demo}
+										<a href={side.demo} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors">demo ↗</a>
+									{/if}
+								</div>
+							</div>
+							<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-1">{side.oneLiner}</p>
+							<p class="font-mono text-[11px] text-[var(--color-text-muted)]">{side.stack.join(' · ')}</p>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+
+		<div class="reveal mt-12 text-center" style="animation-delay: 480ms;">
 			<a
 				href="https://github.com/iFernandez96"
 				target="_blank"
