@@ -2,6 +2,7 @@
 	import { formatDate } from '$lib/posts';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
+	import ReadingProgress from '$lib/components/ReadingProgress.svelte';
 	import { page } from '$app/state';
 	import type { PageData } from './$types';
 
@@ -36,6 +37,7 @@
 	})}</script>`}
 </svelte:head>
 
+<ReadingProgress />
 <Navbar />
 
 <main id="main-content" class="min-h-screen pt-28 pb-20 px-6 lg:px-10">
