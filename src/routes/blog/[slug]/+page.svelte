@@ -1,26 +1,39 @@
 <script lang="ts">
-	import { getPost, formatDate } from '$lib/posts';
+	import { formatDate } from '$lib/posts';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 	import { page } from '$app/state';
-	import { error } from '@sveltejs/kit';
+	import type { PageData } from './$types';
 
-	const post = getPost(page.params.slug ?? '');
-	if (!post) error(404, 'Post not found');
+	let { data }: { data: PageData } = $props();
+	const post = $derived(data.post);
 </script>
 
 <svelte:head>
-	<title>{post!.title} — Israel Fernandez</title>
-	<meta name="description" content={post!.summary} />
+	<title>{post.title} — Israel Fernandez</title>
+	<meta name="description" content={post.summary} />
 	<meta name="robots" content="index, follow" />
 	<link rel="canonical" href={`https://israel-fernandez.com/blog/${page.params.slug}`} />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={`${post!.title} — Israel Fernandez`} />
-	<meta property="og:description" content={post!.summary} />
+	<meta property="og:title" content={`${post.title} — Israel Fernandez`} />
+	<meta property="og:description" content={post.summary} />
 	<meta property="og:url" content={`https://israel-fernandez.com/blog/${page.params.slug}`} />
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content={`${post!.title} — Israel Fernandez`} />
-	<meta name="twitter:description" content={post!.summary} />
+	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta property="article:published_time" content={post.date} />
+	<meta property="article:author" content="Israel Fernandez" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={`${post.title} — Israel Fernandez`} />
+	<meta name="twitter:description" content={post.summary} />
+	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": post.title,
+		"datePublished": post.date,
+		"author": { "@type": "Person", "name": "Israel Fernandez", "url": "https://israel-fernandez.com/" },
+		"description": post.summary,
+		"keywords": post.tags.join(", ")
+	})}</script>`}
 </svelte:head>
 
 <Navbar />
@@ -42,24 +55,24 @@
 		<!-- Header -->
 		<header class="mb-10">
 			<div class="flex flex-wrap items-center gap-3 mb-4">
-				<time class="font-mono text-xs text-[var(--color-text-muted)]">{formatDate(post!.date)}</time>
+				<time class="font-mono text-xs text-[var(--color-text-muted)]">{formatDate(post.date)}</time>
 				<span class="text-[var(--color-text-muted)] text-xs">·</span>
-				<span class="font-mono text-xs text-[var(--color-text-muted)]">{post!.readTime} min read</span>
+				<span class="font-mono text-xs text-[var(--color-text-muted)]">{post.readTime} min read</span>
 			</div>
 
 			<h1
 				class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-6 leading-tight"
 				style="letter-spacing: -0.02em;"
 			>
-				{post!.title}
+				{post.title}
 			</h1>
 
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-6">
-				{post!.summary}
+				{post.summary}
 			</p>
 
 			<div class="flex flex-wrap gap-2 pb-8 border-b" style="border-color: var(--color-border);">
-				{#each post!.tags as tag (tag)}
+				{#each post.tags as tag (tag)}
 					<span
 						class="px-2.5 py-1 rounded text-xs font-mono border"
 						style="color: var(--color-accent-cyan); border-color: rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
@@ -72,7 +85,7 @@
 
 		<!-- Content -->
 		<article class="post-content">
-			{@html post!.content}
+			{@html post.content}
 		</article>
 
 		<!-- Footer nav -->

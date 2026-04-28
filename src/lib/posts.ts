@@ -12,14 +12,14 @@ export const posts: Post[] = [
 	{
 		slug: 'building-a-c2-framework',
 		title: 'Building a Cross-Platform C2 Framework from Scratch',
-		date: '2025-03-15',
+		date: '2026-03-15',
 		readTime: 12,
 		tags: ['Security', 'Python', 'C', 'Networking', 'Red Team'],
 		summary:
-			'A deep dive into building a multi-transport Remote Access Tool for educational security research — covering TCP binary framing, mutual TLS, beacon/callback architecture, and a full Svelte operator dashboard.',
+			'A deep dive into building a multi-transport Remote Access Trojan for educational security research covering TCP binary framing, mutual TLS, and a beacon/callback architecture.',
 		content: `
 <h2>Why Build a RAT?</h2>
-<p>The best way to learn offensive security is to build the tools yourself. You can read about C2 frameworks all day, but once you implement beacon intervals, HMAC-derived endpoints, and mutual TLS from first principles, it clicks in a way that no amount of reading can replicate.</p>
+<p>I feel that the best way to learn offensive security is to build the tools yourself. You can read about C2 frameworks all day, but once you implement beacon intervals, HMAC-derived endpoints, and mutual TLS from first principles, it clicks in a way that no amount of reading can replicate.</p>
 <p>I built this project to prepare for an Android pentesting and red team transition — understanding how implants and C2 infrastructure actually work is foundational for that path. Everything here is educational and runs only against machines I own.</p>
 
 <h2>Three Transport Variants</h2>
