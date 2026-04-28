@@ -26,6 +26,10 @@ vite.config.ts.timestamp-*
 *.png
 *.jpg
 *.jpeg
+# but track production assets shipped from /static
+!static/*.png
+!static/*.jpg
+!static/*.jpeg
 
 # Root-level PDFs (resume lives in static/)
 /*.pdf

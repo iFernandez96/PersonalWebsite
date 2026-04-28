@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+	<defs>
+		<linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" stop-color="#080d1a"/>
+			<stop offset="100%" stop-color="#0d1424"/>
+		</linearGradient>
+		<radialGradient id="orbCyan" cx="15%" cy="20%" r="50%">
+			<stop offset="0%" stop-color="#22d3ee" stop-opacity="0.18"/>
+			<stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+		</radialGradient>
+		<radialGradient id="orbIndigo" cx="85%" cy="80%" r="45%">
+			<stop offset="0%" stop-color="#818cf8" stop-opacity="0.16"/>
+			<stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+		</radialGradient>
+		<pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+			<path d="M 56 0 L 0 0 0 56" fill="none" stroke="#22d3ee" stroke-opacity="0.05" stroke-width="1"/>
+		</pattern>
+	</defs>
+	<rect width="1200" height="630" fill="url(#bg)"/>
+	<rect width="1200" height="630" fill="url(#grid)"/>
+	<rect width="1200" height="630" fill="url(#orbCyan)"/>
+	<rect width="1200" height="630" fill="url(#orbIndigo)"/>
+
+	<!-- $ whoami eyebrow -->
+	<text x="80" y="180" font-family="JetBrains Mono, ui-monospace, monospace" font-size="22" fill="#22d3ee" letter-spacing="2">
+		<tspan fill="#6b7a90">$</tspan> whoami
+	</text>
+
+	<!-- name -->
+	<text x="80" y="320" font-family="Inter, system-ui, sans-serif" font-size="120" font-weight="500" fill="#e7ecf3" letter-spacing="-4">Israel Fernandez</text>
+
+	<!-- subtitle -->
+	<text x="80" y="395" font-family="JetBrains Mono, ui-monospace, monospace" font-size="32" fill="#94a3b8">
+		<tspan fill="#22d3ee">›</tspan> Systems Software Engineer
+	</text>
+
+	<!-- description -->
+	<text x="80" y="475" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#94a3b8">
+		Embedded · Linux kernel · ARM · pivoting to Android security &amp; red team.
+	</text>
+
+	<!-- footer dot + url -->
+	<rect x="80" y="540" width="10" height="10" fill="#22d3ee"/>
+	<text x="100" y="550" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#94a3b8">
+		israel-fernandez.com
+	</text>
+</svg>
