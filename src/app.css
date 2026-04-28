@@ -122,3 +122,10 @@ section[id]:not(#hero) {
 	content-visibility: auto;
 	contain-intrinsic-size: auto 900px;
 }
+
+/* Always render everything when printing or via reduced-data preferences */
+@media print, (prefers-reduced-data: reduce) {
+	section[id] {
+		content-visibility: visible !important;
+	}
+}
