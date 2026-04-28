@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Auto-sync node_modules when switching branches with different package.json.
+# Each design variant has different @fontsource deps; this prevents broken builds.
+prev_head="$1"
+new_head="$2"
+branch_switch="$3"
+[ "$branch_switch" = "1" ] || exit 0
+if ! git diff --quiet "$prev_head" "$new_head" -- package.json package-lock.json 2>/dev/null; then
+	echo ""
+	echo "[post-checkout] package.json changed — syncing node_modules..."
+	# Source nvm so npm/node are on PATH from the right Node version
+	if [ -s "$HOME/.config/nvm/nvm.sh" ]; then
+		. "$HOME/.config/nvm/nvm.sh"
+		nvm use 22 >/dev/null 2>&1 || true
+	elif [ -s "$HOME/.nvm/nvm.sh" ]; then
+		. "$HOME/.nvm/nvm.sh"
+		nvm use 22 >/dev/null 2>&1 || true
+	fi
+	npm install --no-audit --no-fund 2>&1 | grep -E "added|removed|changed|up to date" | tail -1
+	echo "[post-checkout] done."
+fi
