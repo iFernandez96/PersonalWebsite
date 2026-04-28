@@ -114,3 +114,11 @@ body {
 		transform: none !important;
 	}
 }
+
+/* Skip rendering off-screen sections until scrolled into view (paint perf).
+   contain-intrinsic-size reserves vertical space so anchor scrolling stays
+   accurate. Hero is excluded — it's always above the fold on first paint. */
+section[id]:not(#hero) {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 900px;
+}
