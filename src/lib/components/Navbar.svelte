@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
+	import ThemeToggle from './ThemeToggle.svelte';
 
 	const sectionIds = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
 
@@ -127,31 +128,37 @@
 			</li>
 		</ul>
 
-		<a
-			href="/IsraelFernandezResume.pdf"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="hidden md:inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-accent-cyan)] text-[var(--color-accent-cyan)] text-sm rounded hover:bg-[rgba(34,211,238,0.1)] transition-colors duration-200 font-mono focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
-		>
-			Resume
-		</a>
+		<div class="hidden md:flex items-center gap-2">
+			<ThemeToggle />
+			<a
+				href="/IsraelFernandezResume.pdf"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resume-btn inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-accent-cyan)] text-[var(--color-accent-cyan)] text-sm rounded transition-colors duration-200 font-mono focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
+			>
+				Resume
+			</a>
+		</div>
 
-		<!-- Mobile hamburger -->
-		<button
-			class="md:hidden text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] rounded-sm"
-			onclick={() => (menuOpen = !menuOpen)}
-			aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-			aria-expanded={menuOpen}
-			aria-controls="mobile-menu"
-		>
-			<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-				{#if menuOpen}
-					<path d="M18 6L6 18M6 6l12 12" />
-				{:else}
-					<path d="M4 6h16M4 12h16M4 18h16" />
-				{/if}
-			</svg>
-		</button>
+		<!-- Mobile theme + hamburger -->
+		<div class="md:hidden flex items-center gap-1">
+			<ThemeToggle />
+			<button
+				class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] rounded-sm p-2"
+				onclick={() => (menuOpen = !menuOpen)}
+				aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+				aria-expanded={menuOpen}
+				aria-controls="mobile-menu"
+			>
+				<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+					{#if menuOpen}
+						<path d="M18 6L6 18M6 6l12 12" />
+					{:else}
+						<path d="M4 6h16M4 12h16M4 18h16" />
+					{/if}
+				</svg>
+			</button>
+		</div>
 	</div>
 
 	<!-- Mobile menu -->
@@ -213,10 +220,14 @@
 		transition: background-color 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
 	}
 	.nav-scrolled {
-		background: rgba(8, 13, 26, 0.85);
+		background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
-		border-bottom-color: rgba(30, 41, 59, 0.8);
+		border-bottom-color: color-mix(in srgb, var(--color-border) 80%, transparent);
+	}
+
+	.resume-btn:hover {
+		background: color-mix(in srgb, var(--color-accent-cyan) 12%, transparent);
 	}
 
 	.nav-link {

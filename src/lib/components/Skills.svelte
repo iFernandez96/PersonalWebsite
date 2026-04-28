@@ -112,7 +112,7 @@
 										{#each Array(5) as _, j}
 											<span
 												class="w-1.5 h-1.5 rounded-full"
-												style="background: {j < skill.level ? group.color : 'rgba(255,255,255,0.10)'};"
+												style="background: {j < skill.level ? group.color : 'var(--surface-tint-strong)'};"
 											></span>
 										{/each}
 									</span>

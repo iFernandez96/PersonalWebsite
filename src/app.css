@@ -7,6 +7,8 @@
 @import '@fontsource/jetbrains-mono/latin-400.css';
 @import '@fontsource/jetbrains-mono/latin-600.css';
 
+/* Default theme = dark. Tokens are also exposed as Tailwind theme variables
+   so utilities like text-[var(--color-bg-primary)] still resolve. */
 @theme {
 	--color-bg-primary: #080d1a;
 	--color-bg-secondary: #0d1424;
@@ -19,8 +21,30 @@
 	--color-text-secondary: #94a3b8;
 	--color-text-muted: #6b7a90;
 	--color-border: #1f2a44;
+	--surface-tint: rgba(255, 255, 255, 0.05);
+	--surface-tint-strong: rgba(255, 255, 255, 0.10);
+	--surface-tint-soft: rgba(255, 255, 255, 0.04);
 	--font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 	--font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+/* Light theme — explicit override on html[data-theme="light"]. The tokens
+   shadow @theme values; Tailwind utilities resolve at runtime via cascade. */
+html[data-theme='light'] {
+	--color-bg-primary: #fafafa;
+	--color-bg-secondary: #f1f4f9;
+	--color-bg-surface: #e7ecf3;
+	--color-bg-elevated: #d6dde8;
+	--color-accent-cyan: #0891b2;
+	--color-accent-indigo: #4f46e5;
+	--color-accent-amber: #b45309;
+	--color-text-primary: #0b1220;
+	--color-text-secondary: #475569;
+	--color-text-muted: #6b7a90;
+	--color-border: #cbd5e1;
+	--surface-tint: rgba(0, 0, 0, 0.04);
+	--surface-tint-strong: rgba(0, 0, 0, 0.10);
+	--surface-tint-soft: rgba(0, 0, 0, 0.025);
 }
 
 html {
@@ -29,6 +53,12 @@ html {
 	-webkit-text-size-adjust: 100%;
 	scrollbar-color: var(--color-bg-elevated) var(--color-bg-primary);
 	scrollbar-width: thin;
+	color-scheme: dark;
+	transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html[data-theme='light'] {
+	color-scheme: light;
 }
 
 body {
@@ -48,7 +78,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-cyan); }
 
 ::selection {
-	background: rgba(34, 211, 238, 0.25);
+	background: color-mix(in srgb, var(--color-accent-cyan) 25%, transparent);
 	color: var(--color-text-primary);
 }
 
@@ -72,8 +102,8 @@ body {
 	to { opacity: 1; }
 }
 @keyframes pulse-glow {
-	0%, 100% { box-shadow: 0 0 6px rgba(34,211,238,0.4); }
-	50% { box-shadow: 0 0 14px rgba(34,211,238,0.8); }
+	0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent); }
+	50% { box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-cyan) 80%, transparent); }
 }
 @keyframes cursor-blink {
 	0%, 49% { opacity: 1; }
@@ -84,10 +114,7 @@ body {
 	50% { transform: translate3d(0, 6px, 0); opacity: 1; }
 }
 
-/* Section reveal — CSS-only, plays on initial render. SSR-safe.
-   Sections below the fold animate when user scrolls; above fold animate
-   immediately. No IntersectionObserver dependency.
-   Each `.reveal` element gets `animation-delay` via inline style. */
+/* Section reveal — CSS-only, plays on initial render. SSR-safe. */
 @keyframes revealUp {
 	from { opacity: 0; transform: translate3d(0, 12px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -106,7 +133,7 @@ body {
 	}
 }
 
-/* JS-disabled fallback: ensure any element relying on JS reveal stays visible */
+/* JS-disabled fallback */
 @media (scripting: none) {
 	.reveal {
 		animation: none !important;
@@ -115,22 +142,19 @@ body {
 	}
 }
 
-/* Skip rendering off-screen sections until scrolled into view (paint perf).
-   contain-intrinsic-size reserves vertical space so anchor scrolling stays
-   accurate. Hero is excluded — it's always above the fold on first paint. */
+/* Skip rendering off-screen sections until scrolled into view (paint perf). */
 section[id]:not(#hero) {
 	content-visibility: auto;
 	contain-intrinsic-size: auto 900px;
 }
 
-/* Always render everything when printing or via reduced-data preferences */
 @media print, (prefers-reduced-data: reduce) {
 	section[id] {
 		content-visibility: visible !important;
 	}
 }
 
-/* View Transitions API — soft cross-fade between routes on supported browsers */
+/* View Transitions API */
 @view-transition {
 	navigation: auto;
 }

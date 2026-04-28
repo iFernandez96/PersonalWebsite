@@ -93,7 +93,7 @@
 								</h3>
 								<span
 									class="px-2 py-0.5 text-xs rounded font-mono shrink-0"
-									style="background: rgba(255,255,255,0.04); color: {exp.color}; border: 1px solid color-mix(in srgb, {exp.color} 30%, transparent);"
+									style="background: var(--surface-tint-soft); color: {exp.color}; border: 1px solid color-mix(in srgb, {exp.color} 30%, transparent);"
 								>
 									{exp.type}
 								</span>

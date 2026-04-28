@@ -40,7 +40,7 @@
 		height: 2px;
 		z-index: 60;
 		pointer-events: none;
-		background: rgba(255, 255, 255, 0.04);
+		background: var(--surface-tint-soft);
 	}
 	.reading-progress-bar {
 		height: 100%;
