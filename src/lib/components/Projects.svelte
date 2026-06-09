@@ -45,7 +45,6 @@
 			stack: ['SvelteKit', 'TypeScript', 'Markdown', 'Security Education'],
 			color: '#14b8a6',
 			icon: 'shield',
-			demo: '/bootcamp',
 			note: 'Local labs only'
 		},
 		{
@@ -103,7 +102,7 @@
 >
 	<div class="max-w-7xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">04 / PROJECTS</p>
+			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">04 / PROJECTS</p>
 			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.02em;">
 				Selected work
 			</h2>
@@ -157,7 +156,7 @@
 							</span>
 							<div class="flex items-center gap-1">
 								{#if project.featured}
-									<span class="font-mono text-[10px] tracking-widest uppercase px-2 py-0.5 rounded" style="background: rgba(245,158,11,0.1); color: var(--color-accent-amber); border: 1px solid rgba(245,158,11,0.3);">Featured</span>
+									<span class="font-mono text-[11px] tracking-widest uppercase px-2 py-0.5 rounded" style="background: rgba(245,158,11,0.1); color: var(--color-accent-amber); border: 1px solid rgba(245,158,11,0.3);">Featured</span>
 								{/if}
 							</div>
 						</div>
@@ -179,13 +178,13 @@
 							{project.oneLiner}
 						</p>
 
-						<p class="font-mono text-xs text-[var(--color-text-muted)] leading-relaxed mb-5 pl-3 border-l" style="border-color: var(--color-border);">
+						<p class="font-mono text-[13px] text-[var(--color-text-secondary)] leading-relaxed mb-5 pl-3 border-l" style="border-color: var(--color-border);">
 							{project.outcome}
 						</p>
 
 						<div class="flex flex-wrap gap-1.5 mb-5">
 							{#each project.stack as tag (tag)}
-								<span class="font-mono text-[11px] text-[var(--color-text-secondary)] px-2 py-0.5 rounded"
+								<span class="font-mono text-xs text-[var(--color-text-secondary)] px-2 py-0.5 rounded"
 									style="background: var(--color-bg-surface); border: 1px solid var(--color-border);"
 								>
 									{tag}
@@ -218,14 +217,14 @@
 		{#if sideProjects.length > 0}
 			<div class="reveal mt-16" style="animation-delay: 400ms;">
 				<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-4">
-					<span class="text-[var(--color-accent-cyan)]">//</span> Side projects
+					<span class="text-[var(--color-text-muted)]">//</span> Side projects
 				</p>
 				<ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
 					{#each sideProjects as side (side.title)}
 						<li class="border-l pl-4 py-1" style="border-color: var(--color-border);">
 							<div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1">
 								<h4 class="font-semibold text-[var(--color-text-primary)] text-sm">{side.title}</h4>
-								<div class="flex gap-3 font-mono text-[11px]">
+								<div class="flex gap-3 font-mono text-xs">
 									{#if side.repo}
 										<a href={side.repo} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors">source ↗</a>
 									{/if}
@@ -235,7 +234,7 @@
 								</div>
 							</div>
 							<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-1">{side.oneLiner}</p>
-							<p class="font-mono text-[11px] text-[var(--color-text-muted)]">{side.stack.join(' · ')}</p>
+							<p class="font-mono text-xs text-[var(--color-text-muted)]">{side.stack.join(' · ')}</p>
 						</li>
 					{/each}
 				</ul>

@@ -26,7 +26,6 @@
 	);
 
 	let isBlogRoute = $derived(page.url.pathname.startsWith('/blog'));
-	let isBootcampRoute = $derived(page.url.pathname.startsWith('/bootcamp'));
 
 	function closeMenu() {
 		menuOpen = false;
@@ -109,7 +108,7 @@
 						{href}
 						class="nav-link text-sm tracking-wide relative pb-0.5"
 						class:is-active={isActive}
-						aria-current={isActive ? 'true' : undefined}
+						aria-current={isActive ? 'page' : undefined}
 					>
 						{label}
 						<span class="nav-underline" aria-hidden="true"></span>
@@ -124,17 +123,6 @@
 					aria-current={isBlogRoute ? 'page' : undefined}
 				>
 					Blog
-					<span class="nav-underline" aria-hidden="true"></span>
-				</a>
-			</li>
-			<li>
-				<a
-					href="/bootcamp"
-					class="nav-link text-sm tracking-wide relative pb-0.5"
-					class:is-active={isBootcampRoute}
-					aria-current={isBootcampRoute ? 'page' : undefined}
-				>
-					Bootcamp
 					<span class="nav-underline" aria-hidden="true"></span>
 				</a>
 			</li>
@@ -191,7 +179,7 @@
 							class="block py-3 transition-colors"
 							class:text-[var(--color-accent-cyan)]={isActive}
 							class:text-[var(--color-text-secondary)]={!isActive}
-							aria-current={isActive ? 'true' : undefined}
+							aria-current={isActive ? 'page' : undefined}
 						>
 							{label}
 						</a>
@@ -207,18 +195,6 @@
 						aria-current={isBlogRoute ? 'page' : undefined}
 					>
 						Blog
-					</a>
-				</li>
-				<li>
-					<a
-						href="/bootcamp"
-						onclick={closeMenu}
-						class="block py-3 transition-colors"
-						class:text-[var(--color-accent-cyan)]={isBootcampRoute}
-						class:text-[var(--color-text-secondary)]={!isBootcampRoute}
-						aria-current={isBootcampRoute ? 'page' : undefined}
-					>
-						Bootcamp
 					</a>
 				</li>
 				<li>

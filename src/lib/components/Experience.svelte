@@ -59,7 +59,7 @@
 <section id="experience" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-6xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">03 / EXPERIENCE</p>
+			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">03 / EXPERIENCE</p>
 			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Track record
 			</h2>
@@ -79,7 +79,7 @@
 						<!-- Timeline dot -->
 						<div
 							class="absolute left-2.5 md:left-6 top-2 w-3 h-3 rounded-full border-2"
-							style="background: var(--color-bg-primary); border-color: {exp.color}; {i === 0 ? `animation: pulse-glow 2s ease-in-out infinite; box-shadow: 0 0 6px ${exp.color};` : ''}"
+							style="background: {i === 0 ? exp.color : 'var(--color-bg-primary)'}; border-color: {exp.color}; {i === 0 ? `box-shadow: 0 0 0 4px color-mix(in srgb, ${exp.color} 18%, transparent);` : ''}"
 							aria-hidden="true"
 						></div>
 
@@ -110,20 +110,20 @@
 								<span class="text-[var(--color-text-muted)] text-sm">{exp.location}</span>
 							</div>
 
-							<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-4">
+							<p class="text-[var(--color-text-secondary)] text-[15px] leading-relaxed mb-4">
 								{exp.description}
 							</p>
 
 							<ul class="space-y-1.5 mb-4">
 								{#each exp.highlights as highlight (highlight)}
-									<li class="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
+									<li class="flex items-start gap-2 text-[15px] text-[var(--color-text-secondary)]">
 										<span style="color: {exp.color};" class="mt-0.5 shrink-0" aria-hidden="true">→</span>
 										<span>{highlight}</span>
 									</li>
 								{/each}
 							</ul>
 
-							<p class="font-mono text-xs text-[var(--color-text-muted)] pt-3 border-t" style="border-color: var(--color-border);">
+							<p class="font-mono text-[13px] text-[var(--color-text-muted)] pt-3 border-t" style="border-color: var(--color-border);">
 								<span class="text-[var(--color-text-secondary)]">stack:</span> {exp.stack}
 							</p>
 						</div>

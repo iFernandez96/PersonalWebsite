@@ -24,6 +24,7 @@
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://israel-fernandez.com/" />
 	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:image:alt" content="Israel Fernandez — Systems Software Engineer pivoting to Android security and red team" />
@@ -34,7 +35,6 @@
 	<link rel="alternate" type="application/rss+xml" title="Israel Fernandez — Writing" href="/rss.xml" />
 	<!-- Prefetch blog routes — likely next click after homepage -->
 	<link rel="prefetch" href="/blog" />
-	<link rel="prefetch" href="/blog/building-a-c2-framework" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "Person",
@@ -45,6 +45,17 @@
 			"https://github.com/iFernandez96",
 			"https://www.linkedin.com/in/ifernandez96/"
 		]
+	})}</script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": "Israel Fernandez",
+		"url": "https://israel-fernandez.com/",
+		"author": {
+			"@type": "Person",
+			"name": "Israel Fernandez",
+			"url": "https://israel-fernandez.com/"
+		}
 	})}</script>`}
 </svelte:head>
 

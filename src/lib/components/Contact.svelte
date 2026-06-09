@@ -20,7 +20,7 @@
 <section id="contact" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto text-center">
 		<div class="reveal" style="animation-delay: 0ms;">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>
+			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>
 			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
 				Get in touch
 			</h2>
@@ -28,8 +28,8 @@
 				Open to <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span> — contract or FTE.
 				Also up for systems engineering, embedded, or anything low-level.
 			</p>
-			<p class="font-mono text-xs text-[var(--color-text-muted)] mb-12">
-				<span class="text-[var(--color-accent-cyan)]">//</span> usually reply within 48h
+			<p class="font-mono text-[13px] text-[var(--color-text-muted)] mb-12">
+				<span class="text-[var(--color-text-secondary)]">//</span> usually reply within 48h
 			</p>
 		</div>
 
@@ -97,7 +97,7 @@
 <footer class="border-t py-8 px-6" style="border-color: var(--color-border);">
 	<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
 		<p class="font-mono text-xs text-[var(--color-text-muted)]">
-			Built with <span style="color: var(--color-accent-cyan);">SvelteKit</span> + Tailwind · © {new Date().getFullYear()} Israel Fernandez
+			Built with <span style="color: var(--color-text-secondary);">SvelteKit</span> + Tailwind · © {new Date().getFullYear()} Israel Fernandez
 		</p>
 		<a
 			href="https://github.com/iFernandez96"

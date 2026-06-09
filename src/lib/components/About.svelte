@@ -1,14 +1,10 @@
 <script lang="ts">
-	const facts = [
-		{ key: 'name', value: 'Israel Fernandez', color: 'var(--color-accent-cyan)' },
-		{ key: 'location', value: 'California, USA', color: 'var(--color-text-primary)' },
-		{ key: 'role', value: 'HW Systems SWE @ Apple (via Sasken)', color: 'var(--color-text-primary)' },
-		{ key: 'prior', value: '8 yrs · Gantz-Mountain (defense AI)', color: 'var(--color-text-primary)' },
-		{ key: 'education', value: 'B.S. CS, CSUMB', color: 'var(--color-text-primary)' },
-		{ key: 'focus', value: 'Android attack surface, red team', color: 'var(--color-accent-amber)' },
-		{ key: 'languages', value: 'C, C++, Python, ARM ASM', color: 'var(--color-text-primary)' },
-		{ key: 'availability', value: 'open to red team contract / FTE', color: 'var(--color-accent-amber)' },
-		{ key: 'email', value: 'israelfernandez96@gmail.com', color: 'var(--color-accent-cyan)' }
+	// Facts unique to About (the role/prior/stack/target overlap with the Hero
+	// quick-facts aside lives only in the Hero now — kept here are the details
+	// the Hero doesn't show).
+	const details = [
+		{ label: 'Location', value: 'California, USA' },
+		{ label: 'Education', value: 'B.S. Computer Science, CSUMB' }
 	];
 
 	const goodFor = [
@@ -22,7 +18,7 @@
 <section id="about" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-7xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">01 / ABOUT</p>
+			<p class="font-mono text-[var(--color-text-muted)] text-[13px] tracking-[0.3em] mb-3">01 / ABOUT</p>
 			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Background
 			</h2>
@@ -50,11 +46,13 @@
 
 				<!-- What I'm good for -->
 				<div>
-					<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] mb-3">// WHAT I'M GOOD FOR</p>
-					<ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+					<p class="font-mono text-[13px] text-[var(--color-text-muted)] tracking-[0.2em] mb-3">
+						<span class="text-[var(--color-text-muted)]">//</span> WHAT I'M GOOD FOR
+					</p>
+					<ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
 						{#each goodFor as item (item)}
-							<li class="flex items-start gap-2 text-sm text-[var(--color-text-primary)]">
-								<span class="text-[var(--color-accent-cyan)] mt-0.5 shrink-0">▸</span>
+							<li class="flex items-start gap-2 text-[15px] text-[var(--color-text-primary)]">
+								<span class="text-[var(--color-text-muted)] mt-0.5 shrink-0">▸</span>
 								{item}
 							</li>
 						{/each}
@@ -62,30 +60,63 @@
 				</div>
 			</div>
 
-			<!-- Right: config-card facts (replaces macOS terminal cliché) -->
-			<div class="md:col-span-5 reveal min-w-0 w-full" style="animation-delay: 160ms;">
+			<!-- Right: availability status + distinct details (no duplicate of Hero facts) -->
+			<div class="md:col-span-5 reveal min-w-0 w-full space-y-6" style="animation-delay: 160ms;">
+				<!-- Availability status -->
 				<div
-					class="rounded-lg overflow-hidden border min-w-0 max-w-full"
+					class="rounded-lg border p-6"
 					style="background: var(--color-bg-secondary); border-color: var(--color-border);"
 				>
-					<div
-						class="flex items-center gap-2 px-4 py-3 border-b font-mono text-xs"
-						style="background: var(--color-bg-surface); border-color: var(--color-border);"
-					>
-						<span class="w-2 h-2 rounded-sm" style="background: var(--color-accent-cyan);" aria-hidden="true"></span>
-						<span class="text-[var(--color-text-secondary)]">~/about.toml</span>
+					<div class="flex items-center gap-2.5 mb-3">
+						<span class="status-dot" aria-hidden="true"></span>
+						<span class="font-mono text-[13px] tracking-wide text-[var(--color-accent-amber)]">
+							Open to opportunities
+						</span>
 					</div>
-					<div class="p-6 font-mono text-sm space-y-2.5">
-						{#each facts as item (item.key)}
-							<div class="flex flex-wrap gap-x-2 gap-y-0.5 items-baseline">
-								<span class="text-[var(--color-accent-indigo)] shrink-0">{item.key}</span>
-								<span class="text-[var(--color-text-muted)] shrink-0">=</span>
-								<span class="break-words min-w-0" style="color: {item.color};">"{item.value}"</span>
-							</div>
-						{/each}
-					</div>
+					<p class="text-[15px] text-[var(--color-text-secondary)] leading-relaxed">
+						Looking for <span class="text-[var(--color-text-primary)] font-semibold">red team / offensive security</span>
+						roles — contract or full-time. Reach out at
+						<a
+							class="text-[var(--color-accent-cyan)] underline underline-offset-2 break-words"
+							href="mailto:israelfernandez96@gmail.com"
+						>israelfernandez96@gmail.com</a>.
+					</p>
 				</div>
+
+				<!-- Distinct details -->
+				<dl class="grid grid-cols-1 gap-px rounded-lg overflow-hidden border"
+					style="background: var(--color-border); border-color: var(--color-border);">
+					{#each details as item (item.label)}
+						<div class="flex items-baseline justify-between gap-4 px-5 py-4"
+							style="background: var(--color-bg-secondary);">
+							<dt class="font-mono text-[13px] uppercase tracking-wider text-[var(--color-text-muted)] shrink-0">{item.label}</dt>
+							<dd class="text-[15px] text-[var(--color-text-primary)] text-right break-words min-w-0">{item.value}</dd>
+						</div>
+					{/each}
+				</dl>
 			</div>
 		</div>
 	</div>
 </section>
+
+<style>
+	.status-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 9999px;
+		background: var(--color-accent-amber);
+		box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 70%, transparent);
+		animation: status-pulse 2.4s ease-out infinite;
+		flex-shrink: 0;
+	}
+
+	@keyframes status-pulse {
+		0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 60%, transparent); }
+		70% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
+		100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.status-dot { animation: none; }
+	}
+</style>

@@ -87,6 +87,10 @@
 
 		<!-- Content -->
 		<article class="post-content">
+			<!-- post.content is first-party Markdown rendered to HTML at build time
+			     (see src/lib/posts.ts). It is trusted and statically prerendered, so
+			     no runtime sanitization is needed. If external/user-submitted posts
+			     are ever added, sanitize here (e.g. isomorphic-dompurify). -->
 			{@html post.content}
 		</article>
 

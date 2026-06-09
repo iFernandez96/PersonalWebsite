@@ -7,7 +7,6 @@ const config = {
 		runes: ({ filename }) => {
 			const parts = filename.split(/[/\\]/);
 			if (parts.includes('node_modules')) return undefined;
-			if (parts.includes('bootcamp')) return false;
 			return true;
 		}
 	},
