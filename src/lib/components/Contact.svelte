@@ -25,8 +25,8 @@
 				Get in touch
 			</h2>
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-3 max-w-xl mx-auto">
-				Open to <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span> — contract or FTE.
-				Also up for systems engineering, embedded, or anything low-level.
+				Open to <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span>, full-time.
+				Also up for systems, embedded, or anything low-level.
 			</p>
 			<p class="font-mono text-[13px] text-[var(--color-text-muted)] mb-12">
 				<span class="text-[var(--color-text-secondary)]">//</span> usually reply within 48h

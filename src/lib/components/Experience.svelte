@@ -9,10 +9,10 @@
 			type: 'Research',
 			color: 'var(--color-accent-amber)',
 			description:
-				'Building offensive tooling and reading kernel/Android internals with adversarial eyes — the visible half of a deliberate pivot from systems engineering into red team.',
+				'The pivot, made concrete. Building offensive tooling and working through kernel and Android internals from an attacker\'s point of view: nine years of how systems work, aimed at how they fail.',
 			highlights: [
-				'Built BeaconUI — a 3-transport educational C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with Python + C implant and Svelte operator dashboard',
-				'OWASP MASVS / MASTG study; Frida hooking on deliberately-vulnerable Android targets',
+				'Built BeaconUI, a 3-transport educational C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with a Python and C implant and a Svelte operator dashboard',
+				'Working through OWASP MASVS / MASTG; Frida instrumentation against deliberately vulnerable Android targets',
 				'Long-form writeups on protocol design, exploit reasoning, and tooling decisions'
 			],
 			stack: 'Python · C · Frida · mTLS · SQLite · Svelte 5'
@@ -26,11 +26,11 @@
 			type: 'Contract',
 			color: 'var(--color-accent-cyan)',
 			description:
-				'System-level software, automation, and diagnostics across hardware platforms. Cross-functional work with firmware and hardware teams in a high-scale production environment.',
+				'System-level software, automation, and diagnostics across hardware platforms. Deep-stack integration work that keeps the systems knowledge current while the security side ramps.',
 			highlights: [
 				'Built and maintained internal diagnostic + automation tooling used across hardware platforms',
-				'Drove low-level bug triage with cross-functional firmware and hardware teams',
-				'Software/firmware integration on Apple silicon — bring-up support, validation, regression analysis'
+				'Drove low-level bug triage with firmware and hardware teams',
+				'Software and firmware integration on Apple silicon: bring-up support, validation, regression analysis'
 			],
 			stack: 'C · C++ · Python · Linux · Shell'
 		},
@@ -43,13 +43,13 @@
 			type: 'Full-time',
 			color: 'var(--color-accent-indigo)',
 			description:
-				'Eight years at a defense AI startup. Bare-metal firmware, kernel drivers, BSP customization, real-time computer vision pipelines on custom embedded ARM hardware.',
+				'Eight years at a defense AI startup, where the foundation got built: bare-metal firmware, kernel drivers, BSP customization, and real-time computer vision on custom embedded ARM hardware.',
 			highlights: [
-				'Increased computer vision processing throughput 40% via algorithm + memory layout redesign',
-				'Reduced cooling cost 20% by diagnosing thermal regression with EE team using specialized instrumentation',
+				'Redesigned the algorithm and memory layout to raise computer-vision throughput 40%',
+				'Diagnosed a thermal regression with the EE team, cutting cooling cost 20%',
 				'Linux kernel driver development and BSP customization for custom ARM platforms',
-				'Mentored interns transitioning CV algorithms from MATLAB to C',
-				'Hardware-in-the-loop testing, low-level networking protocols for field deployments'
+				'Mentored interns porting CV algorithms from MATLAB to C',
+				'Hardware-in-the-loop testing and low-level networking for field deployments'
 			],
 			stack: 'C · C++ · Linux · ARM · MATLAB · Lua'
 		}

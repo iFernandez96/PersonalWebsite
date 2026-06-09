@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Facts unique to About (the role/prior/stack/target overlap with the Hero
-	// quick-facts aside lives only in the Hero now — kept here are the details
+	// quick-facts aside lives only in the Hero now; kept here are the details
 	// the Hero doesn't show).
 	const details = [
 		{ label: 'Location', value: 'California, USA' },
@@ -28,20 +28,16 @@
 			<!-- Left: prose, pivot-first -->
 			<div class="md:col-span-7 reveal min-w-0" style="animation-delay: 80ms;">
 				<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-5">
-					I'm pivoting into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>.
-					I'm fascinated by the offensive side: understanding systems deeply enough to find where they break.
-					If it's low-level and technically interesting, I want to understand it.
+					I'm moving into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>: the same instinct that drove the systems work, pointed at where systems break instead of how they run. If it's low-level, I want to understand it well enough to take it apart.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-5">
-					I shipped my first Linux kernel module in 2018 and haven't looked up since. The last nine years
-					were embedded firmware, kernel drivers, and computer vision running on custom ARM hardware —
-					real-time pipelines, hardware bring-up, the whole stack from bootloader to user-space.
+					I shipped my first Linux kernel module in 2018 and have worked low in the stack ever since: embedded firmware, kernel drivers, real-time computer vision on custom ARM hardware. Bootloader to user-space, hardware bring-up to field deployment. You can't reliably break a system you don't already know how to build.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-8">
 					Today I'm at <a class="text-[var(--color-text-primary)] font-semibold hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>
-					(contract via Sasken Technologies) on hardware/firmware integration. Before that, eight years at
-					<a class="text-[var(--color-text-primary)] font-semibold hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.gantz-mountain.com/" target="_blank" rel="noopener noreferrer">Gantz-Mountain</a> —
-					a defense AI startup in Monterey shipping low-level systems on custom embedded platforms.
+					(contract via Sasken Technologies) on hardware and firmware integration. Before that, eight years at
+					<a class="text-[var(--color-text-primary)] font-semibold hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.gantz-mountain.com/" target="_blank" rel="noopener noreferrer">Gantz-Mountain</a>,
+					a defense AI startup in Monterey building low-level systems on custom embedded hardware. The security work runs alongside both, aimed at a new layer of the stack.
 				</p>
 
 				<!-- What I'm good for -->
@@ -70,12 +66,12 @@
 					<div class="flex items-center gap-2.5 mb-3">
 						<span class="status-dot" aria-hidden="true"></span>
 						<span class="font-mono text-[13px] tracking-wide text-[var(--color-accent-amber)]">
-							Open to opportunities
+							Open to work
 						</span>
 					</div>
 					<p class="text-[15px] text-[var(--color-text-secondary)] leading-relaxed">
 						Looking for <span class="text-[var(--color-text-primary)] font-semibold">red team / offensive security</span>
-						roles — contract or full-time. Reach out at
+						roles, full-time. Email me at
 						<a
 							class="text-[var(--color-accent-cyan)] underline underline-offset-2 break-words"
 							href="mailto:israelfernandez96@gmail.com"

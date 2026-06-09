@@ -16,7 +16,7 @@
 		try {
 			localStorage.setItem('theme', next);
 		} catch {
-			/* private mode etc. — ignore */
+			/* private mode etc., ignore */
 		}
 		// Also update theme-color meta so mobile UI chrome matches
 		const meta = document.querySelector('meta[name="theme-color"]');

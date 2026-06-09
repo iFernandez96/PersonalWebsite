@@ -32,7 +32,7 @@
 			title: 'Systems & Embedded',
 			color: '#22d3ee',
 			icon: 'chip',
-			description: 'Where 9 years live. Production firmware, kernel, real-time.',
+			description: 'Where nine years went. Production firmware, kernel work, real-time.',
 			skills: [
 				{ name: 'C / C++', tier: 'core' },
 				{ name: 'Embedded Systems', tier: 'core' },
@@ -46,11 +46,11 @@
 			title: 'Security & Offensive',
 			color: '#f59e0b',
 			icon: 'shield',
-			description: 'Active focus — the deliberate pivot into red team.',
+			description: 'The pivot. Newest skills, growing fastest.',
 			skills: [
 				{ name: 'C2 / RAT design', tier: 'working' },
-				{ name: 'Network Analysis', tier: 'working' },
-				{ name: 'Android Pentesting', tier: 'building' },
+				{ name: 'Network protocols', tier: 'working' },
+				{ name: 'Android app analysis', tier: 'building' },
 				{ name: 'Reverse Engineering', tier: 'building' },
 				{ name: 'Frida / Objection', tier: 'building' },
 				{ name: 'IDA / Ghidra', tier: 'building' }
@@ -60,7 +60,7 @@
 			title: 'Languages & Tools',
 			color: '#818cf8',
 			icon: 'code',
-			description: 'Reach for outside the deep-systems work — automation, web, ML.',
+			description: 'What I reach for outside deep-systems work: automation, web, tooling.',
 			skills: [
 				{ name: 'Python', tier: 'core' },
 				{ name: 'Bash / Shell', tier: 'core' },

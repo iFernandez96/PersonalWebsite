@@ -4,7 +4,7 @@
 	const roles = [
 		'Systems Software Engineer',
 		'Embedded & Kernel Developer',
-		'Aspiring Red Teamer'
+		'Moving into Red Team'
 	];
 
 	let displayText = $state(roles[0]);
@@ -46,7 +46,7 @@
 					displayText = target.slice(0, charIndex);
 					timeoutId = window.setTimeout(tick, TYPE_MS);
 				} else {
-					// Role finished typing — announce the full role once (not per keystroke)
+					// Role finished typing: announce the full role once (not per keystroke)
 					announcedRole = target;
 					timeoutId = window.setTimeout(() => { deleting = true; tick(); }, HOLD_MS);
 				}
@@ -122,14 +122,13 @@
 			<p
 				class="text-[var(--color-text-secondary)] text-base md:text-lg max-w-2xl mb-3 leading-relaxed opacity-0 animate-[fadeInUp_0.4s_ease_0.28s_forwards]"
 			>
-				Nine years writing systems software — embedded firmware, Linux kernel drivers, and computer vision on custom ARM hardware.
-				Now reverse-engineering Android binaries and building offensive tooling, because the most interesting bug is the one nobody knew was there.
+				Nine years writing systems software: embedded firmware, Linux kernel drivers, and computer vision on custom ARM hardware. Now I reverse-engineer Android binaries and build offensive tooling, because the most interesting bug is the one nobody knew was there.
 			</p>
 
 			<p
 				class="font-mono text-sm md:text-[15px] text-[var(--color-text-muted)] mb-9 opacity-0 animate-[fadeIn_0.35s_ease_0.4s_forwards]"
 			>
-				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day · Android security research after hours
+				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day, Android security research after hours
 			</p>
 
 			<div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_0.4s_ease_0.5s_forwards]">
@@ -137,14 +136,14 @@
 					href="#projects"
 					class="cta-primary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 				>
-					See work
+					See projects
 					<svg class="w-4 h-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 				</a>
 				<a
 					href="/blog"
 					class="cta-secondary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 				>
-					Read writing
+					Read the writeups
 				</a>
 			</div>
 		</div>

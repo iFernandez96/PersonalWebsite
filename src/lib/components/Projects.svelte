@@ -23,69 +23,68 @@
 
 	const projects: Project[] = [
 		{
-			title: 'BeaconUI — Educational C2 Framework',
+			title: 'BeaconUI: Educational C2 Framework',
 			oneLiner:
-				'Three-transport red-team framework (raw TCP, mTLS HTTPS, beacon/callback) with a Svelte operator dashboard. Built to learn modern C2 architecture from first principles.',
+				'Three-transport C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with a Svelte operator dashboard and a dual-language implant. I built it to learn modern C2 architecture from the ground up.',
 			outcome:
 				'78 end-to-end tests in 9s · 20 task types · dual-language implant (Python + C) · HMAC-SHA256 endpoint derivation · ±20% beacon jitter',
 			stack: ['Python', 'C', 'Svelte 5', 'mTLS', 'SQLite', 'libcurl'],
 			color: '#f59e0b',
 			icon: 'shield',
 			featured: true,
-			repo: 'https://github.com/iFernandez96',
 			writeup: '/blog/building-a-c2-framework',
-			note: 'Educational / authorized targets only'
+			note: 'Educational / authorized targets only · source on request'
 		},
 		{
 			title: 'Offensive Security Bootcamp Portal',
 			oneLiner:
-				'A searchable SvelteKit learning portal for a Markdown-first offensive security curriculum, including modules, CTF prep, labs, Android material, progress tracking, and review paths.',
+				'A searchable SvelteKit portal for a Markdown-first offensive security curriculum: modules, CTF prep, labs, Android material, progress tracking, and review paths.',
 			outcome:
 				'Markdown ingestion · generated content index · searchable library · local progress export/import · direct lesson URLs',
 			stack: ['SvelteKit', 'TypeScript', 'Markdown', 'Security Education'],
 			color: '#14b8a6',
 			icon: 'shield',
-			note: 'Local labs only'
+			note: 'Local labs only · source on request'
 		},
 		{
 			title: 'CDN from First Principles',
 			oneLiner:
-				'A toy content delivery network implementing edge caching, origin pull, RFC 7234 cache validation, and geographic routing. Built to understand CDN internals without library shortcuts.',
+				'A toy content delivery network with edge caching, origin pull, RFC 7234 cache validation, and geographic routing. I built it to understand CDN internals without leaning on libraries.',
 			outcome:
 				'Origin-pull + edge cache · DNS-based geo routing · cache-control header parsing · invalidation API',
 			stack: ['Python', 'HTTP', 'DNS', 'Caching'],
 			color: '#22d3ee',
 			icon: 'network',
-			repo: 'https://github.com/iFernandez96'
+			repo: 'https://github.com/iFernandez96/CDN'
 		},
 		{
 			title: 'Recursive DNS Resolver',
 			oneLiner:
-				'Iterative resolver written against RFC 1035 wire format — no library shortcuts. Walks roots → TLDs → authoritative servers, handles A/AAAA/MX/CNAME, retries on truncation.',
+				'An iterative resolver written against the RFC 1035 wire format, no library shortcuts. It walks roots to TLDs to authoritative servers, handles A/AAAA/MX/CNAME, and retries on truncation.',
 			outcome:
 				'Zero external DNS libs · UDP wire-format parser/encoder · root-hint bootstrap · TCP retry on TC bit',
 			stack: ['Python', 'DNS', 'UDP', 'Networking'],
 			color: '#22d3ee',
 			icon: 'terminal',
-			repo: 'https://github.com/iFernandez96'
+			repo: 'https://github.com/iFernandez96/dnsResolver'
 		},
 		{
 			title: 'Home Security Dashboard',
 			oneLiner:
-				'Local-only home security console for cameras and sensors with real-time alerts and a clean web interface. Self-hosted, no cloud round-trip.',
+				'A local-only console for home cameras and sensors with real-time alerts and a plain web interface. Self-hosted, no cloud round-trip.',
 			outcome:
 				'WebSocket-driven real-time UI · multi-feed video · sensor event stream · zero external dependencies at runtime',
 			stack: ['SvelteKit', 'TypeScript', 'WebSockets', 'IoT'],
 			color: '#818cf8',
 			icon: 'nodes',
-			repo: 'https://github.com/iFernandez96'
+			repo: 'https://github.com/iFernandez96/HomeCameraSystem'
 		}
 	];
 
 	// Drop in smaller experiments here. Renders a compact list under the main grid.
 	// Leave empty for the section to disappear entirely.
 	const sideProjects: SideProject[] = [
-		// Example shape — uncomment and edit when you have something to ship:
+		// Example shape: uncomment and edit when you have something to ship:
 		// {
 		// 	title: 'Frida Bypass Toolkit',
 		// 	oneLiner: 'Hookable Frida scripts for OWASP-MASTG vulnerable apps.',
@@ -107,7 +106,7 @@
 				Selected work
 			</h2>
 			<p class="text-[var(--color-text-muted)] max-w-xl">
-				Personal projects I'd actually point a hiring manager at. Each links to its source.
+				Personal projects I'd actually point a hiring manager at. Each links to its source, or says when it's private.
 			</p>
 		</div>
 
