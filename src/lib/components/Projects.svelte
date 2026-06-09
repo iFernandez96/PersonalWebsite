@@ -37,6 +37,18 @@
 			note: 'Educational / authorized targets only'
 		},
 		{
+			title: 'Offensive Security Bootcamp Portal',
+			oneLiner:
+				'A searchable SvelteKit learning portal for a Markdown-first offensive security curriculum, including modules, CTF prep, labs, Android material, progress tracking, and review paths.',
+			outcome:
+				'Markdown ingestion · generated content index · searchable library · local progress export/import · direct lesson URLs',
+			stack: ['SvelteKit', 'TypeScript', 'Markdown', 'Security Education'],
+			color: '#14b8a6',
+			icon: 'shield',
+			demo: '/bootcamp',
+			note: 'Local labs only'
+		},
+		{
 			title: 'CDN from First Principles',
 			oneLiner:
 				'A toy content delivery network implementing edge caching, origin pull, RFC 7234 cache validation, and geographic routing. Built to understand CDN internals without library shortcuts.',

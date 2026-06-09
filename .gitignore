@@ -34,6 +34,9 @@ vite.config.ts.timestamp-*
 # Root-level PDFs (resume lives in static/)
 /*.pdf
 
+# Dev switcher worktrees
+.worktrees/
+
 # Tooling / AI context
 CLAUDE.md.Backup
 .claude/

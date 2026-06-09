@@ -28,6 +28,9 @@
 	},
 	"dependencies": {
 		"@fontsource/inter": "^5.2.8",
-		"@fontsource/jetbrains-mono": "^5.2.8"
+		"@fontsource/jetbrains-mono": "^5.2.8",
+		"dompurify": "^3.4.2",
+		"lucide-svelte": "^1.0.1",
+		"marked": "^18.0.3"
 	}
 }

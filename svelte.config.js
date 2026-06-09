@@ -4,7 +4,12 @@ import adapter from '@sveltejs/adapter-cloudflare';
 const config = {
 	compilerOptions: {
 		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
-		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
+		runes: ({ filename }) => {
+			const parts = filename.split(/[/\\]/);
+			if (parts.includes('node_modules')) return undefined;
+			if (parts.includes('bootcamp')) return false;
+			return true;
+		}
 	},
 	kit: {
 		adapter: adapter(),

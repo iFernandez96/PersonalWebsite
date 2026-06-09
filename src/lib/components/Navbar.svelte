@@ -26,6 +26,7 @@
 	);
 
 	let isBlogRoute = $derived(page.url.pathname.startsWith('/blog'));
+	let isBootcampRoute = $derived(page.url.pathname.startsWith('/bootcamp'));
 
 	function closeMenu() {
 		menuOpen = false;
@@ -126,6 +127,17 @@
 					<span class="nav-underline" aria-hidden="true"></span>
 				</a>
 			</li>
+			<li>
+				<a
+					href="/bootcamp"
+					class="nav-link text-sm tracking-wide relative pb-0.5"
+					class:is-active={isBootcampRoute}
+					aria-current={isBootcampRoute ? 'page' : undefined}
+				>
+					Bootcamp
+					<span class="nav-underline" aria-hidden="true"></span>
+				</a>
+			</li>
 		</ul>
 
 		<div class="hidden md:flex items-center gap-2">
@@ -195,6 +207,18 @@
 						aria-current={isBlogRoute ? 'page' : undefined}
 					>
 						Blog
+					</a>
+				</li>
+				<li>
+					<a
+						href="/bootcamp"
+						onclick={closeMenu}
+						class="block py-3 transition-colors"
+						class:text-[var(--color-accent-cyan)]={isBootcampRoute}
+						class:text-[var(--color-text-secondary)]={!isBootcampRoute}
+						aria-current={isBootcampRoute ? 'page' : undefined}
+					>
+						Bootcamp
 					</a>
 				</li>
 				<li>
