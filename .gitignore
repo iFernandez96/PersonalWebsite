@@ -44,3 +44,7 @@ CLAUDE.md.Backup
 .mcp.json
 .playwright-mcp/
 socialMedia.txt
+
+# Playwright
+/test-results/
+/playwright-report/
