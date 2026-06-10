@@ -114,7 +114,58 @@ body {
 	50% { transform: translate3d(0, 6px, 0); opacity: 1; }
 }
 
-/* Section reveal, CSS-only, plays on initial render. SSR-safe. */
+/* Hero scanline: one-shot sweep top→bottom, forwards, no loop */
+@keyframes scanline-sweep {
+	from { transform: translate3d(0, -100%, 0); opacity: 0.18; }
+	60%  { opacity: 0.22; }
+	to   { transform: translate3d(0, 100vh, 0); opacity: 0; }
+}
+
+/* Section reveal system, role-varied IO-triggered (add .in-view on intersection).
+   Base state: hidden. .in-view triggers the entrance. */
+
+/* Heading: rises taller, slightly slower */
+@keyframes rv-heading-in {
+	from { opacity: 0; transform: translate3d(0, 24px, 0); }
+	to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+/* Body text: softer lift */
+@keyframes rv-body-in {
+	from { opacity: 0; transform: translate3d(0, 12px, 0); }
+	to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+/* Card: slight scale settle + lift, staggered by --i */
+@keyframes rv-card-in {
+	from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.97); }
+	to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* Base hidden state, before JS adds .in-view */
+.rv {
+	opacity: 0;
+}
+.rv.rv-heading {
+	animation: rv-heading-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+}
+.rv.rv-body {
+	animation: rv-body-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+	animation-delay: 80ms;
+}
+.rv.rv-card {
+	animation: rv-card-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+	/* stagger: base 80ms + 60ms * index */
+	animation-delay: calc(80ms + var(--i, 0) * 60ms);
+}
+
+/* Trigger: when JS adds .in-view, play the animation */
+.rv.in-view {
+	animation-play-state: running;
+}
+
+/* Legacy CSS-only reveal kept for compatibility with any remaining usages */
 @keyframes revealUp {
 	from { opacity: 0; transform: translate3d(0, 12px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -123,7 +174,7 @@ body {
 	animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Reduced motion */
+/* Reduced motion, kill everything animated */
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after {
 		animation-duration: 0.001ms !important;
@@ -131,15 +182,32 @@ body {
 		transition-duration: 0.001ms !important;
 		scroll-behavior: auto !important;
 	}
+	/* Ensure rv elements are visible even though animation is crushed */
+	.rv { opacity: 1 !important; }
 }
 
 /* JS-disabled fallback */
 @media (scripting: none) {
-	.reveal {
+	.reveal,
+	.rv {
 		animation: none !important;
 		opacity: 1 !important;
 		transform: none !important;
 	}
+}
+
+/* Centered gradient hairline divider, one subtle accent between loud boundaries */
+.section-divider {
+	height: 1px;
+	background: linear-gradient(
+		to right,
+		transparent 0%,
+		color-mix(in srgb, var(--color-accent-cyan) 30%, transparent) 30%,
+		color-mix(in srgb, var(--color-accent-indigo) 30%, transparent) 70%,
+		transparent 100%
+	);
+	margin: 0 auto;
+	max-width: 48rem;
 }
 
 /* Skip rendering off-screen sections until scrolled into view (paint perf). */

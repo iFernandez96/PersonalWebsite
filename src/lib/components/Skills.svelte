@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal.js';
+
 	// Depth tiers instead of a 1–5 numeric meter:
 	//   'core'    → production-proven, reach for daily
 	//   'working' → ship real work with it
@@ -80,7 +82,7 @@
 	style="background: var(--color-bg-secondary);"
 >
 	<div class="max-w-7xl mx-auto">
-		<div class="reveal flex flex-wrap items-end justify-between gap-4 mb-12" style="animation-delay: 0ms;">
+		<div use:reveal={'heading'} class="flex flex-wrap items-end justify-between gap-4 mb-12">
 			<div>
 				<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">02 / SKILLS</p>
 				<h2 id="skills-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
@@ -94,7 +96,7 @@
 
 		<div class="grid md:grid-cols-3 gap-6">
 			{#each skillGroups as group, i (group.title)}
-				<div class="reveal" style="animation-delay: {80 + i * 80}ms;">
+				<div use:reveal={{ role: 'card', i }}>
 					<div
 						class="skill-card relative rounded-lg p-6 border h-full"
 						style="

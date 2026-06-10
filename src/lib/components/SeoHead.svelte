@@ -4,7 +4,7 @@
 	/**
 	 * Reusable SEO head block. Emits title, description, canonical, Open Graph,
 	 * and Twitter card tags. Modeled on the inline <svelte:head> block in
-	 * +page.svelte. Not yet adopted by routes — created for later wiring.
+	 * +page.svelte. Not yet adopted by routes, created for later wiring.
 	 */
 	interface Props {
 		title: string;

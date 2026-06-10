@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal.js';
+
 	const experiences = [
 		{
 			title: 'Independent Security Research',
@@ -57,8 +59,9 @@
 </script>
 
 <section id="experience" aria-labelledby="experience-heading" class="py-16 md:py-24 px-6 lg:px-10">
-	<div class="max-w-6xl mx-auto">
-		<div class="reveal mb-12" style="animation-delay: 0ms;">
+	<!-- max-w-4xl: pulled in from 6xl for better reading density -->
+	<div class="max-w-4xl mx-auto">
+		<div use:reveal={'heading'} class="mb-12">
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">03 / EXPERIENCE</p>
 			<h2 id="experience-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Track record
@@ -75,7 +78,7 @@
 
 			<div class="space-y-10">
 				{#each experiences as exp, i (exp.title)}
-					<div class="relative pl-12 md:pl-24 reveal" style="animation-delay: {80 + i * 100}ms;">
+					<div use:reveal={{ role: 'card', i }} class="relative pl-12 md:pl-24">
 						<!-- Timeline dot -->
 						<div
 							class="absolute left-2.5 md:left-6 top-2 w-3 h-3 rounded-full border-2"

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal.js';
+
 	const links = [
 		{
 			label: 'GitHub',
@@ -17,9 +19,10 @@
 	];
 </script>
 
-<section id="contact" aria-labelledby="contact-heading" class="py-16 md:py-24 px-6 lg:px-10">
-	<div class="max-w-3xl mx-auto text-center">
-		<div class="reveal" style="animation-delay: 0ms;">
+<section id="contact" aria-labelledby="contact-heading" class="py-20 md:py-32 px-6 lg:px-10">
+	<!-- max-w-2xl: quiet and centered with more vertical air -->
+	<div class="max-w-2xl mx-auto text-center">
+		<div use:reveal={'heading'}>
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>
 			<h2 id="contact-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
 				Get in touch
@@ -33,7 +36,7 @@
 			</p>
 		</div>
 
-		<div class="reveal mb-10" style="animation-delay: 120ms;">
+		<div use:reveal={{ role: 'body', i: 1 }} class="mb-10">
 			<a
 				href="mailto:israelfernandez96@gmail.com"
 				class="contact-cta inline-flex items-center gap-3 px-8 py-4 rounded-md text-base font-semibold tracking-wide"
@@ -45,7 +48,7 @@
 			</a>
 		</div>
 
-		<div class="reveal flex flex-col sm:flex-row gap-3 justify-center" style="animation-delay: 240ms;">
+		<div use:reveal={{ role: 'body', i: 2 }} class="flex flex-col sm:flex-row gap-3 justify-center">
 			{#each links as link (link.label)}
 				<a
 					href={link.href}

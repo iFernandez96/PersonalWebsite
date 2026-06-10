@@ -64,6 +64,8 @@
 	<Hero />
 	<About />
 	<Skills />
+	<!-- Gradient hairline divider: marks the dense skills beat → narrative timeline transition -->
+	<div class="section-divider" aria-hidden="true"></div>
 	<Experience />
 	<Projects />
 	<Contact />

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal.js';
+
 	// Facts unique to About. The role/prior/stack/target now live only in the
 	// Hero quick-facts aside; kept here are the details the Hero doesn't show.
 	const details = [
@@ -15,8 +17,9 @@
 </script>
 
 <section id="about" aria-labelledby="about-heading" class="py-16 md:py-24 px-6 lg:px-10">
-	<div class="max-w-7xl mx-auto">
-		<div class="reveal mb-12" style="animation-delay: 0ms;">
+	<!-- Intimate narrower column for About -->
+	<div class="max-w-3xl mx-auto">
+		<div use:reveal={'heading'} class="mb-12">
 			<p class="font-mono text-[var(--color-text-muted)] text-[13px] tracking-[0.3em] mb-3">01 / ABOUT</p>
 			<h2 id="about-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Background
@@ -25,7 +28,7 @@
 
 		<div class="grid md:grid-cols-12 gap-10 items-start">
 			<!-- Left: prose, pivot-first -->
-			<div class="md:col-span-7 reveal min-w-0" style="animation-delay: 80ms;">
+			<div use:reveal={'body'} class="md:col-span-7 min-w-0">
 				<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-5">
 					I'm moving into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>: the same instinct that drove the systems work, now pointed at where systems break instead of how they run. If it's low-level, I want to understand it well enough to take it apart.
 				</p>
@@ -56,7 +59,7 @@
 			</div>
 
 			<!-- Right: availability status + distinct details (no duplicate of Hero facts) -->
-			<div class="md:col-span-5 reveal min-w-0 w-full space-y-6" style="animation-delay: 160ms;">
+			<div use:reveal={{ role: 'body', i: 1 }} class="md:col-span-5 min-w-0 w-full space-y-6">
 				<!-- Availability status -->
 				<div
 					class="rounded-lg border p-6"

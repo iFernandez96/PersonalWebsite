@@ -10,6 +10,7 @@
 	let displayText = $state(roles[0]);
 	let announcedRole = $state(roles[0]);
 	let reducedMotion = $state(false);
+	let coarsePointer = $state(false);
 
 	const TYPE_MS = 55;
 	const DELETE_MS = 30;
@@ -17,13 +18,66 @@
 
 	onMount(() => {
 		const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const coarseMql = window.matchMedia('(pointer: coarse)');
 		reducedMotion = mql.matches;
-		const mqlHandler = (e: MediaQueryListEvent) => (reducedMotion = e.matches);
-		mql.addEventListener('change', mqlHandler);
+		coarsePointer = coarseMql.matches;
 
+		const mqlHandler = (e: MediaQueryListEvent) => (reducedMotion = e.matches);
+		const coarseHandler = (e: MediaQueryListEvent) => (coarsePointer = e.matches);
+		mql.addEventListener('change', mqlHandler);
+		coarseMql.addEventListener('change', coarseHandler);
+
+		// --- Pointer parallax ---
+		const hero = document.getElementById('hero');
+		let rafId = 0;
+		let pendingX = 0.5;
+		let pendingY = 0.5;
+		let dirty = false;
+
+		function applyPointer() {
+			if (hero) {
+				// --px/--py: 0..1 normalized, centered at 0.5
+				// Grid drifts OPPOSITE cursor: shift = -(px-0.5)*maxShift
+				hero.style.setProperty('--px', String(pendingX));
+				hero.style.setProperty('--py', String(pendingY));
+				// spotlight position as percent strings for radial-gradient
+				hero.style.setProperty('--mx', `${(pendingX * 100).toFixed(1)}%`);
+				hero.style.setProperty('--my', `${(pendingY * 100).toFixed(1)}%`);
+			}
+			dirty = false;
+			rafId = 0;
+		}
+
+		function onPointerMove(e: PointerEvent) {
+			if (reducedMotion || coarsePointer) return;
+			const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+			pendingX = (e.clientX - rect.left) / rect.width;
+			pendingY = (e.clientY - rect.top) / rect.height;
+			if (!dirty) {
+				dirty = true;
+				rafId = requestAnimationFrame(applyPointer);
+			}
+		}
+
+		// Initialize defaults
+		if (hero) {
+			hero.style.setProperty('--px', '0.5');
+			hero.style.setProperty('--py', '0.5');
+			hero.style.setProperty('--mx', '50%');
+			hero.style.setProperty('--my', '50%');
+		}
+
+		hero?.addEventListener('pointermove', onPointerMove, { passive: true });
+
+		// --- Typewriter ---
 		if (reducedMotion) {
 			displayText = roles[0];
-			return () => mql.removeEventListener('change', mqlHandler);
+			return () => {
+				mql.removeEventListener('change', mqlHandler);
+				coarseMql.removeEventListener('change', coarseHandler);
+				hero?.removeEventListener('pointermove', onPointerMove);
+				if (rafId) cancelAnimationFrame(rafId);
+			};
 		}
 
 		let roleIndex = 0;
@@ -46,7 +100,6 @@
 					displayText = target.slice(0, charIndex);
 					timeoutId = window.setTimeout(tick, TYPE_MS);
 				} else {
-					// Role finished typing: announce the full role once (not per keystroke)
 					announcedRole = target;
 					timeoutId = window.setTimeout(() => { deleting = true; tick(); }, HOLD_MS);
 				}
@@ -63,36 +116,40 @@
 			}
 		}
 
-		// Begin by deleting the first role (which is shown statically while waiting)
 		timeoutId = window.setTimeout(tick, HOLD_MS);
 
 		return () => {
 			stopped = true;
 			if (timeoutId) clearTimeout(timeoutId);
 			mql.removeEventListener('change', mqlHandler);
+			coarseMql.removeEventListener('change', coarseHandler);
+			hero?.removeEventListener('pointermove', onPointerMove);
+			if (rafId) cancelAnimationFrame(rafId);
 		};
 	});
 </script>
 
-<section id="hero" aria-labelledby="hero-heading" class="relative min-h-[100svh] flex items-center overflow-hidden">
-	<!-- Background layers -->
+<section id="hero" aria-labelledby="hero-heading" class="hero-section relative min-h-[100svh] flex items-center overflow-hidden">
+	<!-- Background layers, all aria-hidden, decorative only -->
 	<div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-		<!-- Grid (smaller, dimmer for depth) -->
+		<!-- Drifting grid: translates opposite pointer via CSS vars --px/--py -->
+		<div class="hero-grid absolute inset-0"></div>
+
+		<!-- Cursor spotlight: soft radial that follows the mouse -->
+		<div class="hero-spotlight absolute inset-0"></div>
+
+		<!-- One-shot scanline sweep (coarse/reduced-motion: hidden) -->
+		{#if !coarsePointer && !reducedMotion}
+			<div class="hero-scanline absolute left-0 right-0 h-px"></div>
+		{/if}
+
+		<!-- Static ambient orb, visible on coarse/reduced-motion too -->
 		<div
-			class="absolute inset-0"
-			style="background-image: linear-gradient(rgba(34,211,238,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.04) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 80%);"
+			class="absolute"
+			style="top: 5%; left: -8%; width: 720px; height: 720px; background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 60%);"
 		></div>
-		<!-- Soft cyan ambience top-left, no filter blur -->
-		<div
-			class="absolute hero-orb"
-			style="top: 5%; left: -8%; width: 720px; height: 720px; background: radial-gradient(circle, rgba(34,211,238,0.10) 0%, transparent 60%);"
-		></div>
-		<!-- Soft indigo ambience bottom-right -->
-		<div
-			class="absolute hero-orb"
-			style="bottom: -10%; right: -8%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(129,140,248,0.08) 0%, transparent 60%);"
-		></div>
-		<!-- Bottom fade so content below transitions cleanly -->
+
+		<!-- Bottom fade -->
 		<div
 			class="absolute bottom-0 left-0 right-0 h-40"
 			style="background: linear-gradient(to bottom, transparent, var(--color-bg-primary));"
@@ -108,9 +165,12 @@
 
 			<h1
 				id="hero-heading"
-				class="hero-name text-[clamp(2.75rem,8vw,7rem)] font-medium text-[var(--color-text-primary)] mb-5 opacity-0 animate-[fadeInUp_0.4s_ease_0.08s_forwards]"
+				class="hero-name mb-5 opacity-0 animate-[fadeInUp_0.4s_ease_0.08s_forwards]"
 			>
-				Israel Fernandez
+				<!-- "Israel" stays in primary text color for contrast anchor -->
+				<span class="text-[var(--color-text-primary)]">Israel</span><br>
+				<!-- "Fernandez" gets the cyan→indigo gradient treatment -->
+				<span class="hero-surname" aria-label="Fernandez">Fernandez</span>
 			</h1>
 
 			<div class="h-9 md:h-11 flex items-center mb-7 opacity-0 animate-[fadeInUp_0.4s_ease_0.18s_forwards]">
@@ -181,9 +241,72 @@
 </section>
 
 <style>
+	/* --px/--py: normalized 0–1 pointer position, defaulting to center (0.5) */
+	.hero-section {
+		--px: 0.5;
+		--py: 0.5;
+		--mx: 50%;
+		--my: 50%;
+	}
+
+	/* Drifting grid, translates opposite the pointer for parallax feel.
+	   Max drift: 18px. transition gives the lagged-follow feel. */
+	.hero-grid {
+		background-image:
+			linear-gradient(rgba(34,211,238,0.05) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(34,211,238,0.05) 1px, transparent 1px);
+		background-size: 64px 64px;
+		mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 25%, transparent 80%);
+		-webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 25%, transparent 80%);
+		/* Drift: shift opposite pointer. calc centers at 0, scales to ±18px */
+		transform: translate3d(
+			calc((0.5 - var(--px)) * 36px),
+			calc((0.5 - var(--py)) * 20px),
+			0
+		);
+		transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: transform;
+	}
+
+	/* Cursor spotlight: soft radial at pointer position */
+	.hero-spotlight {
+		background: radial-gradient(
+			circle 600px at var(--mx) var(--my),
+			rgba(34, 211, 238, 0.07) 0%,
+			transparent 60%
+		);
+		transition: background 0.4s ease;
+	}
+
+	/* Scanline: single horizontal bar, sweeps once on load */
+	.hero-scanline {
+		background: linear-gradient(
+			to bottom,
+			transparent,
+			rgba(34, 211, 238, 0.35) 50%,
+			transparent
+		);
+		height: 2px;
+		animation: scanline-sweep 1.8s cubic-bezier(0.4, 0, 0.6, 1) 0.6s forwards;
+		will-change: transform, opacity;
+	}
+
+	/* H1 treatment */
 	.hero-name {
-		letter-spacing: -0.04em;
-		line-height: 0.95;
+		font-size: clamp(2.75rem, 8vw, 7rem);
+		font-weight: 700;
+		letter-spacing: -0.05em;
+		line-height: 0.9;
+	}
+
+	/* Surname gradient: cyan→indigo background-clip */
+	.hero-surname {
+		display: inline-block;
+		background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent; /* fallback before clip applies */
 	}
 
 	.type-cursor {
@@ -217,17 +340,15 @@
 		color: var(--color-text-primary);
 	}
 
-	.hero-orb {
-		will-change: transform;
-		transform: translateZ(0);
-		contain: layout paint;
-	}
-
 	.chevron-bounce {
 		animation: scrollChevronBounce 2s ease-in-out infinite;
 	}
 
+	/* Reduced motion: disable pointer effects, show all text immediately */
 	@media (prefers-reduced-motion: reduce) {
+		.hero-grid { transition: none; transform: none; }
+		.hero-spotlight { transition: none; }
+		.hero-scanline { display: none; }
 		.type-cursor,
 		.chevron-bounce,
 		:global(#hero [class*="animate-"]) {
@@ -237,5 +358,11 @@
 		.cta-primary:hover, .cta-secondary:hover {
 			transform: none;
 		}
+	}
+
+	/* Coarse pointer (mobile): no spotlight tracking, static grid */
+	@media (pointer: coarse) {
+		.hero-grid { transition: none; transform: none; }
+		.hero-spotlight { display: none; }
 	}
 </style>

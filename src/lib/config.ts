@@ -3,7 +3,7 @@
  * contact links, and default SEO copy. Values mirror what is currently hard-coded
  * in +page.svelte and the section components (Contact.svelte, etc.).
  *
- * NOTE: Not yet wired into the routes/components — this module exists so later
+ * NOTE: Not yet wired into the routes/components, this module exists so later
  * phases can refactor those files to import from here. Update both places until
  * that migration happens.
  */
