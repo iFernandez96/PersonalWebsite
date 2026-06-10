@@ -24,20 +24,23 @@
 		demo?: string;
 	};
 
-	// BeaconUI capability highlights — what's actually hard about it, not feature counts
-	const beaconStats = [
-		{ value: 'Python + C', label: 'dual-language implant', sub: 'second implant written from scratch in C' },
-		{ value: 'Cross-platform', label: 'one implant, three targets', sub: 'Linux · macOS · Windows' },
-		{ value: 'mTLS + HMAC', label: 'authenticated, non-guessable', sub: 'mutual TLS, HMAC-derived endpoints' },
-		{ value: 'End-to-end', label: 'tested with no mocks', sub: 'real C2 + real implant subprocess' }
+	const beaconFeatures = [
+		'Dual-language implant: 29 task types in Python, 28 in C (from scratch)',
+		'Cross-platform C implant: Linux, macOS, Windows',
+		'mTLS transport + HMAC-SHA256-derived endpoints',
+		'AES-256-GCM application-layer encryption toggle',
+		'Persistent PTY shell, SOCKS5 proxy, shellcode stager',
+		'HTML smuggling dropper with XOR obfuscation',
+		'SQLite persistence (WAL), SSE live dashboard',
+		'490 tests (unit + integration + Playwright E2E)',
 	];
 
 	const featured: Project = {
 		title: 'BeaconUI: Educational C2 Framework',
 		oneLiner:
-			'Three-transport C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with a Svelte operator dashboard and a dual-language implant. I built it to learn modern C2 architecture from the ground up.',
+			'Beacon-model C2 with dual Python/C implants (~29 task types each), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
 		outcome:
-			'78 end-to-end tests in 9s · 20 task types · dual-language implant (Python + C) · HMAC-SHA256 endpoint derivation · ±20% beacon jitter',
+			'490 tests · 29 Python + 28 C task types · mTLS + HMAC endpoints · AES-256-GCM · SOCKS5 proxy · HTML smuggling dropper · shellcode stager',
 		stack: ['Python', 'C', 'Svelte 5', 'mTLS', 'SQLite', 'libcurl'],
 		color: '#f59e0b',
 		icon: 'shield',
@@ -227,24 +230,17 @@
 						</div>
 					</div>
 
-					<!-- Right column: big stat row -->
+					<!-- Right column: top features -->
 					<div>
-						<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-6">// the hard parts</p>
-						<div class="grid grid-cols-2 gap-px rounded-lg overflow-hidden" style="background: var(--color-border);">
-							{#each beaconStats as stat (stat.label)}
-								<div class="beacon-stat-cell px-5 py-5" style="background: var(--color-bg-surface);">
-									<div class="font-bold text-[var(--color-accent-amber)] mb-1 beacon-stat-value">
-										{stat.value}
-									</div>
-									<div class="font-mono text-[13px] text-[var(--color-text-secondary)] leading-tight">{stat.label}</div>
-									<div class="font-mono text-[11px] text-[var(--color-text-muted)] mt-0.5">{stat.sub}</div>
-								</div>
+						<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-5">// top features</p>
+						<ul class="space-y-2.5">
+							{#each beaconFeatures as feat}
+								<li class="flex items-start gap-2.5 text-[var(--color-text-secondary)] text-[14px] leading-snug">
+									<span class="text-[var(--color-accent-amber)] mt-0.5 shrink-0 text-xs">▸</span>
+									<span>{feat}</span>
+								</li>
 							{/each}
-						</div>
-
-						<p class="font-mono text-xs text-[var(--color-text-muted)] mt-5 leading-relaxed">
-							<span class="text-[var(--color-text-secondary)]">//</span> Three-transport · Python + C implant · Svelte operator dashboard
-						</p>
+						</ul>
 					</div>
 				</div>
 			</article>
@@ -400,19 +396,6 @@
 		}
 	}
 
-	.beacon-stat-value {
-		font-size: clamp(1.1rem, 2.4vw, 1.5rem);
-		line-height: 1.15;
-		letter-spacing: -0.02em;
-	}
-
-	.beacon-stat-cell {
-		transition: background 0.2s ease;
-	}
-	.beacon-stat-cell:hover {
-		background: var(--color-bg-elevated) !important;
-	}
-
 	/* ===== Quiet grid cards ===== */
 	.quiet-card {
 		transition: border-color 0.25s ease;
@@ -428,6 +411,5 @@
 	@media (prefers-reduced-motion: reduce) {
 		.beacon-spotlight { display: none; }
 		.quiet-card { transition: none; }
-		.beacon-stat-cell { transition: none; }
 	}
 </style>
