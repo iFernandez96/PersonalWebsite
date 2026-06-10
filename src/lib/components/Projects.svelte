@@ -24,12 +24,12 @@
 		demo?: string;
 	};
 
-	// BeaconUI stats broken out for the big-stat row
+	// BeaconUI capability highlights — what's actually hard about it, not feature counts
 	const beaconStats = [
-		{ value: '78', label: 'tests', sub: 'in ~9s' },
-		{ value: '3', label: 'transports', sub: 'TCP · mTLS · beacon' },
-		{ value: '20', label: 'task types', sub: 'dual-lang implant' },
-		{ value: '±20%', label: 'beacon jitter', sub: 'HMAC-SHA256' }
+		{ value: 'Python + C', label: 'dual-language implant', sub: 'second implant written from scratch in C' },
+		{ value: 'Cross-platform', label: 'one implant, three targets', sub: 'Linux · macOS · Windows' },
+		{ value: 'mTLS + HMAC', label: 'authenticated, non-guessable', sub: 'mutual TLS, HMAC-derived endpoints' },
+		{ value: 'End-to-end', label: 'tested with no mocks', sub: 'real C2 + real implant subprocess' }
 	];
 
 	const featured: Project = {
@@ -229,7 +229,7 @@
 
 					<!-- Right column: big stat row -->
 					<div>
-						<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-6">// metrics</p>
+						<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-6">// the hard parts</p>
 						<div class="grid grid-cols-2 gap-px rounded-lg overflow-hidden" style="background: var(--color-border);">
 							{#each beaconStats as stat (stat.label)}
 								<div class="beacon-stat-cell px-5 py-5" style="background: var(--color-bg-surface);">
@@ -401,9 +401,9 @@
 	}
 
 	.beacon-stat-value {
-		font-size: clamp(1.75rem, 4vw, 2.5rem);
-		line-height: 1;
-		letter-spacing: -0.03em;
+		font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+		line-height: 1.15;
+		letter-spacing: -0.02em;
 	}
 
 	.beacon-stat-cell {
