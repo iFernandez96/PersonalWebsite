@@ -408,6 +408,10 @@
 		color: var(--card-color);
 	}
 
+	:global(html[data-theme='light']) .beacon-showcase {
+		box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(245,158,11,0.1);
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.beacon-spotlight { display: none; }
 		.quiet-card { transition: none; }

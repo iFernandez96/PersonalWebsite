@@ -146,7 +146,7 @@
 		<!-- Static ambient orb, visible on coarse/reduced-motion too -->
 		<div
 			class="absolute"
-			style="top: 5%; left: -8%; width: 720px; height: 720px; background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 60%);"
+			style="top: 5%; left: -8%; width: 720px; height: 720px; background: radial-gradient(circle, color-mix(in srgb, var(--color-accent-cyan) 8%, transparent) 0%, transparent 60%);"
 		></div>
 
 		<!-- Bottom fade -->
@@ -204,7 +204,7 @@
 					href="/blog"
 					class="cta-secondary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 				>
-					Read the writeups
+					Read my writing
 				</a>
 			</div>
 		</div>
@@ -253,8 +253,8 @@
 	   Max drift: 18px. transition gives the lagged-follow feel. */
 	.hero-grid {
 		background-image:
-			linear-gradient(rgba(34,211,238,0.05) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(34,211,238,0.05) 1px, transparent 1px);
+			linear-gradient(color-mix(in srgb, var(--color-accent-cyan) 5%, transparent) 1px, transparent 1px),
+			linear-gradient(90deg, color-mix(in srgb, var(--color-accent-cyan) 5%, transparent) 1px, transparent 1px);
 		background-size: 64px 64px;
 		mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 25%, transparent 80%);
 		-webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 25%, transparent 80%);
@@ -272,7 +272,7 @@
 	.hero-spotlight {
 		background: radial-gradient(
 			circle 600px at var(--mx) var(--my),
-			rgba(34, 211, 238, 0.07) 0%,
+			color-mix(in srgb, var(--color-accent-cyan) 7%, transparent) 0%,
 			transparent 60%
 		);
 		transition: background 0.4s ease;
@@ -283,7 +283,7 @@
 		background: linear-gradient(
 			to bottom,
 			transparent,
-			rgba(34, 211, 238, 0.35) 50%,
+			color-mix(in srgb, var(--color-accent-cyan) 35%, transparent) 50%,
 			transparent
 		);
 		height: 2px;
@@ -302,7 +302,7 @@
 	/* Surname gradient: cyan→indigo background-clip */
 	.hero-surname {
 		display: inline-block;
-		background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+		background: linear-gradient(135deg, var(--color-accent-cyan) 0%, var(--color-accent-indigo) 100%);
 		-webkit-background-clip: text;
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -320,14 +320,14 @@
 	}
 
 	.cta-primary {
-		background: linear-gradient(135deg, #22d3ee, #818cf8);
-		color: #080d1a;
-		box-shadow: 0 0 16px rgba(34,211,238,0.2);
+		background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-indigo));
+		color: var(--color-bg-primary);
+		box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-cyan) 20%, transparent);
 		transition: transform 0.2s, box-shadow 0.2s;
 	}
 	.cta-primary:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 0 28px rgba(34, 211, 238, 0.45);
+		box-shadow: 0 0 28px color-mix(in srgb, var(--color-accent-cyan) 45%, transparent);
 	}
 
 	.cta-secondary {

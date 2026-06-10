@@ -8,9 +8,9 @@
 	import Contact from '$lib/components/Contact.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 
-	const title = 'Israel Fernandez | Systems Software Engineer';
+	const title = 'Israel Fernandez | Systems & Security Engineer';
 	const description =
-		'Israel Fernandez, systems software engineer specializing in embedded, Linux internals, and Android security. Currently at Apple (via Sasken).';
+		'Systems software engineer (9 years embedded, kernel, ARM) pivoting to Android security and red teaming. Currently at Apple. Open to full-time offensive security roles.';
 </script>
 
 <svelte:head>

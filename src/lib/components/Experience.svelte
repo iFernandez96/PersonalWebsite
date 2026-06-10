@@ -6,12 +6,12 @@
 			title: 'Independent Security Research',
 			company: 'Self-directed',
 			via: null,
-			period: '2025 – Present',
+			period: '2024 – Present',
 			location: 'Remote',
 			type: 'Research',
 			color: 'var(--color-accent-amber)',
 			description:
-				'The pivot, made concrete. Building offensive tooling and working through kernel and Android internals from an attacker\'s point of view: nine years of how systems work, aimed at how they fail.',
+				'The pivot, made concrete. Started during the final year of my B.S., building offensive tooling and working through kernel and Android internals from an attacker\'s point of view.',
 			highlights: [
 				'Built BeaconUI, a 3-transport educational C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with a Python and C implant and a Svelte operator dashboard',
 				'Working through OWASP MASVS / MASTG; Frida instrumentation against deliberately vulnerable Android targets',

@@ -39,7 +39,10 @@
 					Today I'm at <a class="text-[var(--color-text-primary)] font-semibold underline underline-offset-2 hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>
 					(contract via Sasken Technologies) on hardware and firmware integration. Before that, eight years at
 					<a class="text-[var(--color-text-primary)] font-semibold underline underline-offset-2 hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.gantz-mountain.com/" target="_blank" rel="noopener noreferrer">Gantz-Mountain</a>,
-					a defense AI startup in Monterey building low-level systems on custom embedded hardware. The security work runs alongside both, aimed at a new layer of the stack.
+					a defense AI startup in Monterey building low-level systems on custom embedded hardware.
+				</p>
+				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-8">
+					After Gantz-Mountain I finished my B.S. at CSUMB (graduated with honors, May 2025), took cybersecurity coursework, and went deep on offensive security: building a C2 framework from scratch, working through Android internals with Frida, and preparing for a full-time move into red teaming.
 				</p>
 
 				<!-- What I'm good for -->
