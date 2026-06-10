@@ -108,7 +108,7 @@
 						{href}
 						class="nav-link text-sm tracking-wide relative pb-0.5"
 						class:is-active={isActive}
-						aria-current={isActive ? 'page' : undefined}
+						aria-current={isActive ? 'true' : undefined}
 					>
 						{label}
 						<span class="nav-underline" aria-hidden="true"></span>
@@ -134,6 +134,7 @@
 				href="/IsraelFernandezResume.pdf"
 				target="_blank"
 				rel="noopener noreferrer"
+				aria-label="Resume (opens in new tab)"
 				class="resume-btn inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-accent-cyan)] text-[var(--color-accent-cyan)] text-sm rounded transition-colors duration-200 font-mono focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 			>
 				Resume
@@ -144,7 +145,7 @@
 		<div class="md:hidden flex items-center gap-1">
 			<ThemeToggle />
 			<button
-				class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] rounded-sm p-2"
+				class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] rounded-sm p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
 				onclick={() => (menuOpen = !menuOpen)}
 				aria-label={menuOpen ? 'Close menu' : 'Open menu'}
 				aria-expanded={menuOpen}
@@ -176,10 +177,10 @@
 						<a
 							{href}
 							onclick={closeMenu}
-							class="block py-3 transition-colors"
+							class="block py-3 transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 							class:text-[var(--color-accent-cyan)]={isActive}
 							class:text-[var(--color-text-secondary)]={!isActive}
-							aria-current={isActive ? 'page' : undefined}
+							aria-current={isActive ? 'true' : undefined}
 						>
 							{label}
 						</a>
@@ -189,7 +190,7 @@
 					<a
 						href="/blog"
 						onclick={closeMenu}
-						class="block py-3 transition-colors"
+						class="block py-3 transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 						class:text-[var(--color-accent-cyan)]={isBlogRoute}
 						class:text-[var(--color-text-secondary)]={!isBlogRoute}
 						aria-current={isBlogRoute ? 'page' : undefined}
@@ -202,8 +203,9 @@
 						href="/IsraelFernandezResume.pdf"
 						target="_blank"
 						rel="noopener noreferrer"
+						aria-label="Resume (opens in new tab)"
 						onclick={closeMenu}
-						class="block py-3 text-[var(--color-accent-cyan)] font-mono"
+						class="block py-3 text-[var(--color-accent-cyan)] font-mono rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 					>
 						Resume
 					</a>

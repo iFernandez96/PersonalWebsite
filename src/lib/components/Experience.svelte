@@ -14,7 +14,7 @@
 				'The pivot, made concrete. Started during the final year of my B.S., building offensive tooling and working through kernel and Android internals from an attacker\'s point of view.',
 			highlights: [
 				'Built BeaconUI, a 3-transport educational C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with a Python and C implant and a Svelte operator dashboard',
-				'Working through OWASP MASVS / MASTG; Frida instrumentation against deliberately vulnerable Android targets',
+				'Bypassed SSL-pinning and root detection on deliberately vulnerable Android targets with Frida, mapped to OWASP MASTG test cases',
 				'Long-form writeups on protocol design, exploit reasoning, and tooling decisions'
 			],
 			stack: 'Python · C · Frida · mTLS · SQLite · Svelte 5'
@@ -30,8 +30,8 @@
 			description:
 				'System-level software, automation, and diagnostics across hardware platforms. Deep-stack integration work that keeps the systems knowledge current while the security side ramps.',
 			highlights: [
-				'Built and maintained internal diagnostic + automation tooling used across hardware platforms',
-				'Drove low-level bug triage with firmware and hardware teams',
+				'Python diagnostic + automation tooling adopted across multiple hardware platforms',
+				'Triaged firmware-init and bring-up regressions with firmware and hardware teams',
 				'Software and firmware integration on Apple silicon: bring-up support, validation, regression analysis'
 			],
 			stack: 'C · C++ · Python · Linux · Shell'
@@ -47,8 +47,8 @@
 			description:
 				'Eight years at a defense AI startup, where the foundation got built: bare-metal firmware, kernel drivers, BSP customization, and real-time computer vision on custom embedded ARM hardware.',
 			highlights: [
-				'Redesigned the algorithm and memory layout to raise computer-vision throughput 40%',
-				'Diagnosed a thermal regression with the EE team, cutting cooling cost 20%',
+				'Redesigned the detection pipeline\'s memory layout (cache-aware) to raise computer-vision throughput 40% on the ARM target',
+				'Diagnosed a thermal regression with the EE team, cutting thermal load 20%',
 				'Linux kernel driver development and BSP customization for custom ARM platforms',
 				'Mentored interns porting CV algorithms from MATLAB to C',
 				'Hardware-in-the-loop testing and low-level networking for field deployments'
@@ -58,19 +58,20 @@
 	];
 </script>
 
-<section id="experience" aria-labelledby="experience-heading" class="py-16 md:py-24 px-6 lg:px-10">
+<section id="experience" aria-labelledby="experience-heading" class="py-16 md:py-24 px-6 lg:px-10" style="background: var(--color-bg-secondary);">
 	<!-- max-w-4xl: pulled in from 6xl for better reading density -->
 	<div class="max-w-4xl mx-auto">
 		<div use:reveal={'heading'} class="mb-12">
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">03 / EXPERIENCE</p>
-			<h2 id="experience-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
+			<h2 id="experience-heading" class="text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Track record
 			</h2>
 		</div>
 
 		<div class="relative">
-			<!-- Timeline line -->
+			<!-- Timeline line: draws in top→bottom on scroll into view -->
 			<div
+				use:reveal={'line'}
 				class="absolute left-4 md:left-8 top-2 bottom-2 w-px"
 				style="background: linear-gradient(to bottom, var(--color-accent-amber), var(--color-accent-cyan), var(--color-accent-indigo));"
 				aria-hidden="true"
@@ -82,13 +83,13 @@
 						<!-- Timeline dot -->
 						<div
 							class="absolute left-2.5 md:left-6 top-2 w-3 h-3 rounded-full border-2"
-							style="background: {i === 0 ? exp.color : 'var(--color-bg-primary)'}; border-color: {exp.color}; {i === 0 ? `box-shadow: 0 0 0 4px color-mix(in srgb, ${exp.color} 18%, transparent);` : ''}"
+							style="background: {i === 0 ? exp.color : 'var(--color-bg-secondary)'}; border-color: {exp.color}; {i === 0 ? `box-shadow: 0 0 0 4px color-mix(in srgb, ${exp.color} 18%, transparent);` : ''}"
 							aria-hidden="true"
 						></div>
 
 						<div
 							class="exp-card rounded-lg p-6 border"
-							style="background: var(--color-bg-secondary); border-color: var(--color-border); --exp-color: {exp.color};"
+							style="background: var(--color-bg-primary); border-color: var(--color-border); --exp-color: {exp.color};"
 						>
 							<div class="flex flex-wrap items-start gap-3 mb-1">
 								<h3 class="text-[var(--color-text-primary)] font-semibold text-lg leading-tight">
@@ -142,9 +143,7 @@
 		transition: border-color 0.3s ease, box-shadow 0.3s ease;
 	}
 	.exp-card:hover {
-		border-color: rgba(34, 211, 238, 0.35) !important;
 		border-color: color-mix(in srgb, var(--exp-color) 35%, transparent) !important;
-		box-shadow: 0 4px 24px rgba(34, 211, 238, 0.1);
 		box-shadow: 0 4px 24px color-mix(in srgb, var(--exp-color) 10%, transparent);
 	}
 </style>

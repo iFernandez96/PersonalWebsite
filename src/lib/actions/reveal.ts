@@ -13,7 +13,7 @@
  * No JS = no observer = element stays at opacity:1 (base style from app.css).
  */
 
-export type RevealRole = 'heading' | 'body' | 'card';
+export type RevealRole = 'heading' | 'body' | 'card' | 'line';
 
 export interface RevealOptions {
 	role?: RevealRole;

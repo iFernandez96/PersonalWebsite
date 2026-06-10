@@ -28,7 +28,7 @@
 			<a
 				href="/"
 				class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
-				style="background: linear-gradient(135deg, #22d3ee, #818cf8); color: #080d1a;"
+				style="background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-indigo)); color: var(--color-bg-primary);"
 			>
 				← Home
 			</a>

@@ -17,14 +17,17 @@
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://israel-fernandez.com/blog" />
+	<meta property="og:locale" content="en_US" />
 	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Israel Fernandez — writing on systems programming and security research" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta name="twitter:image:alt" content="Israel Fernandez — writing on systems programming and security research" />
 	<link rel="alternate" type="application/rss+xml" title={title} href="/rss.xml" />
 </svelte:head>
 
@@ -60,7 +63,7 @@
 								{#each post.tags.slice(0, 3) as tag (tag)}
 									<span
 										class="px-2 py-0.5 rounded text-[10px]"
-										style="color: var(--color-accent-cyan); border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
+										style="color: var(--color-accent-cyan); border: 1px solid color-mix(in srgb, var(--color-accent-cyan) 20%, transparent); background: color-mix(in srgb, var(--color-accent-cyan) 5%, transparent);"
 									>
 										{tag}
 									</span>

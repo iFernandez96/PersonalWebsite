@@ -23,6 +23,7 @@
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://israel-fernandez.com/" />
+	<meta property="og:locale" content="en_US" />
 	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
@@ -40,12 +41,12 @@
 		"@type": "Person",
 		"name": "Israel Fernandez",
 		"url": "https://israel-fernandez.com/",
-		"jobTitle": "Systems Software Engineer",
+		"jobTitle": "Systems & Security Engineer",
 		"sameAs": [
 			"https://github.com/iFernandez96",
 			"https://www.linkedin.com/in/ifernandez96/"
 		]
-	})}</script>`}
+	}).replace(/</g, '\\u003c')}</script>`}
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "WebSite",
@@ -56,7 +57,7 @@
 			"name": "Israel Fernandez",
 			"url": "https://israel-fernandez.com/"
 		}
-	})}</script>`}
+	}).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
 <Navbar />
@@ -64,10 +65,10 @@
 	<Hero />
 	<About />
 	<Skills />
-	<!-- Gradient hairline divider: marks the dense skills beat → narrative timeline transition -->
-	<div class="section-divider" aria-hidden="true"></div>
 	<Experience />
 	<Projects />
+	<!-- Gradient hairline divider: closing punctuation as the elevated content band returns to base before Contact -->
+	<div class="section-divider" aria-hidden="true"></div>
 	<Contact />
 </main>
 <BackToTop />

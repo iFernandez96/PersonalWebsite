@@ -19,10 +19,12 @@
 	<meta property="og:title" content={`${post.title} | Israel Fernandez`} />
 	<meta property="og:description" content={post.summary} />
 	<meta property="og:url" content={`https://israel-fernandez.com/blog/${page.params.slug}`} />
+	<meta property="og:locale" content="en_US" />
 	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content={`${post.title} — Israel Fernandez`} />
 	<meta property="article:published_time" content={post.date} />
 	<meta property="article:author" content="Israel Fernandez" />
 	{#each post.tags as tag (tag)}
@@ -32,6 +34,7 @@
 	<meta name="twitter:title" content={`${post.title} | Israel Fernandez`} />
 	<meta name="twitter:description" content={post.summary} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta name="twitter:image:alt" content={`${post.title} — Israel Fernandez`} />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
@@ -43,7 +46,7 @@
 		"url": `https://israel-fernandez.com/blog/${post.slug}`,
 		"mainEntityOfPage": { "@type": "WebPage", "@id": `https://israel-fernandez.com/blog/${post.slug}` },
 		"image": "https://israel-fernandez.com/og-image.png"
-	})}</script>`}
+	}).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
 <ReadingProgress />
@@ -86,7 +89,7 @@
 				{#each post.tags as tag (tag)}
 					<span
 						class="px-2.5 py-1 rounded text-[11px] font-mono"
-						style="color: var(--color-accent-cyan); border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
+						style="color: var(--color-accent-cyan); border: 1px solid color-mix(in srgb, var(--color-accent-cyan) 20%, transparent); background: color-mix(in srgb, var(--color-accent-cyan) 5%, transparent);"
 					>
 						{tag}
 					</span>
@@ -96,10 +99,11 @@
 
 		<!-- Content -->
 		<article class="post-content">
-			<!-- post.content is first-party Markdown rendered to HTML at build time
-			     (see src/lib/posts.ts). It is trusted and statically prerendered, so
-			     no runtime sanitization is needed. If external/user-submitted posts
-			     are ever added, sanitize here (e.g. isomorphic-dompurify). -->
+			<!-- post.content is first-party Markdown compiled to HTML at build time and
+			     sanitized with DOMPurify in src/lib/posts.ts (marked emits live HTML —
+			     including any inline event handlers/scripts in the source — so DOMPurify
+			     is the control that makes this {@html} safe). Do NOT remove that sanitize
+			     step; it is the only thing preventing stored XSS from hostile Markdown. -->
 			{@html post.content}
 		</article>
 
@@ -197,7 +201,7 @@
 		font-family: var(--font-mono);
 		font-size: 0.875em;
 		color: var(--color-accent-cyan);
-		background: rgba(34, 211, 238, 0.08);
+		background: color-mix(in srgb, var(--color-accent-cyan) 8%, transparent);
 		padding: 0.1em 0.35em;
 		border-radius: 3px;
 	}
@@ -218,7 +222,7 @@
 		color: var(--color-accent-cyan);
 		text-decoration: underline;
 		text-underline-offset: 3px;
-		text-decoration-color: rgba(34, 211, 238, 0.4);
+		text-decoration-color: color-mix(in srgb, var(--color-accent-cyan) 40%, transparent);
 	}
 
 	:global(.post-content a:hover) {

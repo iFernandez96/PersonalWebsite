@@ -24,7 +24,7 @@
 	<div class="max-w-2xl mx-auto text-center">
 		<div use:reveal={'heading'}>
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>
-			<h2 id="contact-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
+			<h2 id="contact-heading" class="text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
 				Get in touch
 			</h2>
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-3 max-w-xl mx-auto">
@@ -54,7 +54,7 @@
 					href={link.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="contact-link inline-flex items-center gap-2 px-5 py-2.5 rounded-md border font-mono text-sm"
+					class="contact-link inline-flex items-center gap-2.5 px-6 py-3 rounded-md border font-mono text-[15px]"
 					style="border-color: var(--color-border); background: var(--color-bg-secondary); --link-color: {link.color};"
 				>
 					<span class="contact-icon text-[var(--color-text-secondary)] transition-colors">
@@ -69,9 +69,9 @@
 
 <style>
 	.contact-cta {
-		background: linear-gradient(135deg, #22d3ee, #818cf8);
-		color: #080d1a;
-		box-shadow: 0 4px 20px rgba(34, 211, 238, 0.2);
+		background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-indigo));
+		color: var(--color-bg-primary);
+		box-shadow: 0 4px 20px color-mix(in srgb, var(--color-accent-cyan) 20%, transparent);
 		transition: transform 0.2s, box-shadow 0.2s;
 	}
 	.contact-cta:focus-visible {
@@ -81,18 +81,24 @@
 	}
 	.contact-cta:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 8px 32px rgba(34, 211, 238, 0.4);
+		box-shadow: 0 8px 32px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent);
 	}
 
 	.contact-link {
 		transition: border-color 0.2s, transform 0.2s;
 	}
 	.contact-link:hover {
-		border-color: rgba(34, 211, 238, 0.4) !important;
 		border-color: color-mix(in srgb, var(--link-color) 40%, transparent) !important;
+		transform: translateY(-2px);
 	}
 	.contact-link:hover .contact-icon {
 		color: var(--link-color);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.contact-link:hover {
+			transform: none;
+		}
 	}
 </style>
 

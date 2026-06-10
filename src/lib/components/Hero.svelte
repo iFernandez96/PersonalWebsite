@@ -4,7 +4,7 @@
 	const roles = [
 		'Systems Software Engineer',
 		'Embedded & Kernel Developer',
-		'Moving into Red Team'
+		'Red Team / Offensive Security'
 	];
 
 	let displayText = $state(roles[0]);
@@ -170,7 +170,7 @@
 				<!-- "Israel" stays in primary text color for contrast anchor -->
 				<span class="text-[var(--color-text-primary)]">Israel</span><br>
 				<!-- "Fernandez" gets the cyan→indigo gradient treatment -->
-				<span class="hero-surname" aria-label="Fernandez">Fernandez</span>
+				<span class="hero-surname">Fernandez</span>
 			</h1>
 
 			<div class="h-9 md:h-11 flex items-center mb-7 opacity-0 animate-[fadeInUp_0.4s_ease_0.18s_forwards]">
@@ -189,7 +189,7 @@
 			<p
 				class="font-mono text-sm md:text-[15px] text-[var(--color-text-muted)] mb-9 opacity-0 animate-[fadeIn_0.35s_ease_0.4s_forwards]"
 			>
-				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day, Android security research after hours
+				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day, offensive tooling and Android internals on my own time
 			</p>
 
 			<div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_0.4s_ease_0.5s_forwards]">
@@ -207,11 +207,31 @@
 					Read my writing
 				</a>
 			</div>
+
+			<!-- Condensed facts for mobile, where the desktop aside is hidden -->
+			<dl class="md:hidden mt-10 grid grid-cols-2 gap-x-5 gap-y-4 font-mono text-[12px] opacity-0 animate-[fadeIn_0.4s_ease_0.62s_forwards]" aria-label="Quick facts">
+				<div>
+					<dt class="text-[var(--color-text-muted)] mb-0.5">role</dt>
+					<dd class="text-[var(--color-text-primary)]">Hardware Systems SWE</dd>
+				</div>
+				<div>
+					<dt class="text-[var(--color-text-muted)] mb-0.5">prior</dt>
+					<dd class="text-[var(--color-text-primary)]">Defense AI · 8 yrs</dd>
+				</div>
+				<div>
+					<dt class="text-[var(--color-text-muted)] mb-0.5">stack</dt>
+					<dd class="text-[var(--color-text-primary)]">C · C++ · Linux · ARM</dd>
+				</div>
+				<div>
+					<dt class="text-[var(--color-text-muted)] mb-0.5">target</dt>
+					<dd class="text-[var(--color-accent-amber)]">Android · red team</dd>
+				</div>
+			</dl>
 		</div>
 
 		<!-- Right: terse facts pane (desktop only) -->
 		<aside class="hidden md:block md:col-span-4 opacity-0 animate-[fadeIn_0.4s_ease_0.55s_forwards]" aria-label="Quick facts">
-			<dl class="font-mono text-[13px] space-y-3 text-right">
+			<dl class="font-mono text-[13px] space-y-3 pl-5 border-l" style="border-color: var(--color-border);">
 				<div>
 					<dt class="text-[var(--color-text-muted)]">role</dt>
 					<dd class="text-[var(--color-text-primary)]">Hardware Systems SWE</dd>
@@ -302,7 +322,7 @@
 	/* Surname gradient: cyan→indigo background-clip */
 	.hero-surname {
 		display: inline-block;
-		background: linear-gradient(135deg, var(--color-accent-cyan) 0%, var(--color-accent-indigo) 100%);
+		background: linear-gradient(135deg, var(--color-accent-cyan) 30%, var(--color-accent-indigo) 70%);
 		-webkit-background-clip: text;
 		background-clip: text;
 		-webkit-text-fill-color: transparent;

@@ -97,6 +97,14 @@ body {
 	border-radius: 2px;
 }
 
+/* Typographic polish: balance multi-line headings, avoid prose orphans. */
+h1, h2, h3 {
+	text-wrap: balance;
+}
+p {
+	text-wrap: pretty;
+}
+
 /* Hero stagger animations (existing) */
 @keyframes fadeInDown {
 	from { opacity: 0; transform: translate3d(0, -16px, 0); }
@@ -113,6 +121,13 @@ body {
 @keyframes pulse-glow {
 	0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent); }
 	50% { box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-cyan) 80%, transparent); }
+}
+/* "Open to work" status dot ping (used in About.svelte). Defined globally — Svelte
+   scopes component keyframes with a hash that Tailwind/animation refs can't match. */
+@keyframes status-pulse {
+	0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 60%, transparent); }
+	70% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
+	100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
 }
 @keyframes cursor-blink {
 	0%, 49% { opacity: 1; }
@@ -148,6 +163,11 @@ body {
 	from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.97); }
 	to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
 }
+/* Line: draws in top→bottom (used by the Experience timeline rule) */
+@keyframes rv-line-in {
+	from { opacity: 0; transform: scaleY(0); }
+	to   { opacity: 1; transform: scaleY(1); }
+}
 
 /* Base hidden state, before JS adds .in-view */
 .rv {
@@ -167,6 +187,11 @@ body {
 	animation-play-state: paused;
 	/* stagger: base 80ms + 60ms * index */
 	animation-delay: calc(80ms + var(--i, 0) * 60ms);
+}
+.rv.rv-line {
+	transform-origin: top center;
+	animation: rv-line-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
 }
 
 /* Trigger: when JS adds .in-view, play the animation */
@@ -219,10 +244,15 @@ body {
 	max-width: 48rem;
 }
 
-/* Skip rendering off-screen sections until scrolled into view (paint perf). */
+/* Skip rendering off-screen sections until scrolled into view (paint perf).
+   intrinsic-size is the pre-render height estimate; too-low values cause a CLS
+   jump when a taller section first paints, so the dense sections get larger ones. */
 section[id]:not(#hero) {
 	content-visibility: auto;
-	contain-intrinsic-size: auto 600px;
+	contain-intrinsic-size: auto 700px;
+}
+#experience, #projects {
+	contain-intrinsic-size: auto 1100px;
 }
 
 @media print, (prefers-reduced-data: reduce) {

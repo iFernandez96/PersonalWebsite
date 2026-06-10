@@ -1,5 +1,10 @@
 import { marked } from 'marked';
+import { markedSmartypants } from 'marked-smartypants';
 import DOMPurify from 'isomorphic-dompurify';
+
+// Typographic punctuation: straight quotes -> curly, -- -> en dash, --- -> em
+// dash, ... -> ellipsis. Applied at build time; leaves code spans/blocks alone.
+marked.use(markedSmartypants());
 
 export interface Post {
 	slug: string;

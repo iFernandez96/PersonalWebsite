@@ -65,7 +65,7 @@ Systems-level software engineer transitioning toward **Android pentesting / red 
 - Scroll-triggered reveal animations via IntersectionObserver (one-shot, `observer.disconnect()` after first intersection)
 - Typewriter effect in Hero — recursive `setTimeout` chain (not `setInterval`), pauses when tab is hidden
 - Active nav section tracked via rAF-throttled scroll listener (see below)
-- `scroll-padding-top: 72px` on `<html>` so anchor-scrolled sections aren't hidden under fixed nav
+- `scroll-padding-top: 80px` on `<html>` so anchor-scrolled sections aren't hidden under fixed nav
 - Global `prefers-reduced-motion` rule in `app.css` collapses all animations/transitions to 0.001ms
 
 ## Critical: Active Nav Section Detection
@@ -90,7 +90,7 @@ Applied in: `Navbar.svelte` (scrolled class + active section), `BackToTop.svelte
 
 Svelte scopes keyframe names with a component hash (e.g. `svelte-HASH-myAnim`), but Tailwind generates `animation: myAnim ...` with the unscoped name — they never match, so the animation silently does nothing.
 
-**Fix**: define all `@keyframes` in `app.css` (global). Currently defined there: `fadeInDown`, `fadeInUp`, `fadeIn`, `scrollLine`, `pulse-glow`.
+**Fix**: define all `@keyframes` in `app.css` (global). Currently defined there: `fadeInDown`, `fadeInUp`, `fadeIn`, `scrollLine`, `pulse-glow`, `status-pulse` (the "Open to work" dot ping, consumed by `About.svelte`).
 
 ## Critical: Dynamic Tailwind Classes Don't Work
 

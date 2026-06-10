@@ -11,7 +11,7 @@
 	const goodFor = [
 		'Linux kernel & driver dev',
 		'ARM / embedded firmware',
-		'Android reverse engineering',
+		'Android reverse engineering (ramping)',
 		'Low-level network protocols'
 	];
 </script>
@@ -21,7 +21,7 @@
 	<div class="max-w-3xl mx-auto">
 		<div use:reveal={'heading'} class="mb-12">
 			<p class="font-mono text-[var(--color-text-muted)] text-[13px] tracking-[0.3em] mb-3">01 / ABOUT</p>
-			<h2 id="about-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
+			<h2 id="about-heading" class="text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Background
 			</h2>
 		</div>
@@ -85,7 +85,7 @@
 				</div>
 
 				<!-- Distinct details -->
-				<dl class="grid grid-cols-1 gap-px rounded-lg overflow-hidden border"
+				<dl class="grid grid-cols-1 gap-px rounded-lg overflow-hidden border" aria-label="Details"
 					style="background: var(--color-border); border-color: var(--color-border);">
 					{#each details as item (item.label)}
 						<div class="flex items-baseline justify-between gap-4 px-5 py-4"
@@ -109,12 +109,6 @@
 		box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 70%, transparent);
 		animation: status-pulse 2.4s ease-out infinite;
 		flex-shrink: 0;
-	}
-
-	@keyframes status-pulse {
-		0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 60%, transparent); }
-		70% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
-		100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
 	}
 
 	@media (prefers-reduced-motion: reduce) {

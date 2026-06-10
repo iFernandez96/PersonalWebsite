@@ -32,9 +32,10 @@
 	type="button"
 	onclick={scrollTop}
 	aria-label="Back to top"
+	tabindex={visible ? 0 : -1}
 	class="back-to-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full border flex items-center justify-center"
 	class:is-visible={visible}
-	style="background: rgba(15, 23, 42, 0.9); border-color: var(--color-bg-elevated); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: var(--color-accent-cyan);"
+	style="background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent); border-color: var(--color-bg-elevated); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--color-accent-cyan);"
 >
 	<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 		<path d="M12 19V5M5 12l7-7 7 7" />
@@ -55,7 +56,7 @@
 	}
 	.back-to-top:hover {
 		border-color: var(--color-accent-cyan) !important;
-		box-shadow: 0 0 16px rgba(34, 211, 238, 0.35);
+		box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-cyan) 35%, transparent);
 		transform: translateY(-2px);
 	}
 	.back-to-top:focus-visible {

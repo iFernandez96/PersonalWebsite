@@ -16,33 +16,31 @@
 		note?: string;
 	};
 
-	type SideProject = {
-		title: string;
-		oneLiner: string;
-		stack: string[];
-		repo?: string;
-		demo?: string;
-	};
+	// Lead with capability, not engineering hygiene: the strongest signals get
+	// promoted to stat callouts; the 490-test count drops to a rigor footnote.
+	const beaconStats = [
+		{ value: '29 / 28', label: 'Python / C task types' },
+		{ value: '3', label: 'implant platforms' },
+		{ value: 'AES-256-GCM', label: 'app-layer crypto' }
+	];
 
 	const beaconFeatures = [
-		'Dual-language implant: 29 task types in Python, 28 in C (from scratch)',
+		'mTLS transport with HMAC-SHA256-derived endpoints',
 		'Cross-platform C implant: Linux, macOS, Windows',
-		'mTLS transport + HMAC-SHA256-derived endpoints',
-		'AES-256-GCM application-layer encryption toggle',
-		'Persistent PTY shell, SOCKS5 proxy, shellcode stager',
-		'HTML smuggling dropper with XOR obfuscation',
-		'SQLite persistence (WAL), SSE live dashboard',
-		'490 tests (unit + integration + Playwright E2E)',
+		'Persistent PTY shell, SOCKS5 pivot, in-memory shellcode stager',
+		'HTML-smuggling dropper with XOR obfuscation',
+		'SQLite (WAL) persistence, SSE live operator dashboard',
+		'Reliability-tested: 581 tests — pytest unit/integration + Playwright E2E'
 	];
 
 	const featured: Project = {
 		title: 'BeaconUI: Educational C2 Framework',
 		oneLiner:
-			'Beacon-model C2 with dual Python/C implants (~29 task types each), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
+			'Beacon-model C2 with dual Python and C implants (29 and 28 task types), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
 		outcome:
-			'490 tests · 29 Python + 28 C task types · mTLS + HMAC endpoints · AES-256-GCM · SOCKS5 proxy · HTML smuggling dropper · shellcode stager',
+			'29 Python + 28 C task types · mTLS + HMAC endpoints · AES-256-GCM · SOCKS5 pivot · HTML-smuggling dropper · in-memory shellcode stager',
 		stack: ['Python', 'C', 'Svelte 5', 'mTLS', 'SQLite', 'libcurl'],
-		color: '#f59e0b',
+		color: 'var(--color-accent-amber)',
 		icon: 'shield',
 		featured: true,
 		writeup: '/blog/building-a-c2-framework',
@@ -57,7 +55,7 @@
 			outcome:
 				'Markdown ingestion · generated content index · searchable library · local progress export/import · direct lesson URLs',
 			stack: ['SvelteKit', 'TypeScript', 'Markdown', 'Security Education'],
-			color: '#14b8a6',
+			color: 'var(--color-accent-amber)',
 			icon: 'shield',
 			note: 'Local labs only · source on request'
 		},
@@ -68,7 +66,7 @@
 			outcome:
 				'Origin-pull + edge cache · DNS-based geo routing · cache-control header parsing · invalidation API',
 			stack: ['Python', 'HTTP', 'DNS', 'Caching'],
-			color: '#22d3ee',
+			color: 'var(--color-accent-cyan)',
 			icon: 'network',
 			repo: 'https://github.com/iFernandez96/CDN'
 		},
@@ -79,7 +77,7 @@
 			outcome:
 				'Zero external DNS libs · UDP wire-format parser/encoder · root-hint bootstrap · TCP retry on TC bit',
 			stack: ['Python', 'DNS', 'UDP', 'Networking'],
-			color: '#22d3ee',
+			color: 'var(--color-accent-cyan)',
 			icon: 'terminal',
 			repo: 'https://github.com/iFernandez96/dnsResolver'
 		},
@@ -90,13 +88,11 @@
 			outcome:
 				'WebSocket-driven real-time UI · multi-feed video · sensor event stream · zero external dependencies at runtime',
 			stack: ['SvelteKit', 'TypeScript', 'WebSockets', 'IoT'],
-			color: '#818cf8',
+			color: 'var(--color-accent-indigo)',
 			icon: 'nodes',
 			repo: 'https://github.com/iFernandez96/HomeCameraSystem'
 		}
 	];
-
-	const sideProjects: SideProject[] = [];
 
 	// Pointer tracking for BeaconUI showcase, rAF-gated, fine-pointer only
 	onMount(() => {
@@ -147,14 +143,14 @@
 <section
 	id="projects"
 	aria-labelledby="projects-heading"
-	class="py-16 md:py-24 px-6 lg:px-10"
+	class="pt-20 md:pt-36 pb-16 md:pb-24 px-6 lg:px-10"
 	style="background: var(--color-bg-secondary);"
 >
 	<div class="max-w-7xl mx-auto">
 		<!-- Section header -->
 		<div use:reveal={'heading'} class="mb-14">
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">04 / PROJECTS</p>
-			<h2 id="projects-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.02em;">
+			<h2 id="projects-heading" class="text-5xl md:text-6xl font-semibold text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.03em;">
 				Selected work
 			</h2>
 			<p class="text-[var(--color-text-muted)] max-w-xl">
@@ -168,8 +164,8 @@
 				class="beacon-showcase relative rounded-xl border overflow-hidden"
 				style="
 					background: var(--color-bg-primary);
-					border-color: rgba(245,158,11,0.25);
-					box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,158,11,0.1);
+					border-color: color-mix(in srgb, var(--color-accent-amber) 25%, transparent);
+					box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 10%, transparent);
 					--beacon-mx: 50%;
 					--beacon-my: 50%;
 				"
@@ -178,7 +174,7 @@
 				<!-- Amber radial glow from bottom-right corner (decorative) -->
 				<div
 					class="absolute bottom-0 right-0 pointer-events-none"
-					style="width: 600px; height: 400px; background: radial-gradient(ellipse at 80% 90%, rgba(245,158,11,0.10) 0%, transparent 60%);"
+					style="width: 600px; height: 400px; background: radial-gradient(ellipse at 80% 90%, color-mix(in srgb, var(--color-accent-amber) 10%, transparent) 0%, transparent 60%);"
 					aria-hidden="true"
 				></div>
 
@@ -190,8 +186,8 @@
 					<div>
 						<div class="flex items-center gap-3 mb-5">
 							<span class="font-mono text-xs tracking-[0.2em] uppercase px-2.5 py-1 rounded"
-								style="background: rgba(245,158,11,0.12); color: var(--color-accent-amber); border: 1px solid rgba(245,158,11,0.35);">
-								Now building
+								style="background: var(--color-bg-surface); color: var(--color-accent-amber); border: 1px solid color-mix(in srgb, var(--color-accent-amber) 35%, transparent);">
+								Flagship project
 							</span>
 						</div>
 
@@ -205,7 +201,7 @@
 						{#if featured.note}
 							<span
 								class="inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded font-mono mb-6 w-fit"
-								style="background: rgba(245,158,11,0.08); color: var(--color-accent-amber); border: 1px solid rgba(245,158,11,0.25);"
+								style="background: var(--color-bg-surface); color: var(--color-accent-amber); border: 1px solid color-mix(in srgb, var(--color-accent-amber) 25%, transparent);"
 							>
 								{featured.note}
 							</span>
@@ -230,9 +226,22 @@
 						</div>
 					</div>
 
-					<!-- Right column: top features -->
+					<!-- Right column: measured stats + capability list -->
 					<div>
-						<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-5">// top features</p>
+						<!-- Stat callouts: the "this is real and measured" proof, up front -->
+						<dl class="grid grid-cols-3 gap-3 mb-7" aria-label="BeaconUI key metrics">
+							{#each beaconStats as stat (stat.label)}
+								<div
+									class="rounded-lg px-3 py-3 text-center flex flex-col-reverse"
+									style="background: var(--color-bg-surface); border: 1px solid color-mix(in srgb, var(--color-accent-amber) 22%, transparent);"
+								>
+									<dt class="text-[10px] text-[var(--color-text-muted)] leading-tight">{stat.label}</dt>
+									<dd class="font-mono font-semibold text-[var(--color-accent-amber)] text-base leading-none mb-1.5 tabular-nums">{stat.value}</dd>
+								</div>
+							{/each}
+						</dl>
+
+						<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-4">// under the hood</p>
 						<ul class="space-y-2.5">
 							{#each beaconFeatures as feat}
 								<li class="flex items-start gap-2.5 text-[var(--color-text-secondary)] text-[14px] leading-snug">
@@ -252,6 +261,7 @@
 				<div use:reveal={{ role: 'card', i }}>
 					<article
 						class="quiet-card group relative rounded-lg p-5 border flex flex-col h-full"
+						aria-label={project.title}
 						style="
 							background: var(--color-bg-primary);
 							border-color: var(--color-border);
@@ -259,7 +269,7 @@
 						"
 					>
 						<div
-							class="absolute top-0 left-0 right-0 h-[2px] rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+							class="absolute top-0 left-0 right-0 h-[2px] rounded-t-lg opacity-30 group-hover:opacity-100 transition-opacity duration-300"
 							style="background: linear-gradient(90deg, {project.color}, transparent);"
 							aria-hidden="true"
 						></div>
@@ -295,7 +305,7 @@
 						{#if project.note}
 							<span
 								class="inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] rounded font-mono mb-2 w-fit"
-								style="background: rgba(245,158,11,0.08); color: var(--color-accent-amber); border: 1px solid rgba(245,158,11,0.2);"
+								style="background: var(--color-bg-surface); color: var(--color-accent-amber); border: 1px solid color-mix(in srgb, var(--color-accent-amber) 20%, transparent);"
 							>
 								{project.note}
 							</span>
@@ -335,33 +345,6 @@
 			{/each}
 		</div>
 
-		{#if sideProjects.length > 0}
-			<div use:reveal={'body'} class="mt-16">
-				<p class="font-mono text-xs text-[var(--color-text-muted)] tracking-[0.2em] uppercase mb-4">
-					<span class="text-[var(--color-text-muted)]">//</span> Side projects
-				</p>
-				<ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-					{#each sideProjects as side (side.title)}
-						<li class="border-l pl-4 py-1" style="border-color: var(--color-border);">
-							<div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1">
-								<h4 class="font-semibold text-[var(--color-text-primary)] text-sm">{side.title}</h4>
-								<div class="flex gap-3 font-mono text-xs">
-									{#if side.repo}
-										<a href={side.repo} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors">source ↗</a>
-									{/if}
-									{#if side.demo}
-										<a href={side.demo} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors">demo ↗</a>
-									{/if}
-								</div>
-							</div>
-							<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-1">{side.oneLiner}</p>
-							<p class="font-mono text-xs text-[var(--color-text-muted)]">{side.stack.join(' · ')}</p>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/if}
-
 		<div use:reveal={'body'} class="mt-12 text-center">
 			<a
 				href="https://github.com/iFernandez96"
@@ -390,7 +373,7 @@
 		.beacon-showcase:hover .beacon-spotlight {
 			background: radial-gradient(
 				circle 400px at var(--beacon-mx, 50%) var(--beacon-my, 50%),
-				rgba(245, 158, 11, 0.12) 0%,
+				color-mix(in srgb, var(--color-accent-amber) 12%, transparent) 0%,
 				transparent 65%
 			);
 		}
@@ -409,7 +392,7 @@
 	}
 
 	:global(html[data-theme='light']) .beacon-showcase {
-		box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(245,158,11,0.1);
+		box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 10%, transparent);
 	}
 
 	@media (prefers-reduced-motion: reduce) {

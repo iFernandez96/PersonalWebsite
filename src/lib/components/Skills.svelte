@@ -23,6 +23,14 @@
 		building: 'var(--color-text-muted)'
 	};
 
+	// Dot indicator so depth reads at a glance, not just from pill brightness:
+	// core = solid fill, working = translucent fill, building = hollow ring.
+	function tierDotStyle(tier: Tier, color: string): string {
+		if (tier === 'core') return `background: ${color};`;
+		if (tier === 'working') return `background: color-mix(in srgb, ${color} 45%, transparent);`;
+		return `background: transparent; box-shadow: inset 0 0 0 1px color-mix(in srgb, ${color} 60%, transparent);`;
+	}
+
 	const skillGroups: {
 		title: string;
 		color: string;
@@ -32,7 +40,7 @@
 	}[] = [
 		{
 			title: 'Systems & Embedded',
-			color: '#22d3ee',
+			color: 'var(--color-accent-cyan)',
 			icon: 'chip',
 			description: 'Where nine years went. Production firmware, kernel work, real-time.',
 			skills: [
@@ -46,7 +54,7 @@
 		},
 		{
 			title: 'Security & Offensive',
-			color: '#f59e0b',
+			color: 'var(--color-accent-amber)',
 			icon: 'shield',
 			description: 'The pivot. Newest skills, growing fastest.',
 			skills: [
@@ -60,7 +68,7 @@
 		},
 		{
 			title: 'Languages & Tools',
-			color: '#818cf8',
+			color: 'var(--color-accent-indigo)',
 			icon: 'code',
 			description: 'What I reach for outside deep-systems work: automation, web, tooling.',
 			skills: [
@@ -85,7 +93,7 @@
 		<div use:reveal={'heading'} class="flex flex-wrap items-end justify-between gap-4 mb-12">
 			<div>
 				<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">02 / SKILLS</p>
-				<h2 id="skills-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
+				<h2 id="skills-heading" class="text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 					Toolkit
 				</h2>
 			</div>
@@ -140,9 +148,10 @@
 								<li class="flex items-center justify-between gap-3">
 									<span class="font-mono text-sm text-[var(--color-text-secondary)]">{skill.name}</span>
 									<span
-										class="tier-tag shrink-0 font-mono text-[11px] tracking-wide px-2 py-0.5 rounded-full"
+										class="tier-tag shrink-0 inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wide px-2 py-0.5 rounded-full"
 										style="color: {tierText[skill.tier]}; border: 1px solid color-mix(in srgb, {group.color} {skill.tier === 'building' ? '18%' : '32%'}, transparent); background: color-mix(in srgb, {group.color} {skill.tier === 'building' ? '6%' : '10%'}, transparent);"
 									>
+										<span class="inline-block w-1.5 h-1.5 rounded-full shrink-0" style={tierDotStyle(skill.tier, group.color)} aria-hidden="true"></span>
 										{tierLabel[skill.tier]}
 									</span>
 								</li>
@@ -160,9 +169,7 @@
 		transition: border-color 0.3s ease, box-shadow 0.3s ease;
 	}
 	.skill-card:hover {
-		border-color: rgba(34, 211, 238, 0.4) !important;
 		border-color: color-mix(in srgb, var(--card-color) 40%, transparent) !important;
-		box-shadow: 0 0 24px rgba(34, 211, 238, 0.12);
 		box-shadow: 0 0 24px color-mix(in srgb, var(--card-color) 12%, transparent);
 	}
 </style>
