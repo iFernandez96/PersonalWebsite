@@ -145,7 +145,7 @@ body {
 /* Skip rendering off-screen sections until scrolled into view (paint perf). */
 section[id]:not(#hero) {
 	content-visibility: auto;
-	contain-intrinsic-size: auto 900px;
+	contain-intrinsic-size: auto 600px;
 }
 
 @media print, (prefers-reduced-data: reduce) {

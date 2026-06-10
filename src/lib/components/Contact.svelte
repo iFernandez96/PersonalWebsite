@@ -17,11 +17,11 @@
 	];
 </script>
 
-<section id="contact" class="py-16 md:py-24 px-6 lg:px-10">
+<section id="contact" aria-labelledby="contact-heading" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto text-center">
 		<div class="reveal" style="animation-delay: 0ms;">
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>
-			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
+			<h2 id="contact-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
 				Get in touch
 			</h2>
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-3 max-w-xl mx-auto">

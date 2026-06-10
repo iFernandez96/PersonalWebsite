@@ -14,11 +14,11 @@
 	];
 </script>
 
-<section id="about" class="py-16 md:py-24 px-6 lg:px-10">
+<section id="about" aria-labelledby="about-heading" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-7xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
 			<p class="font-mono text-[var(--color-text-muted)] text-[13px] tracking-[0.3em] mb-3">01 / ABOUT</p>
-			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
+			<h2 id="about-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Background
 			</h2>
 		</div>

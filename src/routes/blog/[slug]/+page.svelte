@@ -20,8 +20,14 @@
 	<meta property="og:description" content={post.summary} />
 	<meta property="og:url" content={`https://israel-fernandez.com/blog/${page.params.slug}`} />
 	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
 	<meta property="article:published_time" content={post.date} />
 	<meta property="article:author" content="Israel Fernandez" />
+	{#each post.tags as tag (tag)}
+		<meta property="article:tag" content={tag} />
+	{/each}
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={`${post.title} | Israel Fernandez`} />
 	<meta name="twitter:description" content={post.summary} />
@@ -33,7 +39,10 @@
 		"datePublished": post.date,
 		"author": { "@type": "Person", "name": "Israel Fernandez", "url": "https://israel-fernandez.com/" },
 		"description": post.summary,
-		"keywords": post.tags.join(", ")
+		"keywords": post.tags.join(", "),
+		"url": `https://israel-fernandez.com/blog/${post.slug}`,
+		"mainEntityOfPage": { "@type": "WebPage", "@id": `https://israel-fernandez.com/blog/${post.slug}` },
+		"image": "https://israel-fernandez.com/og-image.png"
 	})}</script>`}
 </svelte:head>
 

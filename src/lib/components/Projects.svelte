@@ -96,13 +96,14 @@
 
 <section
 	id="projects"
+	aria-labelledby="projects-heading"
 	class="py-16 md:py-24 px-6 lg:px-10"
 	style="background: var(--color-bg-secondary);"
 >
 	<div class="max-w-7xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">04 / PROJECTS</p>
-			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.02em;">
+			<h2 id="projects-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.02em;">
 				Selected work
 			</h2>
 			<p class="text-[var(--color-text-muted)] max-w-xl">

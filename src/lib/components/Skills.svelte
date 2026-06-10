@@ -75,6 +75,7 @@
 
 <section
 	id="skills"
+	aria-labelledby="skills-heading"
 	class="py-16 md:py-24 px-6 lg:px-10"
 	style="background: var(--color-bg-secondary);"
 >
@@ -82,7 +83,7 @@
 		<div class="reveal flex flex-wrap items-end justify-between gap-4 mb-12" style="animation-delay: 0ms;">
 			<div>
 				<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">02 / SKILLS</p>
-				<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
+				<h2 id="skills-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 					Toolkit
 				</h2>
 			</div>

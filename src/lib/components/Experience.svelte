@@ -56,11 +56,11 @@
 	];
 </script>
 
-<section id="experience" class="py-16 md:py-24 px-6 lg:px-10">
+<section id="experience" aria-labelledby="experience-heading" class="py-16 md:py-24 px-6 lg:px-10">
 	<div class="max-w-6xl mx-auto">
 		<div class="reveal mb-12" style="animation-delay: 0ms;">
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">03 / EXPERIENCE</p>
-			<h2 class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
+			<h2 id="experience-heading" class="text-4xl md:text-5xl font-medium text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
 				Track record
 			</h2>
 		</div>

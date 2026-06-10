@@ -5,6 +5,8 @@ const baseURL = `http://localhost:${PORT}`;
 
 export default defineConfig({
 	testDir: './tests',
+	// Only Playwright specs — *.test.ts belongs to vitest (it uses import.meta.glob).
+	testMatch: '**/*.spec.ts',
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 1 : 0,

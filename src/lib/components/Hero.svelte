@@ -74,7 +74,7 @@
 	});
 </script>
 
-<section id="hero" class="relative min-h-[100svh] flex items-center overflow-hidden">
+<section id="hero" aria-labelledby="hero-heading" class="relative min-h-[100svh] flex items-center overflow-hidden">
 	<!-- Background layers -->
 	<div class="absolute inset-0 pointer-events-none" aria-hidden="true">
 		<!-- Grid (smaller, dimmer for depth) -->
@@ -107,6 +107,7 @@
 			</p>
 
 			<h1
+				id="hero-heading"
 				class="hero-name text-[clamp(2.75rem,8vw,7rem)] font-medium text-[var(--color-text-primary)] mb-5 opacity-0 animate-[fadeInUp_0.4s_ease_0.08s_forwards]"
 			>
 				Israel Fernandez
