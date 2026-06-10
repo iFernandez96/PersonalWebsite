@@ -2,10 +2,12 @@
 slug: building-a-c2-framework
 title: Building a Cross-Platform C2 Framework from Scratch
 date: 2026-03-15
-readTime: 12
+readTime: 13
 tags: Security, Python, C, Networking, Red Team
 summary: A writeup on building a multi-transport Remote Access Trojan for educational security research, covering TCP binary framing, mutual TLS, and a beacon/callback architecture.
 ---
+
+_Updated June 2026 for BeaconUI v0.4.0 — the capability counts and roadmap below reflect the current build._
 
 ## Why build a RAT?
 
@@ -49,15 +51,15 @@ The implant registers on startup and then loops: get tasks, run them, post the r
 
 ## BeaconUI: the full-featured version
 
-The final iteration, BeaconUI, extends the beacon architecture with SQLite persistence, a C implant, and a full operator dashboard in Svelte 5.
+The final iteration, BeaconUI, extends the beacon architecture with SQLite persistence, optional AES-256-GCM application-layer encryption, a C implant, and a full operator dashboard in Svelte 5.
 
 ### SQLite persistence
 
 The original beacon kept all implant state in memory. Restart the C2 and you lost everything. BeaconUI moves that into SQLite, so implant records, task results, and an audit log all survive a restart. You can page through the full history with `GET /api/results/<id>/history?page=N`, and every operator action gets logged: task queued, result received, implant registered, task cancelled.
 
-### 20 task types
+### 29 task types
 
-Beyond the core three, the Python implant adds screenshot capture, clipboard read, a keylogger (start, dump, stop), process listing with structured JSON output, directory listing, netstat, privilege-escalation enumeration (SUID, sudo, writable system files, capabilities), persistence install and uninstall, in-process Python exec, and self-destruct.
+Beyond the core three, the Python implant now handles 29 task types: screenshot capture, clipboard read, a keylogger (start, dump, stop), process listing with structured JSON output, directory listing, netstat, process kill, system info, privilege-escalation enumeration (SUID, sudo, writable system files, capabilities), persistence install and uninstall, in-process Python exec, self-update, and self-destruct. The later additions are the operationally interesting ones: an interactive PTY shell (open, send, close), a SOCKS5 proxy for pivoting, and in-memory shellcode execution.
 
 The privilege-escalation enumeration is the one I keep coming back to for CTF prep. It runs the same checks a manual pentester would: find SUID binaries, list sudo rules, look for writable system files, enumerate capabilities.
 
@@ -67,11 +69,11 @@ Building the C implant taught me the most. Python's standard library hides a lot
 
 The annoying parts were the ones Python normally hands you for free. With no JSON library I wrote my own builder and parser, which is tedious but does teach you the format. UUID generation meant reading 16 bytes from `/dev/urandom` on Linux and macOS, or calling `UuidCreate()` on Windows, where `uuid.uuid4()` would have been one line. Finding the implant's own path on disk (for self-destruct and self-update) took three different APIs: `GetModuleFileNameA` on Windows, `_NSGetExecutablePath` on macOS, `readlink /proc/self/exe` on Linux. Even a screenshot was a different tool on every platform: `screencapture -x` on macOS, PowerShell GDI on Windows, `scrot` or `import` on Linux.
 
-The payoff is that the C implant returns the same JSON shapes as the Python one for all 15 of its task types, so the C2 has no idea which one it's talking to. That was deliberate, and it made testing much easier.
+The payoff is that the C implant returns the same JSON shapes as the Python one for all 28 of its task types, so the C2 has no idea which one it's talking to. That was deliberate, and it made testing much easier.
 
 ### Test suite
 
-The project has 78 tests that run in about 9 seconds, and they run end to end rather than against mocks: a real C2 server runs in-process, a real implant runs as a subprocess, and the tests check actual task execution and result shapes. The C implant suite builds `implant_beacon_test` (pointed at localhost:9446, 200ms beacon, no jitter for fast cycles) and runs it against that same in-process C2. The last test is `test_c_self_destruct`, which kills the process, so it has to run last.
+The project has 581 tests — pytest unit and integration suites plus a Playwright E2E suite that drives the operator dashboard — backed by another 48 behave (Gherkin) scenarios. They run end to end rather than against mocks: a real C2 server runs in-process, a real implant runs as a subprocess, and the tests check actual task execution and result shapes. The C implant suite builds `implant_beacon_test` (pointed at localhost:9446, 200ms beacon, no jitter for fast cycles) and runs it against that same in-process C2. The last test is `test_c_self_destruct`, which kills the process, so it has to run last.
 
 ## The operator dashboard
 
@@ -95,6 +97,6 @@ And the big one: test end to end from day one. Running a real server, a real imp
 
 ## What's next
 
-Three things I want to add. An interactive shell, using a persistent pty session instead of one-shot subprocess execution, which would kill the per-command round trip and let me run things like `vim` or `python3`. A SOCKS5 proxy to pivot into internal networks through the implant, which is what would make this actually useful on a real engagement. And some traffic shaping (randomized User-Agent, HTTP keep-alive, realistic browser headers) so the beacon looks like ordinary web browsing on the wire.
+Two of the items that were on this list when I first wrote it have since shipped (v0.4.0): a persistent PTY shell — so you can run `vim` or `python3` instead of one-shot subprocess calls — and a SOCKS5 proxy for pivoting into internal networks through the implant. What's still on the list is traffic shaping: randomized User-Agent, HTTP keep-alive, and realistic browser headers so the beacon blends into ordinary web traffic, plus broader evasion work.
 
-The full source is on GitHub. It's a learning tool, so treat it as one.
+The current build stays private — the newer capabilities above aren't published — but I'm happy to walk through the architecture or share source on request. It's a learning tool, and that's exactly how I treat it.
