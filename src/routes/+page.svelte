@@ -8,9 +8,9 @@
 	import Contact from '$lib/components/Contact.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 
-	const title = 'Israel Fernandez — Systems Software Engineer';
+	const title = 'Israel Fernandez | Systems Software Engineer';
 	const description =
-		'Israel Fernandez — systems software engineer specializing in embedded, Linux internals, and Android security. Currently at Apple (via Sasken).';
+		'Israel Fernandez, systems software engineer specializing in embedded, Linux internals, and Android security. Currently at Apple (via Sasken).';
 </script>
 
 <svelte:head>
@@ -27,13 +27,13 @@
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content="Israel Fernandez — Systems Software Engineer pivoting to Android security and red team" />
+	<meta property="og:image:alt" content="Israel Fernandez, Systems Software Engineer pivoting to Android security and red team" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
-	<link rel="alternate" type="application/rss+xml" title="Israel Fernandez — Writing" href="/rss.xml" />
-	<!-- Prefetch blog routes — likely next click after homepage -->
+	<link rel="alternate" type="application/rss+xml" title="Israel Fernandez | Writing" href="/rss.xml" />
+	<!-- Prefetch blog routes, likely next click after homepage -->
 	<link rel="prefetch" href="/blog" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",

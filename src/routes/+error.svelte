@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>{page.status} — Israel Fernandez</title>
+	<title>{page.status} | Israel Fernandez</title>
 	<meta name="robots" content="noindex" />
 </svelte:head>
 

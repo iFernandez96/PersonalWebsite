@@ -21,7 +21,7 @@ interface Frontmatter {
 
 // Eagerly load every markdown post as a raw string at build time. The glob is
 // resolved by Vite during the build, so `posts` below is a fully synchronous,
-// statically-known array — no async, same shape as the old inline-HTML version.
+// statically-known array, no async, same shape as the old inline-HTML version.
 const rawPosts = import.meta.glob('/src/posts/*.md', {
 	query: '?raw',
 	import: 'default',
@@ -30,7 +30,7 @@ const rawPosts = import.meta.glob('/src/posts/*.md', {
 
 // Minimal frontmatter parser. Splits the leading `---` fenced block from the
 // body and parses simple `key: value` lines. `tags` is split on commas. No new
-// dependency (no gray-matter) — frontmatter here is first-party and simple.
+// dependency (no gray-matter), frontmatter here is first-party and simple.
 function parseFrontmatter(raw: string): { data: Frontmatter; body: string } {
 	const normalized = raw.replace(/\r\n/g, '\n');
 	const match = /^---\n([\s\S]*?)\n---\n?([\s\S]*)$/.exec(normalized);
@@ -71,7 +71,7 @@ function buildPosts(): Post[] {
 		const { data, body } = parseFrontmatter(raw);
 		// marked.parse with async:false returns the rendered HTML string
 		// synchronously. Its defaults emit <h2>/<h3>, <ul>/<li>, <pre><code>,
-		// inline <code>, <strong>, <em>, <a> — exactly what .post-content styles.
+		// inline <code>, <strong>, <em>, <a>, exactly what .post-content styles.
 		const content = marked.parse(body, { async: false }) as string;
 		return { ...data, content };
 	});

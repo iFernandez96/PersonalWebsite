@@ -3,7 +3,7 @@ import { posts } from '$lib/posts';
 export const prerender = true;
 
 const SITE_URL = 'https://israel-fernandez.com';
-const SITE_TITLE = 'Israel Fernandez — Writing';
+const SITE_TITLE = 'Israel Fernandez | Writing';
 const SITE_DESCRIPTION =
 	'Long-form notes on systems programming, embedded firmware, and Android security research.';
 

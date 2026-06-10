@@ -11,19 +11,19 @@
 </script>
 
 <svelte:head>
-	<title>{post.title} — Israel Fernandez</title>
+	<title>{post.title} | Israel Fernandez</title>
 	<meta name="description" content={post.summary} />
 	<meta name="robots" content="index, follow" />
 	<link rel="canonical" href={`https://israel-fernandez.com/blog/${page.params.slug}`} />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={`${post.title} — Israel Fernandez`} />
+	<meta property="og:title" content={`${post.title} | Israel Fernandez`} />
 	<meta property="og:description" content={post.summary} />
 	<meta property="og:url" content={`https://israel-fernandez.com/blog/${page.params.slug}`} />
 	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
 	<meta property="article:published_time" content={post.date} />
 	<meta property="article:author" content="Israel Fernandez" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={`${post.title} — Israel Fernandez`} />
+	<meta name="twitter:title" content={`${post.title} | Israel Fernandez`} />
 	<meta name="twitter:description" content={post.summary} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
 	{@html `<script type="application/ld+json">${JSON.stringify({

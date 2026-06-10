@@ -1,7 +1,6 @@
 <script lang="ts">
-	// Facts unique to About (the role/prior/stack/target overlap with the Hero
-	// quick-facts aside lives only in the Hero now; kept here are the details
-	// the Hero doesn't show).
+	// Facts unique to About. The role/prior/stack/target now live only in the
+	// Hero quick-facts aside; kept here are the details the Hero doesn't show.
 	const details = [
 		{ label: 'Location', value: 'California, USA' },
 		{ label: 'Education', value: 'B.S. Computer Science, CSUMB' }
@@ -34,9 +33,9 @@
 					I shipped my first Linux kernel module in 2018 and have worked low in the stack ever since: embedded firmware, kernel drivers, real-time computer vision on custom ARM hardware. Bootloader to user-space, hardware bring-up to field deployment. You can't reliably break a system you don't already know how to build.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-8">
-					Today I'm at <a class="text-[var(--color-text-primary)] font-semibold hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>
+					Today I'm at <a class="text-[var(--color-text-primary)] font-semibold underline underline-offset-2 hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>
 					(contract via Sasken Technologies) on hardware and firmware integration. Before that, eight years at
-					<a class="text-[var(--color-text-primary)] font-semibold hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.gantz-mountain.com/" target="_blank" rel="noopener noreferrer">Gantz-Mountain</a>,
+					<a class="text-[var(--color-text-primary)] font-semibold underline underline-offset-2 hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.gantz-mountain.com/" target="_blank" rel="noopener noreferrer">Gantz-Mountain</a>,
 					a defense AI startup in Monterey building low-level systems on custom embedded hardware. The security work runs alongside both, aimed at a new layer of the stack.
 				</p>
 

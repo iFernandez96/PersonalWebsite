@@ -3,7 +3,7 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 
-	const title = 'Writing — Israel Fernandez';
+	const title = 'Writing | Israel Fernandez';
 	const description =
 		'Technical writing on systems programming, embedded firmware, and Android security research.';
 </script>
@@ -36,7 +36,7 @@
 			</h1>
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed max-w-xl">
 				Long-form notes on systems programming, security research, and building things at the low level.
-				Posts are infrequent — I'd rather ship one good walkthrough than three thin updates.
+				Posts are infrequent. I'd rather ship one good walkthrough than three thin updates.
 			</p>
 		</header>
 

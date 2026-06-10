@@ -28,7 +28,7 @@
 	--font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
-/* Light theme — explicit override on html[data-theme="light"]. The tokens
+/* Light theme, explicit override on html[data-theme="light"]. The tokens
    shadow @theme values; Tailwind utilities resolve at runtime via cascade. */
 html[data-theme='light'] {
 	--color-bg-primary: #fafafa;
@@ -114,7 +114,7 @@ body {
 	50% { transform: translate3d(0, 6px, 0); opacity: 1; }
 }
 
-/* Section reveal — CSS-only, plays on initial render. SSR-safe. */
+/* Section reveal, CSS-only, plays on initial render. SSR-safe. */
 @keyframes revealUp {
 	from { opacity: 0; transform: translate3d(0, 12px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
