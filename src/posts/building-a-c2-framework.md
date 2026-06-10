@@ -7,124 +7,94 @@ tags: Security, Python, C, Networking, Red Team
 summary: A writeup on building a multi-transport Remote Access Trojan for educational security research, covering TCP binary framing, mutual TLS, and a beacon/callback architecture.
 ---
 
-## Why Build a RAT?
+## Why build a RAT?
 
-I feel that the best way to learn offensive security is to build the tools yourself. You can read about C2 frameworks all day, but once you implement beacon intervals, HMAC-derived endpoints, and mutual TLS from first principles, it clicks in a way that no amount of reading can replicate.
+The best way I know to learn offensive security is to build the tools yourself. You can read about C2 frameworks all day, but something only clicks once you've implemented beacon intervals, HMAC-derived endpoints, and mutual TLS by hand. Reading about them is not the same.
 
-I built this project to prepare for an Android pentesting and red team transition, understanding how implants and C2 infrastructure actually work is foundational for that path. Everything here is educational and runs only against machines I own.
+I built this to prepare for a move into Android pentesting and red teaming. If I want to find where implants and C2 infrastructure break, I should know exactly how they work first. Everything here is educational and only ever runs against machines I own.
 
-## Three Transport Variants
+## Three transport variants
 
-The project has three independent transport layers, each more sophisticated than the last. They all expose the same three core operations: **execute** a shell command, **upload** a file to the target, and **download** a file from the target.
+The project has three independent transport layers, each a step up from the last. All three expose the same three operations: **execute** a shell command, **upload** a file to the target, and **download** a file from it.
 
-### Variant 1: Raw TCP with Binary Framing
+### Variant 1: raw TCP with binary framing
 
-The simplest variant uses a raw TCP socket with a custom binary framing protocol:
+The simplest variant is a raw TCP socket with a custom binary framing protocol:
 
 ```
 [4-byte big-endian length][1-byte command code][payload]
 ```
 
-Command codes are simple constants: `0x00` MSG, `0x01` EXECUTE, `0x02` UPLOAD, `0x03` DOWNLOAD, `0x04` SUCCESS.
+The command codes are plain constants: `0x00` MSG, `0x01` EXECUTE, `0x02` UPLOAD, `0x03` DOWNLOAD, `0x04` SUCCESS.
 
-The key lesson here was TCP fragmentation. TCP is a stream protocol, there's no guarantee that a single `recv()` call returns a complete message. You need a `_receive_all()` loop that reads until the full length-prefixed message arrives. Getting this wrong causes subtle, hard-to-reproduce bugs where large file transfers silently truncate.
+The lesson here was TCP fragmentation. TCP is a stream, not a sequence of messages, so there's no guarantee that a single `recv()` returns a whole frame. You need a `_receive_all()` loop that keeps reading until the full length-prefixed message has arrived. Get it wrong and you get subtle, hard-to-reproduce bugs where large file transfers silently truncate.
 
-The target binds port 9000 and handles one command per connection in a loop. The C2 opens a fresh connection per command from an interactive menu, sends the framed request, reads one response, and disconnects. This is intentionally simple, stateless per command, easy to reason about.
+The target binds port 9000 and handles one command per connection. The C2 opens a fresh connection for each command from an interactive menu, sends the framed request, reads one response, and disconnects. Stateless per command, and easy to reason about.
 
-### Variant 2: HTTPS with Mutual TLS
+### Variant 2: HTTPS with mutual TLS
 
-The second variant moves to REST over HTTPS with mTLS (mutual TLS). This is where things get more interesting from a network security standpoint.
+The second variant moves to REST over HTTPS with mTLS. This is where it gets more interesting from a network-security angle.
 
-Mutual TLS means both sides authenticate: the target verifies the C2's certificate, and the C2 verifies the target's certificate. Both certs are signed by a shared CA. This prevents an attacker who intercepts traffic from impersonating either side.
+Mutual TLS means both sides authenticate: the target verifies the C2's certificate and the C2 verifies the target's, both signed by a shared CA. An attacker who intercepts the traffic can't impersonate either end.
 
-The target is a Flask app with endpoints: `GET /hello`, `POST /execute`, `POST /upload`, `POST /download`. All payloads are JSON, file content is base64-encoded.
+The target is a Flask app with four endpoints: `GET /hello`, `POST /execute`, `POST /upload`, `POST /download`. Payloads are JSON, with file content base64-encoded. The C2 uses Python's `requests` with the `cert=` and `verify=` parameters to present the client certificate and check the server against the CA. I reach for that pattern constantly now. Understanding exactly how `requests` handles TLS made debugging SSL errors at work a lot less painful.
 
-The C2 uses Python's `requests` library with the `cert=` and `verify=` parameters to present the client certificate and verify the server against the CA. This is a pattern I use constantly now, understanding exactly how `requests` handles TLS made debugging SSL errors in production work much easier.
+### Variant 3: beacon/callback architecture
 
-### Variant 3: Beacon/Callback Architecture
+The third variant flips the connection model: instead of the C2 reaching out to the target, the *implant polls the C2*. That's the standard model for modern malware, for a few reasons. Firewalls usually allow outbound connections and block inbound ones. The implant is often behind NAT where the C2 can't reach it directly. And beacon traffic blends in with normal outbound web requests.
 
-The third variant flips the connection model entirely: instead of the C2 connecting to the target, the *implant polls the C2*. This is the standard model for modern malware because:
+The C2 runs two Flask servers in one process. Port 9443 is the implant-facing mTLS side, where the endpoint paths are HMAC-SHA256 derived from a secret key so they aren't guessable. Port 9444 is the operator-facing side: the REST API, the SSE stream, and the Svelte dashboard.
 
-- Firewalls typically allow outbound connections but block inbound ones
-- The implant is behind NAT, the C2 can't reach it directly
-- Beacon traffic looks like normal web browsing to a firewall
+The implant registers on startup and then loops: get tasks, run them, post the results, and sleep with ±20% jitter before checking in again. The jitter matters. A perfectly regular 20-second beacon is a strong signature; spreading it across 16 to 24 seconds is much harder to fingerprint.
 
-The C2 runs two Flask servers in the same process:
+## BeaconUI: the full-featured version
 
-- **Port 9443 (mTLS)**, implant-facing. Endpoints are HMAC-SHA256 derived from a secret key so they're not guessable.
-- **Port 9444 (HTTPS)**, operator-facing REST API, SSE stream, and the Svelte dashboard.
+The final iteration, BeaconUI, extends the beacon architecture with SQLite persistence, a C implant, and a full operator dashboard in Svelte 5.
 
-The implant registers on startup, then enters a polling loop: GET tasks → execute → POST results → sleep with ±20% jitter. The jitter is important, a perfectly regular beacon interval is a strong network signature.
+### SQLite persistence
 
-## BeaconUI: The Full-Featured Version
+The original beacon kept all implant state in memory. Restart the C2 and you lost everything. BeaconUI moves that into SQLite, so implant records, task results, and an audit log all survive a restart. You can page through the full history with `GET /api/results/<id>/history?page=N`, and every operator action gets logged: task queued, result received, implant registered, task cancelled.
 
-The final iteration, BeaconUI, extends the beacon architecture with SQLite persistence, a C implant, and a full operator dashboard built with Svelte 5 + DaisyUI.
+### 20 task types
 
-### SQLite Persistence
+Beyond the core three, the Python implant adds screenshot capture, clipboard read, a keylogger (start, dump, stop), process listing with structured JSON output, directory listing, netstat, privilege-escalation enumeration (SUID, sudo, writable system files, capabilities), persistence install and uninstall, in-process Python exec, and self-destruct.
 
-The original beacon held all implant state in memory, restart the C2 and you lose everything. BeaconUI uses SQLite to persist implants, task results, and an audit log. This means:
+The privilege-escalation enumeration is the one I keep coming back to for CTF prep. It runs the same checks a manual pentester would: find SUID binaries, list sudo rules, look for writable system files, enumerate capabilities.
 
-- Implant results survive C2 restarts
-- You can paginate through full history with `GET /api/results/<id>/history?page=N`
-- Every operator action is logged: task queued, result received, implant registered, task cancelled
+### The C implant
 
-### 20 Task Types
+Building the C implant taught me the most. Python's standard library hides a lot, and rewriting the same functionality in C forces you to actually understand it. The C version uses libcurl for HTTPS and mTLS and OpenSSL for the HMAC-SHA256 endpoint derivation.
 
-Beyond the core three operations, the Python implant supports: screenshot capture, clipboard read, keylogger (start/dump/stop), process listing with structured JSON output, directory listing, netstat, privilege escalation enumeration (SUID/sudo/writable /etc/capabilities), persistence install/uninstall, in-process Python exec, and self-destruct.
+The annoying parts were the ones Python normally hands you for free. With no JSON library I wrote my own builder and parser, which is tedious but does teach you the format. UUID generation meant reading 16 bytes from `/dev/urandom` on Linux and macOS, or calling `UuidCreate()` on Windows, where `uuid.uuid4()` would have been one line. Finding the implant's own path on disk (for self-destruct and self-update) took three different APIs: `GetModuleFileNameA` on Windows, `_NSGetExecutablePath` on macOS, `readlink /proc/self/exe` on Linux. Even a screenshot was a different tool on every platform: `screencapture -x` on macOS, PowerShell GDI on Windows, `scrot` or `import` on Linux.
 
-The privilege escalation enumeration is particularly useful for CTF prep, it runs the same checks a manual pentester would do: find SUID binaries, list sudo rules, check writable system files, enumerate capabilities.
+The payoff is that the C implant returns the same JSON shapes as the Python one for all 15 of its task types, so the C2 has no idea which one it's talking to. That was deliberate, and it made testing much easier.
 
-### The C Implant
+### Test suite
 
-Building the C implant was the most educational part. Python's high-level libraries hide a lot of complexity, implementing the same functionality in C forces you to understand it at a deeper level.
+The project has 78 tests that run in about 9 seconds, and they run end to end rather than against mocks: a real C2 server runs in-process, a real implant runs as a subprocess, and the tests check actual task execution and result shapes. The C implant suite builds `implant_beacon_test` (pointed at localhost:9446, 200ms beacon, no jitter for fast cycles) and runs it against that same in-process C2. The last test is `test_c_self_destruct`, which kills the process, so it has to run last.
 
-The C implant uses libcurl for HTTPS/mTLS and OpenSSL for HMAC-SHA256 endpoint derivation. Key challenges:
+## The operator dashboard
 
-**No JSON library**, I wrote a lightweight JSON builder and parser. Parsing JSON in C without a library is tedious but forces you to understand the format deeply.
+The web UI is Svelte 5 with DaisyUI and Tailwind, on a dark "c2dark" theme: near-black background, teal primary, orange accent.
 
-**UUID generation**, reading 16 bytes from `/dev/urandom` on Linux/macOS, or calling `UuidCreate()` on Windows. Simple in Python (`uuid.uuid4()`), manual in C.
+A few things I wanted it to get right. Updates arrive live over a Server-Sent Events stream whenever an implant registers or a result lands, so there's no polling and no websockets to babysit. Implants show as online, idle, or offline (last seen under 60 seconds, under five minutes, or longer), color-coded in the sidebar. Screenshot results render inline, with buttons to open them full size or save them. And since an implant might not check in right away, you can queue several tasks ahead of time; each one shows up in the queue tab and can be cancelled.
 
-**Cross-platform executable path**, needed for self-destruct and self-update. Three different APIs: `GetModuleFileNameA` on Windows, `_NSGetExecutablePath` on macOS, `readlink /proc/self/exe` on Linux.
+## Lessons learned
 
-**Screenshot**, `screencapture -x` on macOS, PowerShell GDI on Windows, `scrot`/`import` on Linux. Each platform needs completely different code paths.
+A handful of things stuck with me.
 
-The C implant shares the same JSON response shapes as the Python implant for all 15 supported task types. The C2 doesn't know or care which implant type it's talking to, this was a deliberate design choice that made testing much easier.
+mTLS turned out to be tedious rather than hard. Once the certificate infrastructure is in place (CA, server cert, client cert), the code is straightforward. The real work is generating and distributing the certs, not writing the request.
 
-### Test Suite
+Jitter mattered more than I expected. Even ±20% on a 20-second interval spreads the beacons across 16 to 24 seconds, and over a hundred check-ins that is far harder to pick out of traffic than a metronome.
 
-The project has 78 tests that run in ~9 seconds. The test approach is end-to-end: a real C2 server runs in-process, a real implant runs as a subprocess, and tests verify actual task execution and result shapes, no mocking.
+The HMAC-derived endpoints are my favorite part. Both sides derive the path from a shared secret, so anyone sniffing the wire just sees requests to `/a3f8d291...` that mean nothing without the key. That beats hoping a random-looking path never gets noticed.
 
-The C implant test suite builds `implant_beacon_test` (which points to localhost:9446 with 200ms beacon interval and no jitter for fast test cycles) and runs it against the same in-process C2. The last test is `test_c_self_destruct`, which terminates the process, intentionally run last.
+SQLite for persistence is underrated. In-memory state is quick to write but loses everything on restart; SQLite adds almost no complexity and makes the tool usable across sessions.
 
-## The Operator Dashboard
+And the big one: test end to end from day one. Running a real server, a real implant, and real task execution caught bugs that mocked unit tests would have sailed straight past, including the TCP fragmentation bug in the first variant.
 
-The web UI is built with Svelte 5 + DaisyUI + TailwindCSS. A custom dark "c2dark" theme: near-black background, neon teal primary, orange accent.
+## What's next
 
-Key UX decisions:
+Three things I want to add. An interactive shell, using a persistent pty session instead of one-shot subprocess execution, which would kill the per-command round trip and let me run things like `vim` or `python3`. A SOCKS5 proxy to pivot into internal networks through the implant, which is what would make this actually useful on a real engagement. And some traffic shaping (randomized User-Agent, HTTP keep-alive, realistic browser headers) so the beacon looks like ordinary web browsing on the wire.
 
-- **SSE for live updates**, when a new result arrives or an implant registers, a Server-Sent Events stream pushes the update to the browser. No polling, no websockets to manage.
-- **Status indicators**, implants are `online` (seen <60s ago), `idle` (<5min), or `offline`. Color-coded in the sidebar.
-- **Inline screenshots**, screenshot results render as inline images with full-size open and save buttons.
-- **Task queue**, you can queue multiple tasks before the implant checks in. Each task shows in the queue tab and can be cancelled.
-
-## Lessons Learned
-
-**mTLS is not hard to implement, just tedious to set up.** Once you have the certificate infrastructure (CA, server cert, client cert), the code is straightforward. The complexity is in the cert generation and distribution, not the code.
-
-**Jitter matters more than you'd think.** Even ±20% on a 20-second interval means the beacon times are 16–24 seconds. Over 100 beacons, the pattern is much harder to fingerprint than a perfect 20-second interval.
-
-**HMAC-derived endpoints are elegant.** Both C2 and implant derive the endpoint path from a shared secret using HMAC-SHA256. An attacker sniffing traffic sees requests to `/a3f8d291...`, meaningless without the key. This is better than obscurity through random naming.
-
-**SQLite for C2 persistence is underrated.** In-memory state is fast to implement but loses everything on restart. SQLite adds minimal complexity and the persistence makes the tool actually usable for multi-session research.
-
-**Test end-to-end from day one.** The integration test approach, real server, real implant, real task execution, caught bugs that unit tests would have missed. Mocking the network layer would have hidden the fragmentation bug in the TCP variant entirely.
-
-## What's Next
-
-Three features are on the roadmap:
-
-- **Interactive shell**, a persistent pty session instead of one-shot subprocess execution. This eliminates per-command round-trip latency and enables interactive tools like `vim` or `python3`.
-- **SOCKS5 proxy**, pivot into internal networks through the implant. This is the feature that makes a RAT actually useful for real pentesting scenarios.
-- **Traffic shaping**, randomize User-Agent, use HTTP/1.1 keep-alive, add realistic browser headers. Make the beacon traffic look like normal web browsing at the network layer.
-
-The full source is on GitHub. This is a learning tool, treat it as such.
+The full source is on GitHub. It's a learning tool, so treat it as one.

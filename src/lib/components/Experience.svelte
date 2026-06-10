@@ -21,7 +21,7 @@
 			title: 'Hardware Systems Software Engineer',
 			company: 'Apple',
 			via: 'via Sasken Technologies',
-			period: '2024 – Present',
+			period: '2025 – Present',
 			location: 'Cupertino, CA',
 			type: 'Contract',
 			color: 'var(--color-accent-cyan)',
