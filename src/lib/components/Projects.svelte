@@ -173,7 +173,7 @@
 			>
 				<!-- Amber radial glow from bottom-right corner (decorative) -->
 				<div
-					class="absolute bottom-0 right-0 pointer-events-none"
+					class="beacon-glow absolute bottom-0 right-0 pointer-events-none"
 					style="width: 600px; height: 400px; background: radial-gradient(ellipse at 80% 90%, color-mix(in srgb, var(--color-accent-amber) 10%, transparent) 0%, transparent 60%);"
 					aria-hidden="true"
 				></div>
@@ -229,7 +229,7 @@
 					<!-- Right column: measured stats + capability list -->
 					<div>
 						<!-- Stat callouts: the "this is real and measured" proof, up front -->
-						<dl class="grid grid-cols-3 gap-3 mb-7" aria-label="BeaconUI key metrics">
+						<dl class="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-7" aria-label="BeaconUI key metrics">
 							{#each beaconStats as stat (stat.label)}
 								<div
 									class="rounded-lg px-3 py-3 text-center flex flex-col-reverse"
@@ -393,6 +393,11 @@
 
 	:global(html[data-theme='light']) .beacon-showcase {
 		box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 10%, transparent);
+	}
+	/* The amber corner glow reads as a dirty smudge on the near-white light bg
+	   (additive glow needs a dark field) — hide it in light, keep the shadow. */
+	:global(html[data-theme='light']) .beacon-glow {
+		opacity: 0;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

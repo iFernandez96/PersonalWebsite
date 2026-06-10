@@ -58,7 +58,7 @@
 	];
 </script>
 
-<section id="experience" aria-labelledby="experience-heading" class="py-16 md:py-24 px-6 lg:px-10" style="background: var(--color-bg-secondary);">
+<section id="experience" aria-labelledby="experience-heading" class="pt-10 md:pt-14 pb-16 md:pb-24 px-6 lg:px-10" style="background: var(--color-bg-secondary);">
 	<!-- max-w-4xl: pulled in from 6xl for better reading density -->
 	<div class="max-w-4xl mx-auto">
 		<div use:reveal={'heading'} class="mb-12">

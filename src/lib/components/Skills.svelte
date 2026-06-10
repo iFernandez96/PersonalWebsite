@@ -86,7 +86,7 @@
 <section
 	id="skills"
 	aria-labelledby="skills-heading"
-	class="py-16 md:py-24 px-6 lg:px-10"
+	class="pt-16 md:pt-24 pb-10 md:pb-14 px-6 lg:px-10"
 	style="background: var(--color-bg-secondary);"
 >
 	<div class="max-w-7xl mx-auto">

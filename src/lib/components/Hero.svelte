@@ -308,7 +308,8 @@
 		);
 		height: 2px;
 		animation: scanline-sweep 1.8s cubic-bezier(0.4, 0, 0.6, 1) 0.6s forwards;
-		will-change: transform, opacity;
+		/* will-change omitted: the translate3d keyframe already promotes a layer
+		   during the one-shot sweep; keeping it would pin a GPU layer forever. */
 	}
 
 	/* H1 treatment */

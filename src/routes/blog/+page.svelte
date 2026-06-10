@@ -92,10 +92,6 @@
 
 		{#if posts.length === 0}
 			<p class="text-[var(--color-text-muted)] text-center py-16 font-mono">No posts yet.</p>
-		{:else if posts.length < 3}
-			<p class="font-mono text-xs text-[var(--color-text-muted)] mt-10">
-				<span class="text-[var(--color-accent-cyan)]">//</span> more posts in progress
-			</p>
 		{/if}
 	</div>
 </main>

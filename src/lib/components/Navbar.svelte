@@ -86,9 +86,19 @@
 	Skip to content
 </a>
 
+<!-- Mobile menu backdrop: dims the page behind the open accordion and closes on tap -->
+{#if menuOpen}
+	<button
+		class="md:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+		aria-label="Close menu"
+		tabindex="-1"
+		onclick={closeMenu}
+	></button>
+{/if}
+
 <nav
 	class="nav fixed top-0 left-0 right-0 z-50"
-	class:nav-scrolled={scrolled}
+	class:nav-scrolled={scrolled || menuOpen}
 	aria-label="Primary"
 >
 	<div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">

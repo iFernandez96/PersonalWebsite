@@ -34,8 +34,6 @@
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
 	<link rel="alternate" type="application/rss+xml" title="Israel Fernandez | Writing" href="/rss.xml" />
-	<!-- Prefetch blog routes, likely next click after homepage -->
-	<link rel="prefetch" href="/blog" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "Person",
