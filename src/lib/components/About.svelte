@@ -27,7 +27,7 @@
 			<!-- Left: prose, pivot-first -->
 			<div class="md:col-span-7 reveal min-w-0" style="animation-delay: 80ms;">
 				<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-5">
-					I'm moving into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>: the same instinct that drove the systems work, pointed at where systems break instead of how they run. If it's low-level, I want to understand it well enough to take it apart.
+					I'm moving into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>: the same instinct that drove the systems work, now pointed at where systems break instead of how they run. If it's low-level, I want to understand it well enough to take it apart.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-5">
 					I shipped my first Linux kernel module in 2018 and have worked low in the stack ever since: embedded firmware, kernel drivers, real-time computer vision on custom ARM hardware. Bootloader to user-space, hardware bring-up to field deployment. You can't reliably break a system you don't already know how to build.

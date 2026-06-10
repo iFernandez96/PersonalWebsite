@@ -9,7 +9,7 @@ summary: A writeup on building a multi-transport Remote Access Trojan for educat
 
 ## Why build a RAT?
 
-The best way I know to learn offensive security is to build the tools yourself. You can read about C2 frameworks all day, but something only clicks once you've implemented beacon intervals, HMAC-derived endpoints, and mutual TLS by hand. Reading about them is not the same.
+The best way I know to learn offensive security is to build the tools yourself. You can read about C2 frameworks all day, but something only clicks once you've implemented beacon intervals, HMAC-derived endpoints, and mutual TLS by hand.
 
 I built this to prepare for a move into Android pentesting and red teaming. If I want to find where implants and C2 infrastructure break, I should know exactly how they work first. Everything here is educational and only ever runs against machines I own.
 
