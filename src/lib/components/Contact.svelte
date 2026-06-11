@@ -109,8 +109,8 @@
 <!-- Footer -->
 <footer class="border-t py-8 px-6" style="border-color: var(--color-border);">
 	<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-		<p class="font-mono text-xs text-[var(--color-text-muted)]">
-			Built with <span style="color: var(--color-text-secondary);">SvelteKit</span> + Tailwind · © {new Date().getFullYear()} Israel Fernandez
+		<p class="font-mono text-xs text-[var(--color-text-muted)] leading-relaxed max-w-2xl">
+			Hand-built with <span style="color: var(--color-text-secondary);">SvelteKit</span> + Tailwind v4, typeset in Inter &amp; JetBrains Mono, served from Cloudflare. No trackers, no cookies, no third-party scripts. · © {new Date().getFullYear()} Israel Fernandez
 		</p>
 		<a
 			href="https://github.com/iFernandez96/PersonalWebsite"
