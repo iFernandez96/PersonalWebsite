@@ -7,7 +7,7 @@ tags: Security, Python, C, Networking, Red Team
 summary: A writeup on building a multi-transport Remote Access Trojan for educational security research, covering TCP binary framing, mutual TLS, and a beacon/callback architecture.
 ---
 
-_Updated June 2026 for BeaconUI v0.4.0 — the capability counts and roadmap below reflect the current build._
+_Updated June 2026 for BeaconUI v0.4.0. The capability counts and roadmap below reflect the current build._
 
 ## Why build a RAT?
 
@@ -73,7 +73,7 @@ The payoff is that the C implant returns the same JSON shapes as the Python one 
 
 ### Test suite
 
-The project has 581 tests — pytest unit and integration suites plus a Playwright E2E suite that drives the operator dashboard — backed by another 48 behave (Gherkin) scenarios. They run end to end rather than against mocks: a real C2 server runs in-process, a real implant runs as a subprocess, and the tests check actual task execution and result shapes. The C implant suite builds `implant_beacon_test` (pointed at localhost:9446, 200ms beacon, no jitter for fast cycles) and runs it against that same in-process C2. The last test is `test_c_self_destruct`, which kills the process, so it has to run last.
+The project has 581 tests: pytest unit and integration suites plus a Playwright E2E suite that drives the operator dashboard, backed by another 48 behave (Gherkin) scenarios. They run end to end rather than against mocks: a real C2 server runs in-process, a real implant runs as a subprocess, and the tests check actual task execution and result shapes. The C implant suite builds `implant_beacon_test` (pointed at localhost:9446, 200ms beacon, no jitter for fast cycles) and runs it against that same in-process C2. The last test is `test_c_self_destruct`, which kills the process, so it has to run last.
 
 ## The operator dashboard
 
@@ -97,6 +97,6 @@ And the big one: test end to end from day one. Running a real server, a real imp
 
 ## What's next
 
-Two of the items that were on this list when I first wrote it have since shipped (v0.4.0): a persistent PTY shell — so you can run `vim` or `python3` instead of one-shot subprocess calls — and a SOCKS5 proxy for pivoting into internal networks through the implant. What's still on the list is traffic shaping: randomized User-Agent, HTTP keep-alive, and realistic browser headers so the beacon blends into ordinary web traffic, plus broader evasion work.
+Two of the items that were on this list when I first wrote it have since shipped (v0.4.0): a persistent PTY shell (so you can run `vim` or `python3` instead of one-shot subprocess calls) and a SOCKS5 proxy for pivoting into internal networks through the implant. What's still on the list is traffic shaping: randomized User-Agent, HTTP keep-alive, and realistic browser headers so the beacon blends into ordinary web traffic, plus broader evasion work.
 
-The current build stays private — the newer capabilities above aren't published — but I'm happy to walk through the architecture or share source on request. It's a learning tool, and that's exactly how I treat it.
+The current build stays private (the newer capabilities above aren't published), but I'm happy to walk through the architecture or share source on request. It's a learning tool, and that's exactly how I treat it.

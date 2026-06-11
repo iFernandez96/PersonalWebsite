@@ -28,7 +28,7 @@
 				Let's talk
 			</h2>
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-3 max-w-xl mx-auto">
-				I'm hunting for <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span>, full-time — also up for systems, embedded, or anything close to the metal. And if you just want to talk shop about kernels, C2 internals, or Android RE, I'll happily make time even if there's no job attached.
+				I'm hunting for <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span>, full-time. Also up for systems, embedded, or anything close to the metal. And if you just want to talk shop about kernels, C2 internals, or Android RE, I'll happily make time even if there's no job attached.
 			</p>
 			<p class="font-mono text-[13px] text-[var(--color-text-muted)] mb-12">
 				<span class="text-[var(--color-text-secondary)]">//</span> a real note gets a real reply, usually within a day
@@ -66,7 +66,7 @@
 		</div>
 
 		<p use:reveal={{ role: 'body', i: 3 }} class="font-mono text-[13px] text-[var(--color-text-muted)] mt-12">
-			<span class="text-[var(--color-accent-cyan)]">$</span> thanks for scrolling this far — Israel
+			<span class="text-[var(--color-accent-cyan)]">$</span> thanks for scrolling this far. <span class="text-[var(--color-text-secondary)]">//</span> Israel
 		</p>
 	</div>
 </section>

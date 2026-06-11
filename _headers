@@ -1,4 +1,4 @@
-# Strict first-party-only CSP — no third-party scripts at all. Cloudflare Web
+# Strict first-party-only CSP, no third-party scripts at all. Cloudflare Web
 # Analytics edge-injection is suppressed via `no-transform` on the HTML routes
 # below (Cloudflare can't rewrite a response it's told not to transform), so
 # there's no beacon to allow here and nothing for tracking-blockers to error on.
@@ -16,7 +16,7 @@
 # block at the end of the built _headers (it sets public, immutable, max-age=1yr
 # and resets the inherited /_app/* no-cache), so no manual rule is needed here.
 
-# Prerendered HTML — always revalidate so stale headers/JSON-LD aren't served
+# Prerendered HTML, always revalidate so stale headers/JSON-LD aren't served
 /
   Cache-Control: public, max-age=0, must-revalidate, no-transform
 /blog
@@ -24,11 +24,11 @@
 /blog/*
   Cache-Control: public, max-age=0, must-revalidate, no-transform
 
-# Resume — short cache, not indexed
+# Resume: short cache, not indexed
 /IsraelFernandezResume.pdf
   Cache-Control: public, max-age=86400
   X-Robots-Tag: noindex
 
-# OG image — long cache
+# OG image: long cache
 /og-image.png
   Cache-Control: public, max-age=2592000

@@ -27,14 +27,14 @@
 	});
 
 	onMount(() => {
-		// Console easter egg — this audience opens DevTools; reward the poke.
+		// Console easter egg: this audience opens DevTools; reward the poke.
 		const mono = 'font-family:monospace';
 		const cyan = `color:#22d3ee;font-weight:600;${mono}`;
 		const amber = `color:#f59e0b;${mono}`;
 		const dim = `color:#8694a8;${mono}`;
 		const text = `color:#e7ecf3;${mono}`;
 		/* eslint-disable no-console */
-		console.log('%c// you opened the console. respect — poking at the surface is the whole job.', cyan);
+		console.log('%c// you opened the console. respect. poking at the surface is the whole job.', cyan);
 		console.log('%cIsrael Fernandez · systems & embedded engineer, moving into red team.', text);
 		console.log('%c→ hiring, or just want to talk shop (kernels, C2, Android RE)? israelfernandez96@gmail.com', amber);
 		console.log('%c→ try whoami()', dim);

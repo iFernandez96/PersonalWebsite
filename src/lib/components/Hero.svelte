@@ -183,7 +183,7 @@
 			<p
 				class="text-[var(--color-text-secondary)] text-base md:text-lg max-w-2xl mb-3 leading-relaxed opacity-0 animate-[fadeInUp_0.4s_ease_0.28s_forwards]"
 			>
-				Nine years writing systems software — embedded firmware, Linux kernel drivers, computer vision on custom ARM hardware. Now I point that same low-level depth at breaking things: reverse-engineering Android binaries and building offensive tooling. <span class="text-[var(--color-text-primary)] font-medium">You can't reliably break a system you don't already know how to build.</span>
+				Nine years writing systems software. Embedded firmware, Linux kernel drivers, computer vision on custom ARM hardware. Now I point that same low-level depth at breaking things: reverse-engineering Android binaries and building offensive tooling. <span class="text-[var(--color-text-primary)] font-medium">You can't reliably break a system you don't already know how to build.</span>
 			</p>
 
 			<p

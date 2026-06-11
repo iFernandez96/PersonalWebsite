@@ -24,7 +24,7 @@
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content={`${post.title} — Israel Fernandez`} />
+	<meta property="og:image:alt" content={`${post.title} · Israel Fernandez`} />
 	<meta property="article:published_time" content={post.date} />
 	<meta property="article:author" content="Israel Fernandez" />
 	{#each post.tags as tag (tag)}
@@ -34,7 +34,7 @@
 	<meta name="twitter:title" content={`${post.title} | Israel Fernandez`} />
 	<meta name="twitter:description" content={post.summary} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
-	<meta name="twitter:image:alt" content={`${post.title} — Israel Fernandez`} />
+	<meta name="twitter:image:alt" content={`${post.title} · Israel Fernandez`} />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
@@ -100,8 +100,8 @@
 		<!-- Content -->
 		<article class="post-content">
 			<!-- post.content is first-party Markdown compiled to HTML at build time and
-			     sanitized with DOMPurify in src/lib/posts.ts (marked emits live HTML —
-			     including any inline event handlers/scripts in the source — so DOMPurify
+			     sanitized with DOMPurify in src/lib/posts.ts (marked emits live HTML,
+			     including any inline event handlers/scripts in the source, so DOMPurify
 			     is the control that makes this {@html} safe). Do NOT remove that sanitize
 			     step; it is the only thing preventing stored XSS from hostile Markdown. -->
 			{@html post.content}

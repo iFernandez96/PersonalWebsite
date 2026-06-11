@@ -22,12 +22,12 @@
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content="Israel Fernandez — writing on systems programming and security research" />
+	<meta property="og:image:alt" content="Israel Fernandez · writing on systems programming and security research" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
-	<meta name="twitter:image:alt" content="Israel Fernandez — writing on systems programming and security research" />
+	<meta name="twitter:image:alt" content="Israel Fernandez · writing on systems programming and security research" />
 	<link rel="alternate" type="application/rss+xml" title={title} href="/rss.xml" />
 </svelte:head>
 

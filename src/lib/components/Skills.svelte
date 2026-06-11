@@ -56,7 +56,7 @@
 			title: 'Security & Offensive',
 			color: 'var(--color-accent-amber)',
 			icon: 'shield',
-			description: 'The newest stuff here — and where most of my off-hours go right now.',
+			description: 'The newest stuff here, and where most of my off-hours go right now.',
 			skills: [
 				{ name: 'C2 / RAT design', tier: 'working' },
 				{ name: 'Network protocols', tier: 'working' },

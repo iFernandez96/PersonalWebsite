@@ -28,7 +28,7 @@
 			type: 'Contract',
 			color: 'var(--color-accent-cyan)',
 			description:
-				'Systems software, automation, and diagnostics across hardware platforms — bring-up, validation, the unglamorous integration work. It keeps me sharp on real silicon while the security side ramps up.',
+				'Systems software, automation, and diagnostics across hardware platforms: bring-up, validation, the unglamorous integration work. It keeps me sharp on real silicon while the security side ramps up.',
 			highlights: [
 				'Python diagnostic + automation tooling adopted across multiple hardware platforms',
 				'Triaged firmware-init and bring-up regressions with firmware and hardware teams',
@@ -45,7 +45,7 @@
 			type: 'Full-time',
 			color: 'var(--color-accent-indigo)',
 			description:
-				'Eight years at a defense AI startup — where I learned the low level for real: bare-metal firmware, kernel drivers, BSP customization, and real-time computer vision on custom embedded ARM hardware.',
+				'Eight years at a defense AI startup, where I learned the low level for real: bare-metal firmware, kernel drivers, BSP customization, and real-time computer vision on custom embedded ARM hardware.',
 			highlights: [
 				'Redesigned the detection pipeline\'s memory layout (cache-aware) to raise computer-vision throughput 40% on the ARM target',
 				'Diagnosed a thermal regression with the EE team, cutting thermal load 20%',

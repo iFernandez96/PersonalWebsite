@@ -136,7 +136,7 @@ p {
 	0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent); }
 	50% { box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-cyan) 80%, transparent); }
 }
-/* "Open to work" status dot ping (used in About.svelte). Defined globally — Svelte
+/* "Open to work" status dot ping (used in About.svelte). Defined globally. Svelte
    scopes component keyframes with a hash that Tailwind/animation refs can't match. */
 @keyframes status-pulse {
 	0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 60%, transparent); }

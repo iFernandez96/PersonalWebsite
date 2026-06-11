@@ -30,13 +30,13 @@
 		'Persistent PTY shell, SOCKS5 pivot, in-memory shellcode stager',
 		'HTML-smuggling dropper with XOR obfuscation',
 		'SQLite (WAL) persistence, SSE live operator dashboard',
-		'Reliability-tested: 581 tests — pytest unit/integration + Playwright E2E'
+		'Reliability-tested: 581 tests (pytest unit/integration + Playwright E2E)'
 	];
 
 	const featured: Project = {
 		title: 'BeaconUI: Educational C2 Framework',
 		oneLiner:
-			'Beacon-model command-and-control (C2) — the server-and-agent system used to control remote machines — with dual Python and C implants (29 and 28 task types), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
+			'Beacon-model command-and-control (C2): the server-and-agent system used to control remote machines. Dual Python and C implants (29 and 28 task types), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
 		outcome:
 			'29 Python + 28 C task types · mTLS + HMAC endpoints · AES-256-GCM · SOCKS5 pivot · HTML-smuggling dropper · in-memory shellcode stager',
 		stack: ['Python', 'C', 'Svelte 5', 'mTLS', 'SQLite', 'libcurl'],
@@ -62,7 +62,7 @@
 		{
 			title: 'CDN from First Principles',
 			oneLiner:
-				'A toy content delivery network with edge caching, origin pull, RFC 7234 cache validation, and geographic routing. No off-the-shelf parts — the only way I actually trust I understand the internals.',
+				'A toy content delivery network with edge caching, origin pull, RFC 7234 cache validation, and geographic routing. No off-the-shelf parts: the only way I actually trust I understand the internals.',
 			outcome:
 				'Origin-pull + edge cache · DNS-based geo routing · cache-control header parsing · invalidation API',
 			stack: ['Python', 'HTTP', 'DNS', 'Caching'],
@@ -402,7 +402,7 @@
 			0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 22%, transparent);
 	}
 	/* The amber corner glow reads as a dirty smudge on the near-white light bg
-	   (additive glow needs a dark field) — hide it in light, keep the shadow. */
+	   (additive glow needs a dark field); hide it in light, keep the shadow. */
 	:global(html[data-theme='light']) .beacon-glow {
 		opacity: 0;
 	}
