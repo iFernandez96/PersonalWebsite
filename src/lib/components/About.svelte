@@ -17,8 +17,7 @@
 </script>
 
 <section id="about" aria-labelledby="about-heading" class="py-16 md:py-24 px-6 lg:px-10">
-	<!-- Intimate narrower column for About -->
-	<div class="max-w-3xl mx-auto">
+	<div class="max-w-5xl mx-auto">
 		<div use:reveal={'heading'} class="mb-12">
 			<p class="font-mono text-[var(--color-text-muted)] text-[13px] tracking-[0.3em] mb-3">01 / ABOUT</p>
 			<h2 id="about-heading" class="text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)]" style="letter-spacing: -0.02em;">
