@@ -33,7 +33,7 @@
 					I'm moving into <span class="text-[var(--color-accent-amber)] font-semibold">Android security and red teaming</span>: the same instinct that drove the systems work, now pointed at where systems break instead of how they run. If it's low-level, I want to understand it well enough to take it apart.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-5">
-					I shipped my first Linux kernel module in 2018 and have worked low in the stack ever since: embedded firmware, kernel drivers, real-time computer vision on custom ARM hardware. Bootloader to user-space, hardware bring-up to field deployment. You can't reliably break a system you don't already know how to build.
+					I shipped my first Linux kernel module in 2018 and have worked low in the stack ever since: embedded firmware, kernel drivers, real-time computer vision on custom ARM hardware. Bootloader to user-space, hardware bring-up to field deployment. Knowing exactly how something is built turns out to be most of knowing how it falls over.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-8">
 					Today I'm at <a class="text-[var(--color-text-primary)] font-semibold underline underline-offset-2 hover:text-[var(--color-accent-cyan)] transition-colors" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>

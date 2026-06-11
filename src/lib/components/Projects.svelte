@@ -62,7 +62,7 @@
 		{
 			title: 'CDN from First Principles',
 			oneLiner:
-				'A toy content delivery network with edge caching, origin pull, RFC 7234 cache validation, and geographic routing. I built it to understand CDN internals without leaning on libraries.',
+				'A toy content delivery network with edge caching, origin pull, RFC 7234 cache validation, and geographic routing. No off-the-shelf parts — the only way I actually trust I understand the internals.',
 			outcome:
 				'Origin-pull + edge cache · DNS-based geo routing · cache-control header parsing · invalidation API',
 			stack: ['Python', 'HTTP', 'DNS', 'Caching'],

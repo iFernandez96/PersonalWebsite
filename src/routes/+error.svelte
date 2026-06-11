@@ -22,7 +22,7 @@
 			{page.error?.message ?? 'Something went wrong.'}
 		</p>
 		<p class="font-mono text-xs text-[var(--color-text-muted)] mb-10">
-			<span class="text-[var(--color-accent-cyan)]">//</span> the requested resource is not where it should be
+			<span class="text-[var(--color-accent-cyan)]">//</span> you hit a dead link, or I broke something — both are possible. head home, or poke around the writing.
 		</p>
 		<div class="flex flex-col sm:flex-row gap-3 justify-center">
 			<a

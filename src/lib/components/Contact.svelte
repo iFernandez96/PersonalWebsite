@@ -25,14 +25,13 @@
 		<div use:reveal={'heading'}>
 			<p class="font-mono text-[var(--color-text-muted)] text-xs tracking-[0.3em] mb-3">05 / CONTACT</p>
 			<h2 id="contact-heading" class="text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)] mb-6" style="letter-spacing: -0.02em;">
-				Get in touch
+				Let's talk
 			</h2>
 			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-3 max-w-xl mx-auto">
-				Open to <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span>, full-time.
-				Also up for systems, embedded, or anything low-level.
+				I'm hunting for <span class="text-[var(--color-accent-amber)] font-semibold">offensive security and red team roles</span>, full-time — also up for systems, embedded, or anything close to the metal. And if you just want to talk shop about kernels, C2 internals, or Android RE, I'll happily make time even if there's no job attached.
 			</p>
 			<p class="font-mono text-[13px] text-[var(--color-text-muted)] mb-12">
-				<span class="text-[var(--color-text-secondary)]">//</span> usually reply within 48h
+				<span class="text-[var(--color-text-secondary)]">//</span> a real note gets a real reply, usually within a day
 			</p>
 		</div>
 
@@ -65,6 +64,10 @@
 				</a>
 			{/each}
 		</div>
+
+		<p use:reveal={{ role: 'body', i: 3 }} class="font-mono text-[13px] text-[var(--color-text-muted)] mt-12">
+			<span class="text-[var(--color-accent-cyan)]">$</span> thanks for scrolling this far — Israel
+		</p>
 	</div>
 </section>
 
