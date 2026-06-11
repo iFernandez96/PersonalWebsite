@@ -183,28 +183,35 @@
 			<p
 				class="text-[var(--color-text-secondary)] text-base md:text-lg max-w-2xl mb-3 leading-relaxed opacity-0 animate-[fadeInUp_0.4s_ease_0.28s_forwards]"
 			>
-				Nine years writing systems software: embedded firmware, Linux kernel drivers, and computer vision on custom ARM hardware. Now I reverse-engineer Android binaries and build offensive tooling, because the most interesting bug is the one nobody knew was there.
+				Nine years writing systems software — embedded firmware, Linux kernel drivers, computer vision on custom ARM hardware. Now I point that same low-level depth at breaking things: reverse-engineering Android binaries and building offensive tooling. <span class="text-[var(--color-text-primary)] font-medium">You can't reliably break a system you don't already know how to build.</span>
 			</p>
 
 			<p
-				class="font-mono text-sm md:text-[15px] text-[var(--color-text-muted)] mb-9 opacity-0 animate-[fadeIn_0.35s_ease_0.4s_forwards]"
+				class="font-mono text-sm md:text-[15px] text-[var(--color-text-muted)] mb-5 opacity-0 animate-[fadeIn_0.35s_ease_0.4s_forwards]"
 			>
 				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day, offensive tooling and Android internals on my own time
 			</p>
 
+			<!-- Availability, surfaced above the fold next to the contact CTA -->
+			<p class="inline-flex items-center gap-2 font-mono text-[13px] text-[var(--color-accent-amber)] mb-7 opacity-0 animate-[fadeIn_0.35s_ease_0.45s_forwards]">
+				<span class="hero-status-dot" aria-hidden="true"></span>
+				Open to full-time red team &amp; offensive security roles
+			</p>
+
 			<div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_0.4s_ease_0.5s_forwards]">
 				<a
-					href="#projects"
+					href="mailto:israelfernandez96@gmail.com"
 					class="cta-primary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 				>
-					See projects
-					<svg class="w-4 h-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+					<svg class="w-4 h-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+					Get in touch
 				</a>
 				<a
-					href="/blog"
+					href="#projects"
 					class="cta-secondary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 				>
-					Read writing
+					See my work
+					<svg class="w-4 h-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 				</a>
 			</div>
 
@@ -348,6 +355,16 @@
 		vertical-align: text-bottom;
 		background: var(--color-accent-cyan);
 		animation: cursor-blink 1.06s steps(2) infinite;
+	}
+
+	.hero-status-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 9999px;
+		background: var(--color-accent-amber);
+		box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 70%, transparent);
+		animation: status-pulse 2.4s ease-out infinite;
+		flex-shrink: 0;
 	}
 
 	.cta-primary {

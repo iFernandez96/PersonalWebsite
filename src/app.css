@@ -32,20 +32,34 @@
    shadow @theme values; Tailwind utilities resolve at runtime via cascade. */
 html[data-theme='light'] {
 	--color-bg-primary: #fafafa;
-	--color-bg-secondary: #f1f4f9;
-	--color-bg-surface: #e7ecf3;
-	--color-bg-elevated: #d6dde8;
+	/* Recessed surfaces run cooler/deeper than the dark theme's near-equal steps
+	   so the elevated content band and cards actually read against the white base. */
+	--color-bg-secondary: #e8edf5;
+	--color-bg-surface: #dde4ef;
+	--color-bg-elevated: #cad5e3;
 	--color-accent-cyan: #0369a1;
 	--color-accent-indigo: #4f46e5;
 	--color-accent-amber: #b45309;
 	--color-text-primary: #0b1220;
 	--color-text-secondary: #475569;
 	--color-text-muted: #5a6a80;
-	--color-border: #cbd5e1;
+	--color-border: #c3cfdd;
 	--surface-tint: rgba(0, 0, 0, 0.04);
 	--surface-tint-strong: rgba(0, 0, 0, 0.10);
 	--surface-tint-soft: rgba(0, 0, 0, 0.025);
 }
+
+/* === Light-theme elevation ===
+   Dark mode lifts cards by making them brighter than the band; light mode can't
+   go brighter than white, so it uses shadow + a deeper recessed band instead.
+   :where() keeps these at near-zero specificity so per-card hover states win. */
+html[data-theme='light'] :where(.skill-card, .exp-card, .quiet-card) {
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 20px -10px rgba(15, 23, 42, 0.16);
+}
+/* Bracket the elevated Skills→Experience→Projects band with hairlines, where the
+   background step alone is too quiet to register as a section change. */
+html[data-theme='light'] #skills { border-top: 1px solid var(--color-border); }
+html[data-theme='light'] #projects { border-bottom: 1px solid var(--color-border); }
 
 html {
 	scroll-behavior: smooth;

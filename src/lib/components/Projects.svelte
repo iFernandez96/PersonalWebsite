@@ -162,13 +162,7 @@
 		<div use:reveal={'body'} class="mb-14">
 			<article
 				class="beacon-showcase relative rounded-xl border overflow-hidden"
-				style="
-					background: var(--color-bg-primary);
-					border-color: color-mix(in srgb, var(--color-accent-amber) 25%, transparent);
-					box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 10%, transparent);
-					--beacon-mx: 50%;
-					--beacon-my: 50%;
-				"
+				style="--beacon-mx: 50%; --beacon-my: 50%;"
 				aria-label="Featured project: {featured.title}"
 			>
 				<!-- Amber radial glow from bottom-right corner (decorative) -->
@@ -364,6 +358,14 @@
 <style>
 	/* ===== BeaconUI showcase ===== */
 
+	/* Visual props live here (not inline) so the light theme can override them.
+	   Dark: deep drop shadow + amber hairline ring on the near-black panel. */
+	.beacon-showcase {
+		background: var(--color-bg-primary);
+		border-color: color-mix(in srgb, var(--color-accent-amber) 25%, transparent);
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 10%, transparent);
+	}
+
 	/* Pointer spotlight: amber radial via CSS vars, only on fine-pointer hover devices */
 	.beacon-spotlight {
 		border-radius: inherit;
@@ -391,8 +393,13 @@
 		color: var(--card-color);
 	}
 
+	/* Light: the dark glow can't read on white, so the flagship keeps its charge
+	   with a warm amber tint fill + an amber-tinted lift shadow instead. */
 	:global(html[data-theme='light']) .beacon-showcase {
-		box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 10%, transparent);
+		background: color-mix(in srgb, var(--color-accent-amber) 4%, var(--color-bg-primary));
+		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05),
+			0 22px 48px -16px color-mix(in srgb, var(--color-accent-amber) 35%, transparent),
+			0 0 0 1px color-mix(in srgb, var(--color-accent-amber) 22%, transparent);
 	}
 	/* The amber corner glow reads as a dirty smudge on the near-white light bg
 	   (additive glow needs a dark field) — hide it in light, keep the shadow. */
