@@ -1,8 +1,9 @@
-# Cloudflare Web Analytics is edge-injected; these two allowances let its beacon
-# (static.cloudflareinsights.com) load and POST RUM data (cloudflareinsights.com).
-# Everything else stays 'self'-only.
+# Strict first-party-only CSP — no third-party scripts at all. Cloudflare Web
+# Analytics edge-injection is suppressed via `no-transform` on the HTML routes
+# below (Cloudflare can't rewrite a response it's told not to transform), so
+# there's no beacon to allow here and nothing for tracking-blockers to error on.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -17,11 +18,11 @@
 
 # Prerendered HTML — always revalidate so stale headers/JSON-LD aren't served
 /
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
 /blog
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
 /blog/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
 
 # Resume — short cache, not indexed
 /IsraelFernandezResume.pdf
