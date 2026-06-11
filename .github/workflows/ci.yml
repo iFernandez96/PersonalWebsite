@@ -29,7 +29,9 @@ jobs:
         run: npm run check
 
       - name: Unit tests
-        run: npx vitest run
+        # No unit tests yet (a11y/e2e coverage lives in the Playwright step below);
+        # --passWithNoTests keeps the gate green instead of erroring on an empty run.
+        run: npx vitest run --passWithNoTests
 
       - name: Build
         run: npm run build
