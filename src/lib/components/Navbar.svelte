@@ -104,6 +104,7 @@
 	<div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
 		<a
 			href={isBlogRoute ? '/' : '#hero'}
+			aria-label="Israel Fernandez — home"
 			class="font-mono text-[var(--color-accent-cyan)] font-semibold text-lg tracking-wider hover:opacity-80 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] focus-visible:rounded-sm"
 		>
 			IF<span class="text-[var(--color-text-secondary)]">:/</span>

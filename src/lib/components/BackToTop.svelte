@@ -33,7 +33,7 @@
 	onclick={scrollTop}
 	aria-label="Back to top"
 	tabindex={visible ? 0 : -1}
-	class="back-to-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full border flex items-center justify-center"
+	class="back-to-top fixed z-40 w-11 h-11 rounded-full border flex items-center justify-center"
 	class:is-visible={visible}
 	style="background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent); border-color: var(--color-bg-elevated); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--color-accent-cyan);"
 >
@@ -44,6 +44,9 @@
 
 <style>
 	.back-to-top {
+		/* keep clear of the iOS home indicator / rounded corners */
+		bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+		right: calc(1.5rem + env(safe-area-inset-right, 0px));
 		opacity: 0;
 		transform: translateY(16px);
 		pointer-events: none;

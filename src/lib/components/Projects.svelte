@@ -36,7 +36,7 @@
 	const featured: Project = {
 		title: 'BeaconUI: Educational C2 Framework',
 		oneLiner:
-			'Beacon-model C2 with dual Python and C implants (29 and 28 task types), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
+			'Beacon-model command-and-control (C2) — the server-and-agent system used to control remote machines — with dual Python and C implants (29 and 28 task types), mTLS transport, AES-256-GCM encryption, a Svelte operator dashboard, and a from-scratch shellcode stager. I built it to understand modern C2 architecture at every layer.',
 		outcome:
 			'29 Python + 28 C task types · mTLS + HMAC endpoints · AES-256-GCM · SOCKS5 pivot · HTML-smuggling dropper · in-memory shellcode stager',
 		stack: ['Python', 'C', 'Svelte 5', 'mTLS', 'SQLite', 'libcurl'],
@@ -352,7 +352,7 @@
 				rel="noopener noreferrer"
 				class="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors text-sm"
 			>
-				More on GitHub
+				See all repos
 				<svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
 					<path d="M7 17l9.2-9.2M17 17V7H7" />
 				</svg>

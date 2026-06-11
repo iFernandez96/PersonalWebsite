@@ -54,6 +54,7 @@
 					href={link.href}
 					target="_blank"
 					rel="noopener noreferrer"
+					aria-label="{link.label} profile (opens in new tab)"
 					class="contact-link inline-flex items-center gap-2.5 px-6 py-3 rounded-md border font-mono text-[15px]"
 					style="border-color: var(--color-border); background: var(--color-bg-secondary); --link-color: {link.color};"
 				>
@@ -109,9 +110,10 @@
 			Built with <span style="color: var(--color-text-secondary);">SvelteKit</span> + Tailwind · © {new Date().getFullYear()} Israel Fernandez
 		</p>
 		<a
-			href="https://github.com/iFernandez96"
+			href="https://github.com/iFernandez96/PersonalWebsite"
 			target="_blank"
 			rel="noopener noreferrer"
+			aria-label="View this site's source on GitHub (opens in new tab)"
 			class="font-mono text-xs text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors inline-flex items-center gap-1.5"
 		>
 			View source

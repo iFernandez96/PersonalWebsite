@@ -204,7 +204,7 @@
 					href="/blog"
 					class="cta-secondary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 				>
-					Read my writing
+					Read writing
 				</a>
 			</div>
 
@@ -328,6 +328,16 @@
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 		color: transparent; /* fallback before clip applies */
+	}
+	/* Forced-colors / high-contrast disables background images, which would leave
+	   the gradient-clipped surname painted in transparent ink (invisible). Revert
+	   to a solid system color there. */
+	@media (forced-colors: active) {
+		.hero-surname {
+			background: none;
+			-webkit-text-fill-color: revert;
+			color: revert;
+		}
 	}
 
 	.type-cursor {

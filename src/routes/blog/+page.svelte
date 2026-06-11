@@ -36,7 +36,7 @@
 <main id="main-content" class="min-h-screen pt-28 pb-20 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto">
 		<header class="mb-14">
-			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">/ WRITING</p>
+			<p class="font-mono text-[var(--color-accent-cyan)] text-xs tracking-[0.3em] mb-3">// WRITING</p>
 			<h1 class="text-5xl md:text-6xl font-medium text-[var(--color-text-primary)] mb-4" style="letter-spacing: -0.04em; line-height: 1;">
 				Writing
 			</h1>
