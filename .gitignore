@@ -26,9 +26,17 @@ vite.config.ts.timestamp-*
 *.png
 *.jpg
 *.jpeg
+# but track production assets shipped from /static
+!static/*.png
+!static/*.jpg
+!static/*.jpeg
 
 # Root-level PDFs (resume lives in static/)
 /*.pdf
+
+# Dev switcher worktrees
+.worktrees/
+static/_dev-switcher.html
 
 # Tooling / AI context
 CLAUDE.md.Backup
@@ -36,3 +44,7 @@ CLAUDE.md.Backup
 .mcp.json
 .playwright-mcp/
 socialMedia.txt
+
+# Playwright
+/test-results/
+/playwright-report/

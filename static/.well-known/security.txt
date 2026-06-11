@@ -1,0 +1,4 @@
+Contact: mailto:israelfernandez96@gmail.com
+Expires: 2027-06-09T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://israel-fernandez.com/.well-known/security.txt

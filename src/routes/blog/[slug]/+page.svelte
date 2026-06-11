@@ -1,68 +1,95 @@
 <script lang="ts">
-	import { getPost, formatDate } from '$lib/posts';
+	import { formatDate } from '$lib/posts';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
+	import ReadingProgress from '$lib/components/ReadingProgress.svelte';
 	import { page } from '$app/state';
-	import { error } from '@sveltejs/kit';
+	import type { PageData } from './$types';
 
-	const post = getPost(page.params.slug ?? '');
-	if (!post) error(404, 'Post not found');
+	let { data }: { data: PageData } = $props();
+	const post = $derived(data.post);
 </script>
 
 <svelte:head>
-	<title>{post!.title} — Israel Fernandez</title>
-	<meta name="description" content={post!.summary} />
+	<title>{post.title} | Israel Fernandez</title>
+	<meta name="description" content={post.summary} />
 	<meta name="robots" content="index, follow" />
 	<link rel="canonical" href={`https://israel-fernandez.com/blog/${page.params.slug}`} />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={`${post!.title} — Israel Fernandez`} />
-	<meta property="og:description" content={post!.summary} />
+	<meta property="og:title" content={`${post.title} | Israel Fernandez`} />
+	<meta property="og:description" content={post.summary} />
 	<meta property="og:url" content={`https://israel-fernandez.com/blog/${page.params.slug}`} />
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content={`${post!.title} — Israel Fernandez`} />
-	<meta name="twitter:description" content={post!.summary} />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content={`${post.title} — Israel Fernandez`} />
+	<meta property="article:published_time" content={post.date} />
+	<meta property="article:author" content="Israel Fernandez" />
+	{#each post.tags as tag (tag)}
+		<meta property="article:tag" content={tag} />
+	{/each}
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={`${post.title} | Israel Fernandez`} />
+	<meta name="twitter:description" content={post.summary} />
+	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta name="twitter:image:alt" content={`${post.title} — Israel Fernandez`} />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": post.title,
+		"datePublished": post.date,
+		"author": { "@type": "Person", "name": "Israel Fernandez", "url": "https://israel-fernandez.com/" },
+		"description": post.summary,
+		"keywords": post.tags.join(", "),
+		"url": `https://israel-fernandez.com/blog/${post.slug}`,
+		"mainEntityOfPage": { "@type": "WebPage", "@id": `https://israel-fernandez.com/blog/${post.slug}` },
+		"image": "https://israel-fernandez.com/og-image.png"
+	}).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
+<ReadingProgress />
 <Navbar />
 
-<main class="min-h-screen pt-24 pb-20 px-6 lg:px-10">
+<main id="main-content" class="min-h-screen pt-28 pb-20 px-6 lg:px-10">
 	<div class="max-w-3xl mx-auto">
 
 		<!-- Back link -->
 		<a
 			href="/blog"
-			class="inline-flex items-center gap-1.5 font-mono text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors mb-10"
+			class="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--color-text-muted)] hover:text-[var(--color-accent-cyan)] transition-colors mb-10"
 		>
-			<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+			<svg class="w-3.5 h-3.5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
 				<path d="M19 12H5M12 5l-7 7 7 7" />
 			</svg>
 			All posts
 		</a>
 
 		<!-- Header -->
-		<header class="mb-10">
-			<div class="flex flex-wrap items-center gap-3 mb-4">
-				<time class="font-mono text-xs text-[var(--color-text-muted)]">{formatDate(post!.date)}</time>
+		<header class="mb-12">
+			<div class="flex flex-wrap items-center gap-3 mb-5">
+				<time class="font-mono text-xs text-[var(--color-text-muted)]">{formatDate(post.date)}</time>
 				<span class="text-[var(--color-text-muted)] text-xs">·</span>
-				<span class="font-mono text-xs text-[var(--color-text-muted)]">{post!.readTime} min read</span>
+				<span class="font-mono text-xs text-[var(--color-text-muted)]">{post.readTime} min read</span>
 			</div>
 
 			<h1
-				class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-6 leading-tight"
-				style="letter-spacing: -0.02em;"
+				class="text-4xl md:text-5xl lg:text-6xl font-medium text-[var(--color-text-primary)] mb-6 leading-[1.05]"
+				style="letter-spacing: -0.03em;"
 			>
-				{post!.title}
+				{post.title}
 			</h1>
 
-			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-6">
-				{post!.summary}
+			<p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-6 max-w-2xl">
+				{post.summary}
 			</p>
 
 			<div class="flex flex-wrap gap-2 pb-8 border-b" style="border-color: var(--color-border);">
-				{#each post!.tags as tag (tag)}
+				{#each post.tags as tag (tag)}
 					<span
-						class="px-2.5 py-1 rounded text-xs font-mono border"
-						style="color: var(--color-accent-cyan); border-color: rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);"
+						class="px-2.5 py-1 rounded text-[11px] font-mono"
+						style="color: var(--color-accent-cyan); border: 1px solid color-mix(in srgb, var(--color-accent-cyan) 20%, transparent); background: color-mix(in srgb, var(--color-accent-cyan) 5%, transparent);"
 					>
 						{tag}
 					</span>
@@ -72,7 +99,12 @@
 
 		<!-- Content -->
 		<article class="post-content">
-			{@html post!.content}
+			<!-- post.content is first-party Markdown compiled to HTML at build time and
+			     sanitized with DOMPurify in src/lib/posts.ts (marked emits live HTML —
+			     including any inline event handlers/scripts in the source — so DOMPurify
+			     is the control that makes this {@html} safe). Do NOT remove that sanitize
+			     step; it is the only thing preventing stored XSS from hostile Markdown. -->
+			{@html post.content}
 		</article>
 
 		<!-- Footer nav -->
@@ -169,7 +201,7 @@
 		font-family: var(--font-mono);
 		font-size: 0.875em;
 		color: var(--color-accent-cyan);
-		background: rgba(34, 211, 238, 0.08);
+		background: color-mix(in srgb, var(--color-accent-cyan) 8%, transparent);
 		padding: 0.1em 0.35em;
 		border-radius: 3px;
 	}
@@ -190,7 +222,7 @@
 		color: var(--color-accent-cyan);
 		text-decoration: underline;
 		text-underline-offset: 3px;
-		text-decoration-color: rgba(34, 211, 238, 0.4);
+		text-decoration-color: color-mix(in srgb, var(--color-accent-cyan) 40%, transparent);
 	}
 
 	:global(.post-content a:hover) {

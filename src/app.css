@@ -1,54 +1,107 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+/* Subset to /latin only to keep font payload tight (English-only site). */
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/inter/latin-600.css';
+@import '@fontsource/inter/latin-700.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-600.css';
 
+/* Default theme = dark. Tokens are also exposed as Tailwind theme variables
+   so utilities like text-[var(--color-bg-primary)] still resolve. */
 @theme {
 	--color-bg-primary: #080d1a;
-	--color-bg-secondary: #0f172a;
-	--color-bg-surface: #1e293b;
-	--color-bg-elevated: #253347;
+	--color-bg-secondary: #0d1424;
+	--color-bg-surface: #111a2e;
+	--color-bg-elevated: #1b2740;
 	--color-accent-cyan: #22d3ee;
-	--color-accent-blue: #60a5fa;
 	--color-accent-indigo: #818cf8;
-	--color-text-primary: #e2e8f0;
+	--color-accent-amber: #f59e0b;
+	--color-text-primary: #e7ecf3;
 	--color-text-secondary: #94a3b8;
-	--color-text-muted: #64748b;
-	--color-border: #1e293b;
-	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+	--color-text-muted: #8694a8;
+	--color-border: #1f2a44;
+	--surface-tint: rgba(255, 255, 255, 0.05);
+	--surface-tint-strong: rgba(255, 255, 255, 0.10);
+	--surface-tint-soft: rgba(255, 255, 255, 0.04);
+	--font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
+
+/* Light theme, explicit override on html[data-theme="light"]. The tokens
+   shadow @theme values; Tailwind utilities resolve at runtime via cascade. */
+html[data-theme='light'] {
+	--color-bg-primary: #fafafa;
+	/* Recessed surfaces run cooler/deeper than the dark theme's near-equal steps
+	   so the elevated content band and cards actually read against the white base. */
+	--color-bg-secondary: #e8edf5;
+	--color-bg-surface: #dde4ef;
+	--color-bg-elevated: #cad5e3;
+	--color-accent-cyan: #0369a1;
+	--color-accent-indigo: #4f46e5;
+	--color-accent-amber: #b45309;
+	--color-text-primary: #0b1220;
+	--color-text-secondary: #475569;
+	--color-text-muted: #5a6a80;
+	--color-border: #c3cfdd;
+	--surface-tint: rgba(0, 0, 0, 0.04);
+	--surface-tint-strong: rgba(0, 0, 0, 0.10);
+	--surface-tint-soft: rgba(0, 0, 0, 0.025);
+}
+
+/* === Light-theme elevation ===
+   Dark mode lifts cards by making them brighter than the band; light mode can't
+   go brighter than white, so it uses shadow + a deeper recessed band instead.
+   :where() keeps these at near-zero specificity so per-card hover states win. */
+html[data-theme='light'] :where(.skill-card, .exp-card, .quiet-card) {
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 20px -10px rgba(15, 23, 42, 0.16);
+}
+/* Bracket the elevated Skills→Experience→Projects band with hairlines, where the
+   background step alone is too quiet to register as a section change. */
+html[data-theme='light'] #skills { border-top: 1px solid var(--color-border); }
+html[data-theme='light'] #projects { border-bottom: 1px solid var(--color-border); }
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: 72px;
+	scroll-padding-top: 80px;
 	-webkit-text-size-adjust: 100%;
 	scrollbar-color: var(--color-bg-elevated) var(--color-bg-primary);
 	scrollbar-width: thin;
+	color-scheme: dark;
+	transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html[data-theme='light'] {
+	color-scheme: light;
+}
+
+/* Light-theme hero adjustments: grid lines need a bit more contrast
+   against a near-white background since the accent cyan is darker. */
+html[data-theme='light'] .hero-grid {
+	opacity: 0.7;
+}
+html[data-theme='light'] .hero-scanline {
+	opacity: 0.5;
 }
 
 body {
 	background-color: var(--color-bg-primary);
 	color: var(--color-text-primary);
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-family: var(--font-sans);
+	font-feature-settings: 'cv11', 'ss01', 'ss03';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow-x: clip; /* clip unlike hidden does not create a BFC/scroll container — preserves Firefox APZ compositor scrolling */
-	/* text-rendering: optimizeLegibility is intentionally omitted — it's slow in Firefox */
+	overflow-x: clip;
+	line-height: 1.55;
 }
 
-::-webkit-scrollbar {
-	width: 8px;
-}
-::-webkit-scrollbar-track {
-	background: var(--color-bg-primary);
-}
-::-webkit-scrollbar-thumb {
-	background: var(--color-bg-elevated);
-	border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-	background: var(--color-accent-cyan);
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--color-bg-elevated); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-cyan); }
 
 ::selection {
-	background: rgba(34, 211, 238, 0.25);
+	background: color-mix(in srgb, var(--color-accent-cyan) 25%, transparent);
 	color: var(--color-text-primary);
 }
 
@@ -58,36 +111,182 @@ body {
 	border-radius: 2px;
 }
 
+/* Typographic polish: balance multi-line headings, avoid prose orphans. */
+h1, h2, h3 {
+	text-wrap: balance;
+}
+p {
+	text-wrap: pretty;
+}
+
+/* Hero stagger animations (existing) */
 @keyframes fadeInDown {
-	from { opacity: 0; transform: translate3d(0, -20px, 0); }
+	from { opacity: 0; transform: translate3d(0, -16px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fadeInUp {
-	from { opacity: 0; transform: translate3d(0, 20px, 0); }
+	from { opacity: 0; transform: translate3d(0, 16px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fadeIn {
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
-@keyframes scrollLine {
-	0% { transform: translate3d(0, -100%, 0); }
-	100% { transform: translate3d(0, 200%, 0); }
-}
 @keyframes pulse-glow {
-	0%, 100% { box-shadow: 0 0 6px rgba(34,211,238,0.4); }
-	50% { box-shadow: 0 0 14px rgba(34,211,238,0.8); }
+	0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent); }
+	50% { box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-cyan) 80%, transparent); }
+}
+/* "Open to work" status dot ping (used in About.svelte). Defined globally — Svelte
+   scopes component keyframes with a hash that Tailwind/animation refs can't match. */
+@keyframes status-pulse {
+	0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 60%, transparent); }
+	70% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
+	100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-amber) 0%, transparent); }
 }
 @keyframes cursor-blink {
 	0%, 49% { opacity: 1; }
 	50%, 100% { opacity: 0; }
 }
+@keyframes scrollChevronBounce {
+	0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.6; }
+	50% { transform: translate3d(0, 6px, 0); opacity: 1; }
+}
 
+/* Hero scanline: one-shot sweep top→bottom, forwards, no loop */
+@keyframes scanline-sweep {
+	from { transform: translate3d(0, -100%, 0); opacity: 0.18; }
+	60%  { opacity: 0.22; }
+	to   { transform: translate3d(0, 100vh, 0); opacity: 0; }
+}
+
+/* Section reveal system, role-varied IO-triggered (add .in-view on intersection).
+   Base state: hidden. .in-view triggers the entrance. */
+
+/* Heading: rises taller, slightly slower */
+@keyframes rv-heading-in {
+	from { opacity: 0; transform: translate3d(0, 24px, 0); }
+	to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+/* Body text: softer lift */
+@keyframes rv-body-in {
+	from { opacity: 0; transform: translate3d(0, 12px, 0); }
+	to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+/* Card: slight scale settle + lift, staggered by --i */
+@keyframes rv-card-in {
+	from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.97); }
+	to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+/* Line: draws in top→bottom (used by the Experience timeline rule) */
+@keyframes rv-line-in {
+	from { opacity: 0; transform: scaleY(0); }
+	to   { opacity: 1; transform: scaleY(1); }
+}
+
+/* Base hidden state, before JS adds .in-view */
+.rv {
+	opacity: 0;
+}
+.rv.rv-heading {
+	animation: rv-heading-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+}
+.rv.rv-body {
+	animation: rv-body-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+	animation-delay: 80ms;
+}
+.rv.rv-card {
+	animation: rv-card-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+	/* stagger: base 80ms + 60ms * index */
+	animation-delay: calc(80ms + var(--i, 0) * 60ms);
+}
+.rv.rv-line {
+	transform-origin: top center;
+	animation: rv-line-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-play-state: paused;
+}
+
+/* Trigger: when JS adds .in-view, play the animation */
+.rv.in-view {
+	animation-play-state: running;
+}
+
+/* Legacy CSS-only reveal kept for compatibility with any remaining usages */
+@keyframes revealUp {
+	from { opacity: 0; transform: translate3d(0, 12px, 0); }
+	to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.reveal {
+	animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Reduced motion, kill everything animated */
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after {
 		animation-duration: 0.001ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.001ms !important;
 		scroll-behavior: auto !important;
+	}
+	/* Ensure rv elements are visible even though animation is crushed */
+	.rv { opacity: 1 !important; }
+}
+
+/* JS-disabled fallback */
+@media (scripting: none) {
+	.reveal,
+	.rv {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+	}
+}
+
+/* Centered gradient hairline divider, one subtle accent between loud boundaries */
+.section-divider {
+	height: 1px;
+	background: linear-gradient(
+		to right,
+		transparent 0%,
+		color-mix(in srgb, var(--color-accent-cyan) 30%, transparent) 30%,
+		color-mix(in srgb, var(--color-accent-indigo) 30%, transparent) 70%,
+		transparent 100%
+	);
+	margin: 0 auto;
+	max-width: 48rem;
+}
+
+/* Skip rendering off-screen sections until scrolled into view (paint perf).
+   intrinsic-size is the pre-render height estimate; too-low values cause a CLS
+   jump when a taller section first paints, so the dense sections get larger ones. */
+section[id]:not(#hero) {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 700px;
+}
+#experience, #projects {
+	contain-intrinsic-size: auto 1100px;
+}
+
+@media print, (prefers-reduced-data: reduce) {
+	section[id] {
+		content-visibility: visible !important;
+	}
+}
+
+/* View Transitions API */
+@view-transition {
+	navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.25s;
+	animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation: none !important;
 	}
 }

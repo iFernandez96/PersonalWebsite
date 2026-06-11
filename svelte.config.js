@@ -4,10 +4,17 @@ import adapter from '@sveltejs/adapter-cloudflare';
 const config = {
 	compilerOptions: {
 		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
-		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
+		runes: ({ filename }) => {
+			const parts = filename.split(/[/\\]/);
+			if (parts.includes('node_modules')) return undefined;
+			return true;
+		}
 	},
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		// Inline CSS chunks below 8KB into the HTML so first paint doesn't wait
+		// on a separate roundtrip. Above this we let the browser cache it.
+		inlineStyleThreshold: 8192
 	}
 };
 

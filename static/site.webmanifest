@@ -1,0 +1,23 @@
+{
+  "name": "Israel Fernandez — Systems & Security Engineer",
+  "short_name": "I. Fernandez",
+  "description": "Systems software engineer pivoting to Android security and red teaming.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080d1a",
+  "theme_color": "#080d1a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "maskable"
+    }
+  ]
+}

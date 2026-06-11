@@ -8,9 +8,9 @@
 	import Contact from '$lib/components/Contact.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 
-	const title = 'Israel Fernandez — Systems Software Engineer';
+	const title = 'Israel Fernandez | Systems & Security Engineer';
 	const description =
-		'Israel Fernandez — systems software engineer specializing in embedded, Linux internals, and Android security. Currently at Apple (via Sasken).';
+		'Systems software engineer (9 years embedded, kernel, ARM) pivoting to Android security and red teaming. Currently at Apple. Open to full-time offensive security roles.';
 </script>
 
 <svelte:head>
@@ -23,29 +23,50 @@
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://israel-fernandez.com/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:image" content="https://israel-fernandez.com/og-image.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Israel Fernandez, Systems Software Engineer pivoting to Android security and red team" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://israel-fernandez.com/og-image.png" />
+	<link rel="alternate" type="application/rss+xml" title="Israel Fernandez | Writing" href="/rss.xml" />
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "Person",
 		"name": "Israel Fernandez",
 		"url": "https://israel-fernandez.com/",
-		"jobTitle": "Systems Software Engineer",
+		"jobTitle": "Systems & Security Engineer",
 		"sameAs": [
 			"https://github.com/iFernandez96",
 			"https://www.linkedin.com/in/ifernandez96/"
 		]
-	})}</script>`}
+	}).replace(/</g, '\\u003c')}</script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": "Israel Fernandez",
+		"url": "https://israel-fernandez.com/",
+		"author": {
+			"@type": "Person",
+			"name": "Israel Fernandez",
+			"url": "https://israel-fernandez.com/"
+		}
+	}).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
 <Navbar />
-<main>
+<main id="main-content">
 	<Hero />
 	<About />
 	<Skills />
 	<Experience />
 	<Projects />
+	<!-- Gradient hairline divider: closing punctuation as the elevated content band returns to base before Contact -->
+	<div class="section-divider" aria-hidden="true"></div>
 	<Contact />
 </main>
 <BackToTop />

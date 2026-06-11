@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
+	import ThemeToggle from './ThemeToggle.svelte';
 
 	const sectionIds = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
 
@@ -79,20 +80,31 @@
 </script>
 
 <a
-	href={isBlogRoute ? '/' : '#hero'}
+	href="#main-content"
 	class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded focus:bg-[var(--color-bg-surface)] focus:text-[var(--color-accent-cyan)] focus:outline focus:outline-2 focus:outline-[var(--color-accent-cyan)]"
 >
 	Skip to content
 </a>
 
+<!-- Mobile menu backdrop: dims the page behind the open accordion and closes on tap -->
+{#if menuOpen}
+	<button
+		class="md:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+		aria-label="Close menu"
+		tabindex="-1"
+		onclick={closeMenu}
+	></button>
+{/if}
+
 <nav
 	class="nav fixed top-0 left-0 right-0 z-50"
-	class:nav-scrolled={scrolled}
+	class:nav-scrolled={scrolled || menuOpen}
 	aria-label="Primary"
 >
 	<div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
 		<a
 			href={isBlogRoute ? '/' : '#hero'}
+			aria-label="Israel Fernandez — home"
 			class="font-mono text-[var(--color-accent-cyan)] font-semibold text-lg tracking-wider hover:opacity-80 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] focus-visible:rounded-sm"
 		>
 			IF<span class="text-[var(--color-text-secondary)]">:/</span>
@@ -107,7 +119,7 @@
 						{href}
 						class="nav-link text-sm tracking-wide relative pb-0.5"
 						class:is-active={isActive}
-						aria-current={isActive ? 'location' : undefined}
+						aria-current={isActive ? 'true' : undefined}
 					>
 						{label}
 						<span class="nav-underline" aria-hidden="true"></span>
@@ -127,31 +139,38 @@
 			</li>
 		</ul>
 
-		<a
-			href="/IsraelFernandezResume.pdf"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="hidden md:inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-accent-cyan)] text-[var(--color-accent-cyan)] text-sm rounded hover:bg-[rgba(34,211,238,0.1)] transition-colors duration-200 font-mono focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
-		>
-			Resume
-		</a>
+		<div class="hidden md:flex items-center gap-2">
+			<ThemeToggle />
+			<a
+				href="/IsraelFernandezResume.pdf"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Resume (opens in new tab)"
+				class="resume-btn inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-accent-cyan)] text-[var(--color-accent-cyan)] text-sm rounded transition-colors duration-200 font-mono focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
+			>
+				Resume
+			</a>
+		</div>
 
-		<!-- Mobile hamburger -->
-		<button
-			class="md:hidden text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] rounded-sm"
-			onclick={() => (menuOpen = !menuOpen)}
-			aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-			aria-expanded={menuOpen}
-			aria-controls="mobile-menu"
-		>
-			<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-				{#if menuOpen}
-					<path d="M18 6L6 18M6 6l12 12" />
-				{:else}
-					<path d="M4 6h16M4 12h16M4 18h16" />
-				{/if}
-			</svg>
-		</button>
+		<!-- Mobile theme + hamburger -->
+		<div class="md:hidden flex items-center gap-1">
+			<ThemeToggle />
+			<button
+				class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent-cyan)] rounded-sm p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+				onclick={() => (menuOpen = !menuOpen)}
+				aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+				aria-expanded={menuOpen}
+				aria-controls="mobile-menu"
+			>
+				<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+					{#if menuOpen}
+						<path d="M18 6L6 18M6 6l12 12" />
+					{:else}
+						<path d="M4 6h16M4 12h16M4 18h16" />
+					{/if}
+				</svg>
+			</button>
+		</div>
 	</div>
 
 	<!-- Mobile menu -->
@@ -169,10 +188,10 @@
 						<a
 							{href}
 							onclick={closeMenu}
-							class="block py-1 transition-colors"
+							class="block py-3 transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 							class:text-[var(--color-accent-cyan)]={isActive}
 							class:text-[var(--color-text-secondary)]={!isActive}
-							aria-current={isActive ? 'location' : undefined}
+							aria-current={isActive ? 'true' : undefined}
 						>
 							{label}
 						</a>
@@ -182,7 +201,7 @@
 					<a
 						href="/blog"
 						onclick={closeMenu}
-						class="block py-1 transition-colors"
+						class="block py-3 transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 						class:text-[var(--color-accent-cyan)]={isBlogRoute}
 						class:text-[var(--color-text-secondary)]={!isBlogRoute}
 						aria-current={isBlogRoute ? 'page' : undefined}
@@ -195,8 +214,9 @@
 						href="/IsraelFernandezResume.pdf"
 						target="_blank"
 						rel="noopener noreferrer"
+						aria-label="Resume (opens in new tab)"
 						onclick={closeMenu}
-						class="text-[var(--color-accent-cyan)] font-mono"
+						class="block py-3 text-[var(--color-accent-cyan)] font-mono rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
 					>
 						Resume
 					</a>
@@ -213,10 +233,14 @@
 		transition: background-color 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
 	}
 	.nav-scrolled {
-		background: rgba(8, 13, 26, 0.85);
+		background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
-		border-bottom-color: rgba(30, 41, 59, 0.8);
+		border-bottom-color: color-mix(in srgb, var(--color-border) 80%, transparent);
+	}
+
+	.resume-btn:hover {
+		background: color-mix(in srgb, var(--color-accent-cyan) 12%, transparent);
 	}
 
 	.nav-link {

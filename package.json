@@ -3,6 +3,9 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"engines": {
+		"node": ">=20.19"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -12,9 +15,13 @@
 		"cf-typegen": "wrangler types",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:unit": "vitest run"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.11.3",
+		"@lhci/cli": "^0.15.1",
+		"@playwright/test": "^1.60.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
@@ -24,6 +31,14 @@
 		"tailwindcss": "^4.2.4",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7",
+		"vitest": "^4.1.8",
 		"wrangler": "^4.68.0"
+	},
+	"dependencies": {
+		"@fontsource/inter": "^5.2.8",
+		"@fontsource/jetbrains-mono": "^5.2.8",
+		"isomorphic-dompurify": "^3.16.0",
+		"marked": "^18.0.3",
+		"marked-smartypants": "^1.1.12"
 	}
 }
