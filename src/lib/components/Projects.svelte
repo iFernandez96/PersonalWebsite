@@ -26,7 +26,7 @@
 
 	const beaconFeatures = [
 		'mTLS transport with HMAC-SHA256-derived endpoints',
-		'Cross-platform C implant: Linux, macOS, Windows',
+		'Cross-platform C implant: Linux, Windows',
 		'Persistent PTY shell, SOCKS5 pivot, in-memory shellcode stager',
 		'HTML-smuggling dropper with XOR obfuscation',
 		'SQLite (WAL) persistence, SSE live operator dashboard',
@@ -62,21 +62,21 @@
 		{
 			title: 'CDN from First Principles',
 			oneLiner:
-				'A toy content delivery network with edge caching, origin pull, RFC 7234 cache validation, and geographic routing. No off-the-shelf parts: the only way I actually trust I understand the internals.',
+				'A toy content delivery network: UDP-based load balancer distributing requests across edge servers with local caching and origin pull. Built to understand CDN internals from the ground up.',
 			outcome:
-				'Origin-pull + edge cache · DNS-based geo routing · cache-control header parsing · invalidation API',
-			stack: ['Python', 'HTTP', 'DNS', 'Caching'],
+				'Load-balanced edge servers · local cache layer · origin pull · UDP transport',
+			stack: ['Python', 'UDP', 'Networking', 'Caching'],
 			color: 'var(--color-accent-cyan)',
 			icon: 'network',
 			repo: 'https://github.com/iFernandez96/CDN'
 		},
 		{
-			title: 'Recursive DNS Resolver',
+			title: 'DNS Resolver',
 			oneLiner:
-				'An iterative resolver written against the RFC 1035 wire format, no library shortcuts. It walks roots to TLDs to authoritative servers, handles A/AAAA/MX/CNAME, and retries on truncation.',
+				'An educational DNS resolver simulating iterative resolution (root to TLD to authoritative) with an LRU cache. Built to understand the DNS hierarchy hands-on.',
 			outcome:
-				'Zero external DNS libs · UDP wire-format parser/encoder · root-hint bootstrap · TCP retry on TC bit',
-			stack: ['Python', 'DNS', 'UDP', 'Networking'],
+				'Simulated root→TLD→authoritative resolution · LRU cache · file-based DNS tree',
+			stack: ['Python', 'DNS', 'Networking'],
 			color: 'var(--color-accent-cyan)',
 			icon: 'terminal',
 			repo: 'https://github.com/iFernandez96/dnsResolver'

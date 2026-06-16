@@ -11,13 +11,13 @@
 			type: 'Research',
 			color: 'var(--color-accent-amber)',
 			description:
-				'The pivot, made concrete. Started during the final year of my B.S., building offensive tooling and working through kernel and Android internals from an attacker\'s point of view.',
+				'The pivot, made concrete. Started during the final year of my B.S., building offensive tooling and ramping on reverse engineering from an attacker\'s point of view.',
 			highlights: [
 				'Built BeaconUI, a 3-transport educational C2 framework (raw TCP, mTLS HTTPS, beacon/callback) with a Python and C implant and a Svelte operator dashboard',
-				'Bypassed SSL-pinning and root detection on deliberately vulnerable Android targets with Frida, mapped to OWASP MASTG test cases',
-				'Long-form writeups on protocol design, exploit reasoning, and tooling decisions'
+				'Ramping on reverse engineering and Android security analysis',
+				'Published a long-form technical writeup on C2 architecture and protocol design'
 			],
-			stack: 'Python · C · Frida · mTLS · SQLite · Svelte 5'
+			stack: 'Python · C · mTLS · SQLite · Svelte 5'
 		},
 		{
 			title: 'Hardware Systems Software Engineer',
@@ -47,8 +47,8 @@
 			description:
 				'Eight years at a defense AI startup, where I learned the low level for real: bare-metal firmware, kernel drivers, BSP customization, and real-time computer vision on custom embedded ARM hardware.',
 			highlights: [
-				'Redesigned the detection pipeline\'s memory layout (cache-aware) to raise computer-vision throughput 40% on the ARM target',
-				'Diagnosed a thermal regression with the EE team, cutting thermal load 20%',
+				'Designed and implemented efficient algorithms that increased computer-vision processing performance by 40% on the ARM target',
+				'Collaborated with the Electrical Engineering team to diagnose thermal issues using specialized instrumentation; improved hardware efficiency by 15% and reduced cooling costs by 20%',
 				'Linux kernel driver development and BSP customization for custom ARM platforms',
 				'Mentored interns porting CV algorithms from MATLAB to C',
 				'Hardware-in-the-loop testing and low-level networking for field deployments'

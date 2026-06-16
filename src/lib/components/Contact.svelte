@@ -15,6 +15,13 @@
 			href: 'https://www.linkedin.com/in/ifernandez96/',
 			icon: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
 			color: 'var(--color-accent-cyan)'
+		},
+		{
+			label: 'Resume',
+			value: 'PDF download',
+			href: '/Israel-Fernandez-Resume.pdf',
+			icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-5 h-5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>`,
+			color: 'var(--color-accent-indigo)'
 		}
 	];
 </script>
@@ -51,9 +58,10 @@
 			{#each links as link (link.label)}
 				<a
 					href={link.href}
-					target="_blank"
-					rel="noopener noreferrer"
-					aria-label="{link.label} profile (opens in new tab)"
+					target={link.href.startsWith('/') ? undefined : '_blank'}
+					rel={link.href.startsWith('/') ? undefined : 'noopener noreferrer'}
+					download={link.href.endsWith('.pdf') ? '' : undefined}
+					aria-label={link.href.endsWith('.pdf') ? 'Download resume (PDF)' : `${link.label} profile (opens in new tab)`}
 					class="contact-link inline-flex items-center gap-2.5 px-6 py-3 rounded-md border font-mono text-[15px]"
 					style="border-color: var(--color-border); background: var(--color-bg-secondary); --link-color: {link.color};"
 				>

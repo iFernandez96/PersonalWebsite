@@ -42,14 +42,14 @@
 			title: 'Systems & Embedded',
 			color: 'var(--color-accent-cyan)',
 			icon: 'chip',
-			description: 'Where nine years went. Production firmware, kernel work, real-time.',
+			description: 'Where eight-plus years went. Production firmware, kernel work, real-time.',
 			skills: [
-				{ name: 'C / C++', tier: 'core' },
-				{ name: 'Embedded Systems', tier: 'core' },
-				{ name: 'Linux Kernel', tier: 'core' },
-				{ name: 'ARM Assembly', tier: 'core' },
-				{ name: 'RTOS / FreeRTOS', tier: 'core' },
-				{ name: 'Device Drivers', tier: 'core' }
+				{ name: 'Embedded Systems', tier: 'working' },
+				{ name: 'Linux Kernel', tier: 'working' },
+				{ name: 'C / C++', tier: 'building' },
+				{ name: 'ARM Assembly', tier: 'building' },
+				{ name: 'RTOS / FreeRTOS', tier: 'working' },
+				{ name: 'Device Drivers', tier: 'working' }
 			]
 		},
 		{
@@ -60,10 +60,9 @@
 			skills: [
 				{ name: 'C2 / RAT design', tier: 'working' },
 				{ name: 'Network protocols', tier: 'working' },
-				{ name: 'Android app analysis', tier: 'building' },
 				{ name: 'Reverse Engineering', tier: 'building' },
-				{ name: 'Frida / Objection', tier: 'building' },
-				{ name: 'IDA / Ghidra', tier: 'building' }
+				{ name: 'IDA / Ghidra', tier: 'building' },
+				{ name: 'Wireshark', tier: 'building' }
 			]
 		},
 		{
@@ -72,12 +71,12 @@
 			icon: 'code',
 			description: 'What I reach for outside deep-systems work: automation, web, tooling.',
 			skills: [
-				{ name: 'Python', tier: 'core' },
-				{ name: 'Bash / Shell', tier: 'core' },
-				{ name: 'Git / GitHub', tier: 'core' },
-				{ name: 'TypeScript', tier: 'working' },
-				{ name: 'Docker', tier: 'working' },
-				{ name: 'SvelteKit', tier: 'working' }
+				{ name: 'Python', tier: 'working' },
+				{ name: 'Bash / Shell', tier: 'working' },
+				{ name: 'Git / GitHub', tier: 'working' },
+				{ name: 'TypeScript', tier: 'building' },
+				{ name: 'Docker', tier: 'building' },
+				{ name: 'SvelteKit', tier: 'building' }
 			]
 		}
 	];

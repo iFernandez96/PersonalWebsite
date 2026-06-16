@@ -41,7 +41,7 @@
 					a defense AI startup in Monterey building low-level systems on custom embedded hardware.
 				</p>
 				<p class="text-[var(--color-text-secondary)] leading-relaxed mb-8">
-					After Gantz-Mountain I finished my B.S. at CSUMB (graduated with honors, May 2025), took cybersecurity coursework, and went deep on offensive security: building a C2 framework from scratch, working through Android internals with Frida, and preparing for a full-time move into red teaming.
+					After Gantz-Mountain I finished my B.S. at CSUMB (graduated with honors, May 2025), took cybersecurity coursework, and went deep on offensive security: building a C2 framework from scratch, ramping on reverse engineering, and preparing for a full-time move into red teaming.
 				</p>
 
 				<!-- What I'm good for -->

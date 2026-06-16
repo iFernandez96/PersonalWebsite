@@ -183,13 +183,13 @@
 			<p
 				class="text-[var(--color-text-secondary)] text-base md:text-lg max-w-2xl mb-3 leading-relaxed opacity-0 animate-[fadeInUp_0.4s_ease_0.28s_forwards]"
 			>
-				Nine years writing systems software. Embedded firmware, Linux kernel drivers, computer vision on custom ARM hardware. Now I point that same low-level depth at breaking things: reverse-engineering Android binaries and building offensive tooling. <span class="text-[var(--color-text-primary)] font-medium">You can't reliably break a system you don't already know how to build.</span>
+				Eight-plus years writing systems software. Embedded firmware, Linux kernel drivers, computer vision on custom ARM hardware. Now I point that same low-level depth at breaking things: building offensive tooling and ramping on reverse engineering. <span class="text-[var(--color-text-primary)] font-medium">You can't reliably break a system you don't already know how to build.</span>
 			</p>
 
 			<p
 				class="font-mono text-sm md:text-[15px] text-[var(--color-text-muted)] mb-5 opacity-0 animate-[fadeIn_0.35s_ease_0.4s_forwards]"
 			>
-				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day, offensive tooling and Android internals on my own time
+				<span class="text-[var(--color-text-secondary)]">//</span> currently: Apple silicon by day, offensive tooling and reverse engineering on my own time
 			</p>
 
 			<!-- Availability, surfaced above the fold next to the contact CTA -->
@@ -212,6 +212,14 @@
 				>
 					See my work
 					<svg class="w-4 h-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+				</a>
+				<a
+					href="/Israel-Fernandez-Resume.pdf"
+					download
+					class="cta-secondary inline-flex items-center justify-center gap-2 px-7 py-3 rounded-md text-sm font-semibold border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-cyan)]"
+				>
+					<svg class="w-4 h-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+					Resume
 				</a>
 			</div>
 
