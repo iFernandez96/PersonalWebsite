@@ -132,7 +132,7 @@
 		<div class="hidden md:flex items-center gap-2">
 			<ThemeToggle />
 			<a
-				href="/IsraelFernandezResume.pdf"
+				href="/Israel-Fernandez-Resume.pdf"
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="Resume (opens in new tab)"
@@ -201,7 +201,7 @@
 				</li>
 				<li>
 					<a
-						href="/IsraelFernandezResume.pdf"
+						href="/Israel-Fernandez-Resume.pdf"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="Resume (opens in new tab)"
