@@ -17,6 +17,7 @@
 	--color-accent-cyan: #22d3ee;
 	--color-accent-indigo: #818cf8;
 	--color-accent-amber: #f59e0b;
+	--color-accent-rose: #f87171;
 	--color-text-primary: #e7ecf3;
 	--color-text-secondary: #94a3b8;
 	--color-text-muted: #8694a8;
@@ -121,15 +122,15 @@ p {
 
 /* Hero stagger animations (existing) */
 @keyframes fadeInDown {
-	from { opacity: 0; transform: translate3d(0, -16px, 0); }
+	from { opacity: 0.01; transform: translate3d(0, -16px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fadeInUp {
-	from { opacity: 0; transform: translate3d(0, 16px, 0); }
+	from { opacity: 0.01; transform: translate3d(0, 16px, 0); }
 	to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fadeIn {
-	from { opacity: 0; }
+	from { opacity: 0.01; }
 	to { opacity: 1; }
 }
 @keyframes pulse-glow {
@@ -241,6 +242,14 @@ p {
 		animation: none !important;
 		opacity: 1 !important;
 		transform: none !important;
+	}
+	/* Hero uses Tailwind opacity-0 + animate-[...] classes set at build time;
+	   without JS the animations never fire so elements stay invisible. */
+	#hero [class*='opacity-0'] {
+		opacity: 1 !important;
+	}
+	#hero [class*='animate-'] {
+		animation: none !important;
 	}
 }
 

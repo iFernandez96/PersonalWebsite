@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { createScrollWatcher } from '$lib/utils/scroll.js';
 
 	let visible = $state(false);
 
@@ -9,22 +10,13 @@
 	}
 
 	onMount(() => {
-		let rafId = 0;
 		function update() {
-			rafId = 0;
 			const next = window.scrollY > 600;
 			if (next !== visible) visible = next;
 		}
-		function schedule() {
-			if (rafId) return;
-			rafId = requestAnimationFrame(update);
-		}
-		window.addEventListener('scroll', schedule, { passive: true });
+		const cleanup = createScrollWatcher(update);
 		update();
-		return () => {
-			window.removeEventListener('scroll', schedule);
-			if (rafId) cancelAnimationFrame(rafId);
-		};
+		return cleanup;
 	});
 </script>
 

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import ThemeToggle from './ThemeToggle.svelte';
+	import { createScrollWatcher } from '$lib/utils/scroll.js';
 
 	const sectionIds = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
 
@@ -36,10 +37,7 @@
 	}
 
 	onMount(() => {
-		let rafId = 0;
-
 		function update() {
-			rafId = 0;
 			const y = window.scrollY;
 			const vh = window.innerHeight;
 			scrolled = y > 50;
@@ -60,21 +58,13 @@
 			activeSection = current;
 		}
 
-		function schedule() {
-			if (rafId) return;
-			rafId = requestAnimationFrame(update);
-		}
-
-		window.addEventListener('scroll', schedule, { passive: true });
-		window.addEventListener('resize', schedule, { passive: true });
+		const cleanupScroll = createScrollWatcher(update);
 		window.addEventListener('keydown', handleMenuKey);
 		update();
 
 		return () => {
-			window.removeEventListener('scroll', schedule);
-			window.removeEventListener('resize', schedule);
+			cleanupScroll();
 			window.removeEventListener('keydown', handleMenuKey);
-			if (rafId) cancelAnimationFrame(rafId);
 		};
 	});
 </script>

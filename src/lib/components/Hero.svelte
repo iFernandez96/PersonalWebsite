@@ -303,14 +303,21 @@
 		will-change: transform;
 	}
 
-	/* Cursor spotlight: soft radial at pointer position */
+	/* Cursor spotlight: soft radial at pointer position.
+	   The gradient is always painted at --mx/--my (updated via JS on rAF).
+	   We transition opacity only — a compositor-only property — so pointermove
+	   never triggers a repaint. The spotlight fades in on hover and out on leave. */
 	.hero-spotlight {
 		background: radial-gradient(
 			circle 600px at var(--mx) var(--my),
 			color-mix(in srgb, var(--color-accent-cyan) 7%, transparent) 0%,
 			transparent 60%
 		);
-		transition: background 0.4s ease;
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+	.hero-section:hover .hero-spotlight {
+		opacity: 1;
 	}
 
 	/* Scanline: single horizontal bar, sweeps once on load */
@@ -332,7 +339,7 @@
 		font-size: clamp(2.75rem, 8vw, 7rem);
 		font-weight: 700;
 		letter-spacing: -0.05em;
-		line-height: 0.9;
+		line-height: 1.0;
 	}
 
 	/* Surname gradient: cyan→indigo background-clip */

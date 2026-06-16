@@ -136,7 +136,7 @@ export function getPost(slug: string): Post | undefined {
 }
 
 export function formatDate(dateStr: string): string {
-	return new Date(dateStr).toLocaleDateString('en-US', {
+	return new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric'

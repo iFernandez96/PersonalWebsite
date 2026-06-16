@@ -1,29 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { createScrollWatcher } from '$lib/utils/scroll.js';
 
 	let progress = $state(0);
 
 	onMount(() => {
-		let rafId = 0;
 		function update() {
-			rafId = 0;
 			const doc = document.documentElement;
 			const scrolled = window.scrollY;
 			const max = doc.scrollHeight - window.innerHeight;
 			progress = max > 0 ? Math.min(100, Math.max(0, (scrolled / max) * 100)) : 0;
 		}
-		function schedule() {
-			if (rafId) return;
-			rafId = requestAnimationFrame(update);
-		}
-		window.addEventListener('scroll', schedule, { passive: true });
-		window.addEventListener('resize', schedule, { passive: true });
+		const cleanup = createScrollWatcher(update);
 		update();
-		return () => {
-			window.removeEventListener('scroll', schedule);
-			window.removeEventListener('resize', schedule);
-			if (rafId) cancelAnimationFrame(rafId);
-		};
+		return cleanup;
 	});
 </script>
 

@@ -54,7 +54,7 @@
 		},
 		{
 			title: 'Security & Offensive',
-			color: 'var(--color-accent-amber)',
+			color: 'var(--color-accent-rose)',
 			icon: 'shield',
 			description: 'The newest stuff here, and where most of my off-hours go right now.',
 			skills: [

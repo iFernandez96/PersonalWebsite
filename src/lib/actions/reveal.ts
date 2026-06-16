@@ -32,9 +32,7 @@ export function reveal(
 
 	// Apply base + role class before intersection (hidden state)
 	node.classList.add('rv', `rv-${role}`);
-	if (index > 0) {
-		node.style.setProperty('--i', String(index));
-	}
+	node.style.setProperty('--i', String(index));
 
 	// Bail in reduced-motion or no-JS environments (SSR: this never runs)
 	if (typeof window === 'undefined') return {};

@@ -2,13 +2,16 @@
 	import { onMount } from 'svelte';
 
 	type Theme = 'dark' | 'light';
-	let theme = $state<Theme>('dark');
 
 	function readInitial(): Theme {
 		if (typeof document === 'undefined') return 'dark';
 		const t = document.documentElement.getAttribute('data-theme');
 		return t === 'light' ? 'light' : 'dark';
 	}
+
+	// The inline script in app.html already sets data-theme before first paint,
+	// so we can read the attribute synchronously here rather than waiting for onMount.
+	let theme = $state<Theme>(readInitial());
 
 	function apply(next: Theme) {
 		theme = next;
@@ -28,8 +31,8 @@
 	}
 
 	onMount(() => {
-		theme = readInitial();
 		// Track system preference if user hasn't explicitly chosen
+		// (initial theme is already set by the inline script in app.html)
 		const mql = window.matchMedia('(prefers-color-scheme: light)');
 		const handler = () => {
 			if (!localStorage.getItem('theme')) {
