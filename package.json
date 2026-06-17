@@ -32,7 +32,7 @@
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7",
 		"vitest": "^4.1.8",
-		"wrangler": "^4.68.0"
+		"wrangler": "^4.101.0"
 	},
 	"dependencies": {
 		"@fontsource/inter": "^5.2.8",
